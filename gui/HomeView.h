@@ -7,6 +7,7 @@
 
 
 #include "BaseView.h"
+//#include "../event/Timer.h"
 
 class HomeView : public BaseView {
 	private:
@@ -15,6 +16,7 @@ class HomeView : public BaseView {
 		GtkLabel* lblGreeting;
 		GtkTable* grid;
 		GtkWidget* messageContainer;
+//		Timer* timer;
 
 	public:
 		HomeView(GtkWindow* window);
@@ -24,6 +26,7 @@ class HomeView : public BaseView {
 		void setup() override;
 		void show() override;
 		void hide() override;
+		void setDateAndTime(char* date, char* time);
 };
 
 

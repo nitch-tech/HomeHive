@@ -2,7 +2,9 @@
 // Created by dave on 13/03/23.
 //
 
+#include <iostream>
 #include "HomeView.h"
+#include "../event/Timer.h"
 
 void HomeView::setup() {
 //	this->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -23,7 +25,7 @@ void HomeView::setup() {
 
 	GtkWidget* lblTime = gtk_label_new_with_mnemonic("00:00");
 	this->lblTime = (GtkLabel*) lblTime;
-	gtk_widget_override_font(lblTime, pango_font_description_from_string("Tahoma 30"));
+	gtk_widget_override_font(lblTime, pango_font_description_from_string("Tahoma 36"));
 	gtk_widget_set_size_request(lblTime, 30, 50);
 	gtk_box_pack_start(GTK_BOX(this->messageContainer), lblTime, FALSE, FALSE, 0);
 
@@ -43,6 +45,11 @@ void HomeView::setup() {
 
 	gtk_table_attach_defaults(this->grid, lblGreeting, 1, 2, 0, 1);
 
+//	auto cb = [this](char* a, char* b) {
+//		this->setDateAndTime(a, b);
+//	};
+	Timer* timer = new Timer(this);
+	timer->Register();
 }
 
 void HomeView::show() {
@@ -55,4 +62,10 @@ HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 }
 
 HomeView::~HomeView() {
+}
+
+void HomeView::setDateAndTime(char *date, char *time) {
+	gtk_label_set_text(this->lblDate, date);
+	gtk_label_set_text(this->lblTime, time);
+	std::cout << "aaa" << date << "=="<<time << std::endl;
 }
