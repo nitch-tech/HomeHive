@@ -7,13 +7,15 @@
 #include "Unsplash.h"
 
 const std::string API_KEY = "LWJuhe2HqclZbAa0JbprJcTzyVE1lycSqIL1MTebZHM"; // "Eimmb-Q4YT2OgHDNhqgdynudnrDiWx4_heqO0IHQoaw";
-const std::string DEFAULT_TOPIC = "Fzo3zuOHN6w";
 
 const std::string BG_IMG_MAIN = "background.jpg";
 const std::string BG_IMG_BUFF = "background2.jpg";
 
 Unsplash::Unsplash() {
 	this->isBufferImage = false;
+	this->categories = std::map<std::string, std::string>();
+	this->loadCategories();
+	this->currentCategoryId = "Fzo3zuOHN6w";
 }
 
 Unsplash::~Unsplash() {
@@ -21,7 +23,11 @@ Unsplash::~Unsplash() {
 }
 
 UnsplashBackground *Unsplash::getRandomBackground() {
-	Request* req = new Request("https://api.unsplash.com/photos/random?topics=" + DEFAULT_TOPIC + "&client_id=" + API_KEY + "&orientation=landscape");
+	Request* req = new Request(
+					"https://api.unsplash.com/photos/random?topics=" +
+					this->currentCategoryId +
+					"&client_id=" + API_KEY +
+					"&orientation=landscape");
 	if (!req->execute()) {
 		std::cout << "Error: " << req->getError() << std::endl;
 		return nullptr;
@@ -81,4 +87,32 @@ bool Unsplash::downloadBackground(
 
 std::string Unsplash::getBackgroundImage() {
 	return this->isBufferImage ? BG_IMG_BUFF : BG_IMG_MAIN;
+}
+
+std::string Unsplash::getCurrentCategoryId() {
+	return this->currentCategoryId;
+}
+
+std::string Unsplash::getCurrentCategoryName() {
+	return this->getCategoryName(this->currentCategoryId);
+}
+
+std::string Unsplash::getCategoryName(std::string id) {
+	return this->categories[id];
+}
+
+std::map<std::string, std::string> Unsplash::getCategories() {
+	return this->categories;
+}
+
+void Unsplash::loadCategories() {
+	this->categories["Fzo3zuOHN6w"] = "Travel";
+	this->categories["6sMVjTLSkeQ"] = "Nature";
+	this->categories["xHxYTMHLgOc"] = "Street Photography";
+	this->categories["iUIsnVtjB0Y"] = "Textures & Patterns";
+	this->categories["Jpg6Kidl-Hk"] = "Animals";
+	this->categories["M8jVbLbTRws"] = "Architecture";
+	this->categories["bDo48cUhwnY"] = "Arts & Culture";
+	this->categories["_8zFHuhRhyo"] = "Spiritual";
+	this->categories["bo8jQKTaE0Y"] = "Random";
 }
