@@ -6,13 +6,18 @@
 #include <nlohmann/json.hpp>
 #include "Unsplash.h"
 
-const std::string API_KEY = "Eimmb-Q4YT2OgHDNhqgdynudnrDiWx4_heqO0IHQoaw";
+const std::string API_KEY = "LWJuhe2HqclZbAa0JbprJcTzyVE1lycSqIL1MTebZHM"; // "Eimmb-Q4YT2OgHDNhqgdynudnrDiWx4_heqO0IHQoaw";
 const std::string DEFAULT_TOPIC = "Fzo3zuOHN6w";
 
+const std::string BG_IMG_MAIN = "background.jpg";
+const std::string BG_IMG_BUFF = "background2.jpg";
+
 Unsplash::Unsplash() {
+	this->isBufferImage = false;
 }
 
 Unsplash::~Unsplash() {
+	if (this->file) fclose(this->file);
 }
 
 UnsplashBackground *Unsplash::getRandomBackground() {
@@ -28,12 +33,14 @@ UnsplashBackground *Unsplash::getRandomBackground() {
 	auto bg = new UnsplashBackground(res["id"]);
 	bg->setWidth(res["width"]);
 	bg->setHeight(res["height"]);
-	bg->setDescription(res["alt_description"]);
+//	bg->setDescription(res["alt_description"]);
 	bg->setURL(res["urls"]["full"]);
+
+	delete req;
 	return bg;
 }
 
-FILE *Unsplash::downloadBackground(
+bool Unsplash::downloadBackground(
 				UnsplashBackground *background,
 				int width,
 				int height
@@ -49,13 +56,28 @@ FILE *Unsplash::downloadBackground(
 	}
 
 	Request* req = new Request(url);
-	if (!req->writeToFile("background.jpg")) {
+	FILE* fp = fopen(this->getBackgroundImage().c_str(), "wb");
+	if (!req->writeToFile(fp)) {
 		std::cout << "Error: todo" << std::endl;
-		return NULL;
+		fclose(fp);
+		delete req;
+		return false;
 	}
 	if (!req->execute()) {
+		fclose(fp);
 		std::cout << "Error: " << req->getError() << std::endl;
-		return NULL;
+		delete req;
+		fclose(fp);
+		return false;
 	}
-	return req->getOutputFile();
+	fclose(fp);
+	delete req;
+	this->isBufferImage = !this->isBufferImage;
+
+	// return req->getOutputFile();
+	return true;
+}
+
+std::string Unsplash::getBackgroundImage() {
+	return this->isBufferImage ? BG_IMG_BUFF : BG_IMG_MAIN;
 }

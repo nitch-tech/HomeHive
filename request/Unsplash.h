@@ -10,12 +10,18 @@
 #include "request.h"
 
 class Unsplash {
+	private:
+		FILE* file;
+		bool isBufferImage = false;
+
 	public:
 		Unsplash();
 		~Unsplash();
 
 		UnsplashBackground* getRandomBackground();
-		FILE* downloadBackground(UnsplashBackground* background, int width = 0, int height = 0);
+		bool downloadBackground(UnsplashBackground* background, int width = 0, int height = 0);
+
+		std::string getBackgroundImage();
 };
 
 

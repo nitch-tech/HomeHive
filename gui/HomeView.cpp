@@ -10,8 +10,16 @@ void HomeView::setup() {
 //	this->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 //	gtk_container_add(GTK_CONTAINER(this->window), this->vbox);
 
+	this->layout = (GtkLayout*) gtk_layout_new(NULL, NULL);
+	gtk_container_add(GTK_CONTAINER(this->window), (GtkWidget*) layout);
+	gtk_widget_show((GtkWidget*) layout);
+
+	this->imgBackground = (GtkImage*) gtk_image_new_from_file("background.jpg");
+	gtk_layout_put(layout, (GtkWidget*) imgBackground, 0, 0);
+
 	this->grid = (GtkTable*) gtk_table_new(3, 3, TRUE);
-	gtk_container_add(GTK_CONTAINER(this->window), (GtkWidget*) this->grid);
+//	gtk_container_add(GTK_CONTAINER(this->window), (GtkWidget*) this->grid);
+	gtk_layout_put(layout, (GtkWidget*) this->grid, 0, 0);
 
 
 	gtk_widget_set_vexpand((GtkWidget*) this->grid, true);
@@ -59,13 +67,31 @@ void HomeView::hide() {
 }
 
 HomeView::HomeView(GtkWindow *window) : BaseView(window) {
+	this->unsplash = new Unsplash();
 }
 
 HomeView::~HomeView() {
+	delete this->unsplash;
 }
 
 void HomeView::setDateAndTime(char *date, char *time) {
 	gtk_label_set_text(this->lblDate, date);
 	gtk_label_set_text(this->lblTime, time);
 	std::cout << "aaa" << date << "=="<<time << std::endl;
+}
+
+void HomeView::changeBackgroundImage() {
+	auto bg = this->unsplash->getRandomBackground();
+	if (bg == nullptr) {
+		return;
+	}
+
+	if (!this->unsplash->downloadBackground(bg, 1024, 720)) {
+		return;
+	}
+	gtk_image_set_from_file(this->imgBackground, this->unsplash->getBackgroundImage().c_str());
+
+	// refresh and reload background
+	gtk_widget_queue_draw((GtkWidget*) this->imgBackground);
+	gtk_widget_show((GtkWidget*) this->imgBackground);
 }

@@ -25,7 +25,7 @@ add_executable(test test.cpp)
 target_link_libraries(Requests PRIVATE nlohmann_json::nlohmann_json ${CURL_LIBRARIES})
 target_link_libraries(HomeHive Requests)
 
-target_link_libraries(HomeHive ${GTK_LIBRARIES})
+target_link_libraries(HomeHive ${GTK_LIBRARIES} Requests)
 target_link_libraries(test2 ${GTK_LIBRARIES})
 target_link_libraries(test PRIVATE nlohmann_json::nlohmann_json Requests)
 

@@ -7,15 +7,21 @@
 
 
 #include "BaseView.h"
+#include "../request/Unsplash.h"
 //#include "../event/Timer.h"
 
 class HomeView : public BaseView {
 	private:
+		GtkLayout* layout;
+		GtkImage* imgBackground;
+
 		GtkLabel* lblTime;
 		GtkLabel* lblDate;
 		GtkLabel* lblGreeting;
 		GtkTable* grid;
 		GtkWidget* messageContainer;
+
+		Unsplash* unsplash;
 //		Timer* timer;
 
 	public:
@@ -27,6 +33,8 @@ class HomeView : public BaseView {
 		void show() override;
 		void hide() override;
 		void setDateAndTime(char* date, char* time);
+
+		void changeBackgroundImage();
 };
 
 

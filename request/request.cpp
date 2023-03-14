@@ -28,6 +28,8 @@ Request::Request(std::string url) {
 	this->curl = curl_easy_init();
 	this->errorBuffer = "";
 	this->dataBuffer = "";
+	this->filePointer = nullptr;
+	this->isBinaryDownload = false;
 }
 
 /**
@@ -37,6 +39,7 @@ Request::~Request() {
 	this->url.clear();
 	this->dataBuffer.clear();
 	this->errorBuffer.clear();
+	this->isBinaryDownload = false;
 }
 
 /**
@@ -48,7 +51,7 @@ bool Request::execute() {
 		curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 
 		// handle binary downloads
-		if (this->isBinaryDownload) {
+		if (this->isBinaryDownload && this->filePointer) {
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeBinaryCallback);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, this->filePointer);
 		} else { // handles stringy responses

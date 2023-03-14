@@ -30,6 +30,8 @@ const gboolean Timer::onTimerTick(gpointer data) {
 	tmr->time = std::time(nullptr);
 	tmr->tm = std::localtime(&tmr->time);
 
+	++tmr->ticks;
+
 //	std::sprintf(tmr->buffTime, "%02d:%02d:%02d", tmr->tm->tm_hour, tmr->tm->tm_min, tmr->tm->tm_sec);
 //	std::sprintf(tmr->buffDate, "%i-%i-%i", tmr->tm->tm_year, tmr->tm->tm_mon, tmr->tm->tm_mday);
 
@@ -39,6 +41,10 @@ const gboolean Timer::onTimerTick(gpointer data) {
 
 //	(tmr->callback)(tmr->buffDate, tmr->buffTime);
 	tmr->view->setDateAndTime(tmr->buffDate, tmr->buffTime);
+
+	if (tmr->ticks > 0 && tmr->ticks % 5 == 0) {
+		tmr->view->changeBackgroundImage();
+	}
 
 	return 1;
 }
