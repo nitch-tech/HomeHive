@@ -22,8 +22,17 @@ add_executable(HomeHive main.cpp gui/BaseView.cpp gui/BaseView.h gui/App.cpp gui
 add_executable(test2 main2.cpp)
 add_executable(test test.cpp)
 
+add_custom_target(resources
+    COMMAND ${CMAKE_COMMAND}
+        -E copy_directory
+        ${CMAKE_CURRENT_LIST_DIR}/resources
+        ${CMAKE_CURRENT_BINARY_DIR}/resources
+)
+
 target_link_libraries(Requests PRIVATE nlohmann_json::nlohmann_json ${CURL_LIBRARIES})
 target_link_libraries(HomeHive Requests)
+
+add_dependencies(HomeHive resources)
 
 target_link_libraries(HomeHive ${GTK_LIBRARIES} Requests)
 target_link_libraries(test2 ${GTK_LIBRARIES})

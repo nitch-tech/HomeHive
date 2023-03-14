@@ -1,0 +1,23 @@
+label {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.lblTime, .lblDate, .lblGreeting {
+	color: #fff;
+	text-shadow: 0 2px 5px #383838;
+	text-align: left;
+}
+
+.lblTime {
+	font-size: 48pt;
+}
+.lblDate {
+	font-size: 32pt;
+}
+.lblGreeting {
+	font-size: 21pt;
+}
+
+.grid {
+	background: rgba(255,0,0, 0.5);
+}

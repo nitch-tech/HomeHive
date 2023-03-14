@@ -18,7 +18,7 @@ class HomeView : public BaseView {
 		GtkLabel* lblTime;
 		GtkLabel* lblDate;
 		GtkLabel* lblGreeting;
-		GtkTable* grid;
+		GtkGrid* grid;
 		GtkWidget* messageContainer;
 
 		Unsplash* unsplash;
