@@ -55,6 +55,8 @@ bool Unsplash::downloadBackground(
 		url += "&h=" + std::to_string(height);
 	}
 
+	this->isBufferImage = !this->isBufferImage;
+
 	Request* req = new Request(url);
 	FILE* fp = fopen(this->getBackgroundImage().c_str(), "wb");
 	if (!req->writeToFile(fp)) {
@@ -72,7 +74,6 @@ bool Unsplash::downloadBackground(
 	}
 	fclose(fp);
 	delete req;
-	this->isBufferImage = !this->isBufferImage;
 
 	// return req->getOutputFile();
 	return true;

@@ -34,6 +34,8 @@ class HomeView : public BaseView {
 		void hide() override;
 		void setDateAndTime(char* date, char* time);
 
+		void setFullscreen(bool fullscreen);
+
 		void changeBackgroundImage();
 };
 

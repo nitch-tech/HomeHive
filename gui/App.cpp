@@ -80,4 +80,7 @@ void App::CreateWindow() {
 	this->view->setup();
 	this->view->show();
 	gtk_widget_show_all(this->window);
+
+	// auto fullscreen -
+//	((HomeView*) this->view)->setFullscreen(true);
 }

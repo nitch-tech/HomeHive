@@ -5,6 +5,8 @@
 #include <string>
 #include "Timer.h"
 
+int BACKGROUND_INTERVAL = 15 * 60; // every 15 minutes
+
 //Timer::Timer(const std::function<void(char *, char *)> &cb)
 //				: callback(cb) {
 Timer::Timer(HomeView* v) {
@@ -42,7 +44,7 @@ const gboolean Timer::onTimerTick(gpointer data) {
 //	(tmr->callback)(tmr->buffDate, tmr->buffTime);
 	tmr->view->setDateAndTime(tmr->buffDate, tmr->buffTime);
 
-	if (tmr->ticks > 0 && tmr->ticks % 5 == 0) {
+	if (tmr->ticks % BACKGROUND_INTERVAL == 0) {
 		tmr->view->changeBackgroundImage();
 	}
 

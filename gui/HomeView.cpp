@@ -86,7 +86,7 @@ void HomeView::changeBackgroundImage() {
 		return;
 	}
 
-	if (!this->unsplash->downloadBackground(bg, 1024, 720)) {
+	if (!this->unsplash->downloadBackground(bg, 1920, 1080)) {
 		return;
 	}
 	gtk_image_set_from_file(this->imgBackground, this->unsplash->getBackgroundImage().c_str());
@@ -94,4 +94,12 @@ void HomeView::changeBackgroundImage() {
 	// refresh and reload background
 	gtk_widget_queue_draw((GtkWidget*) this->imgBackground);
 	gtk_widget_show((GtkWidget*) this->imgBackground);
+}
+
+void HomeView::setFullscreen(bool fullscreen) {
+	if (fullscreen) {
+		gtk_window_fullscreen(this->window);
+	} else {
+		gtk_window_unfullscreen(this->window);
+	}
 }
