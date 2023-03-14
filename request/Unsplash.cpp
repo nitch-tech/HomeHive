@@ -16,7 +16,7 @@ Unsplash::~Unsplash() {
 }
 
 UnsplashBackground *Unsplash::getRandomBackground() {
-	Request* req = new Request("https://api.unsplash.com/photos/random?topics=" + DEFAULT_TOPIC + "&client_id=" + API_KEY);
+	Request* req = new Request("https://api.unsplash.com/photos/random?topics=" + DEFAULT_TOPIC + "&client_id=" + API_KEY + "&orientation=landscape");
 	if (!req->execute()) {
 		std::cout << "Error: " << req->getError() << std::endl;
 		return nullptr;
@@ -28,7 +28,34 @@ UnsplashBackground *Unsplash::getRandomBackground() {
 	auto bg = new UnsplashBackground(res["id"]);
 	bg->setWidth(res["width"]);
 	bg->setHeight(res["height"]);
-	bg->setDescription(res["description"]);
+	bg->setDescription(res["alt_description"]);
 	bg->setURL(res["urls"]["full"]);
 	return bg;
+}
+
+FILE *Unsplash::downloadBackground(
+				UnsplashBackground *background,
+				int width,
+				int height
+) {
+	std::string url = background->getURL() + "&fit=max&crop=entropy";
+
+	// specify width and heights, and let unsplash crop it for us <3
+	if (width > 0) {
+		url += "&w=" + std::to_string(width);
+	}
+	if (height > 0) {
+		url += "&h=" + std::to_string(height);
+	}
+
+	Request* req = new Request(url);
+	if (!req->writeToFile("background.jpg")) {
+		std::cout << "Error: todo" << std::endl;
+		return NULL;
+	}
+	if (!req->execute()) {
+		std::cout << "Error: " << req->getError() << std::endl;
+		return NULL;
+	}
+	return req->getOutputFile();
 }

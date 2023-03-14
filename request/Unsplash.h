@@ -15,6 +15,7 @@ class Unsplash {
 		~Unsplash();
 
 		UnsplashBackground* getRandomBackground();
+		FILE* downloadBackground(UnsplashBackground* background, int width = 0, int height = 0);
 };
 
 

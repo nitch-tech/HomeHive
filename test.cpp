@@ -22,5 +22,7 @@ int main() {
 	auto abc = unsplash->getRandomBackground();
 	std::cout << "URL=" << abc->getURL() << "\nDESC=" << abc->getDescription() << std::endl;
 
+	auto file = unsplash->downloadBackground(abc, 1920, 1080);
+
 	return 0;
 }
