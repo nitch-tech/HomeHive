@@ -13,12 +13,13 @@
 class Unsplash {
 	private:
 		FILE* file;
-		bool isBufferImage = false;
 		std::map<std::string, std::string> categories;
 		std::string currentCategoryId;
 
 	public:
-		Unsplash();
+	bool isBufferImage = false;
+
+	Unsplash();
 		~Unsplash();
 
 		UnsplashBackground* getRandomBackground();
