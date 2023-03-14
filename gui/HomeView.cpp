@@ -5,6 +5,8 @@
 #include <iostream>
 #include "HomeView.h"
 #include "../event/Timer.h"
+#include "weather.h"
+#include <gtk/gtk.h>
 
 void HomeView::setup() {
 //	this->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -50,6 +52,25 @@ void HomeView::setup() {
 //	};
 	Timer* timer = new Timer(this);
 	timer->Register();
+
+    //Just trying something delete later
+    Weather* weatherData = new Weather();
+    weatherData->fetchWeatherData();
+    double temp = weatherData->getTemp();
+    int rounded = std::round(temp);
+    std::cout << weatherData << "fefwew";
+    gchar *text;
+    text = g_strdup_printf("The current weather in London is %d °C", rounded);
+
+    GtkWidget* lblWeather = gtk_label_new_with_mnemonic(text);
+    gtk_widget_override_font(lblWeather, pango_font_description_from_string("Tahoma 20"));
+    gtk_widget_set_size_request(lblWeather, 30, 10);
+    gtk_widget_set_vexpand(lblWeather, true);
+    gtk_widget_set_hexpand(lblWeather, true);
+    gtk_table_attach_defaults(this->grid, lblWeather, 0, 1, 0, 1);
+
+
+
 }
 
 void HomeView::show() {
@@ -67,5 +88,5 @@ HomeView::~HomeView() {
 void HomeView::setDateAndTime(char *date, char *time) {
 	gtk_label_set_text(this->lblDate, date);
 	gtk_label_set_text(this->lblTime, time);
-	std::cout << "aaa" << date << "=="<<time << std::endl;
+	//std::cout << "aaa" << date << "=="<<time << std::endl;
 }
