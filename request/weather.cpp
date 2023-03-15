@@ -13,7 +13,11 @@ const std::string WEATHER_API_KEY = "7caf3dcfe4918513df6c3ddf1b564435";
 Weather::Weather() {
 	temperatureString = 0;
 	conditionId = 0;
+	this->locationName = "Unknown";
+	this->tempFeelsLike = 0;
 }
+
+Weather::~Weather() = default;
 
 int Weather::fetchWeatherData() {
 	Request initial("https://api.openweathermap.org/data/2.5/weather?id=" +
