@@ -42,7 +42,7 @@ static void activate(GtkApplication *app, App* data) {
  * @param argv
  */
 void App::Start(int argc, char** argv) {
-	this->app = gtk_application_new(APPLICATION_ID.c_str(), G_APPLICATION_FLAGS_NONE);
+	this->app = gtk_application_new(APPLICATION_ID.c_str(), G_APPLICATION_DEFAULT_FLAGS);
 //	g_signal_connect(this->app, "activate", G_CALLBACK(this->OnActivate), (gpointer) this);
 	g_signal_connect(this->app, "activate", G_CALLBACK(activate), (gpointer) this);
 
@@ -69,8 +69,8 @@ void App::CreateWindow() {
 	gtk_window_set_title(window, "HOMEHIVE");
 	gtk_window_set_position(window, GTK_WIN_POS_CENTER_ALWAYS);
 	gtk_window_set_resizable(window, TRUE);
-	gtk_window_set_default_size(window, 1280, 720);
-	gtk_window_set_default_icon_from_file("icon.png", NULL);
+	gtk_window_set_default_size(window, 800, 600);
+	gtk_window_set_default_icon_from_file("resources/icon.png", NULL);
 
 	gtk_window_maximize(window);
 
@@ -80,4 +80,7 @@ void App::CreateWindow() {
 	this->view->setup();
 	this->view->show();
 	gtk_widget_show_all(this->window);
+
+	// auto fullscreen -
+//	((HomeView*) this->view)->setFullscreen(true);
 }

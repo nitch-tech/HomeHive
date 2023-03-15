@@ -1,0 +1,75 @@
+/**!
+ * HomeView's CSS
+ *
+ * Various styles to make the main screen look nice.
+ */
+
+/*  GLOBAL CSS STYLES FOR ALL ELEMENTS */
+
+/**
+ * Adjust all fonts
+ */
+* {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+
+/* ELEMENT SPECIFIC STYLES */
+
+/**
+ * Apply some text effects to the labels to make it legible.
+ */
+.lblTime, .lblDate, .lblGreeting, .lblWeather {
+	color: #fff;
+	text-shadow: 0 2px 2px #383838;
+	/*text-align: left; aligning doesnt work in GTK */
+}
+
+/**
+ * Labels & Text Styles
+ */
+
+.lblTime {
+	font-size: 48pt;
+}
+.lblDate {
+	font-size: 32pt;
+}
+.lblWeather {
+	font-size: 18pt;
+}
+.lblGreeting {
+	font-size: 21pt;
+}
+
+.grid {
+	/*background: rgba(46, 38, 38, 0.22);*/
+	padding: 2rem;
+}
+
+
+
+/* DEBUG STYLES */
+
+.debug .grid {
+	background: rgba(255,0,0,.35);
+}
+.debug .topSeperator, .debug .btmSeperator {
+	background: #fff;
+}
+.debug .midSeperator {
+	background: orange;
+}
+.debug .lblWeather {
+	background: aqua;
+}
+.debug .lblGreeting {
+	background: #00f;
+}
+.debug .lblTime {
+	background: #0f0;
+}
+.debug .lblDate {
+	background: yellow;
+}

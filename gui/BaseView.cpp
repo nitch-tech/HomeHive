@@ -19,12 +19,16 @@ bool BaseView::isVisible() {
 	return this->visible;
 }
 
-
 void BaseView::setup() {
+	this->setupLayout();
+	this->drawWidgets();
+	this->registerInteractivity();
 }
 
 void BaseView::show() {
+	this->visible = true;
 }
 
 void BaseView::hide() {
+	this->visible = false;
 }

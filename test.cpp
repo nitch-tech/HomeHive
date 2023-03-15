@@ -1,5 +1,7 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
+#include "request/Unsplash.h"
+
 using json = nlohmann::json;
 
 int main() {
@@ -15,6 +17,12 @@ int main() {
 
 	auto jj = json::parse("{\"b\":123,\"ee\":\"fereferf\"}");
 	std::cout << "b=" << jj["b"] << ", ee=" << jj["ee"] << std::endl;
+
+	Unsplash* unsplash = new Unsplash();
+	auto abc = unsplash->getRandomBackground();
+	std::cout << "URL=" << abc->getURL() << "\nDESC=" << abc->getDescription() << std::endl;
+
+	auto file = unsplash->downloadBackground(abc, 1920, 1080);
 
 	return 0;
 }

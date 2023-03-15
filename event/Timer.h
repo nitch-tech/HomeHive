@@ -20,6 +20,7 @@ class Timer {
 		guint timerId;
 		char* buffDate;
 		char* buffTime;
+		int ticks = 0;
 //		const std::function<void(char*,char*)>& callback;
 
 	public:

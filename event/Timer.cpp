@@ -5,6 +5,8 @@
 #include <string>
 #include "Timer.h"
 
+const int BACKGROUND_INTERVAL = 15 * 60; // every 15 minutes
+
 //Timer::Timer(const std::function<void(char *, char *)> &cb)
 //				: callback(cb) {
 Timer::Timer(HomeView* v) {
@@ -14,6 +16,9 @@ Timer::Timer(HomeView* v) {
 }
 
 Timer::~Timer() {
+	this->Unregister();
+	delete this->buffDate;
+	delete this->buffTime;
 }
 
 void Timer::Register() {
@@ -23,6 +28,7 @@ void Timer::Register() {
 }
 
 void Timer::Unregister() {
+	g_source_remove(this->timerId);
 }
 
 const gboolean Timer::onTimerTick(gpointer data) {
@@ -30,15 +36,17 @@ const gboolean Timer::onTimerTick(gpointer data) {
 	tmr->time = std::time(nullptr);
 	tmr->tm = std::localtime(&tmr->time);
 
-//	std::sprintf(tmr->buffTime, "%02d:%02d:%02d", tmr->tm->tm_hour, tmr->tm->tm_min, tmr->tm->tm_sec);
-//	std::sprintf(tmr->buffDate, "%i-%i-%i", tmr->tm->tm_year, tmr->tm->tm_mon, tmr->tm->tm_mday);
-
-	// there's built in string datetime formatting with better formatting omg!!! :DD
+	// nifty ctime's format to strings, see: http://www.cplusplus.com/reference/ctime/strftime/ for all flags
 	strftime(tmr->buffTime, 69, "%H:%M:%S %p", tmr->tm);
 	strftime(tmr->buffDate, 69, "%a, %B %d, %Y", tmr->tm);
 
 //	(tmr->callback)(tmr->buffDate, tmr->buffTime);
 	tmr->view->setDateAndTime(tmr->buffDate, tmr->buffTime);
 
-	return 1;
+	if ((tmr->ticks % BACKGROUND_INTERVAL) == 0) {
+		tmr->view->changeBackgroundImage();
+	}
+	++tmr->ticks;
+
+	return true;
 }
