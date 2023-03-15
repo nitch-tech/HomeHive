@@ -3,10 +3,10 @@
 //
 
 #include <iostream>
+#include <cmath>
+#include <gtk/gtk.h>
 #include "HomeView.h"
 #include "../event/Timer.h"
-#include <gtk/gtk.h>
-#include <cmath>
 
 //#define DEBUG_GRID 1
 
