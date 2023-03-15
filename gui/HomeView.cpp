@@ -74,6 +74,33 @@ void HomeView::setup() {
     gtk_table_attach_defaults(this->grid, lblWeather, 0, 1, 0, 1);
 
 
+    GtkWidget *image;
+    std::string imagePath;
+    int condId = weatherData ->getCondId();
+    if (condId >= 200 && condId <= 232 ) {
+        image = gtk_image_new_from_file("../images/cloud.bolt.png");
+    } else if (condId >= 300 && condId <= 321 ) {
+        image = gtk_image_new_from_file("../images/cloud.drizzle.png");
+    }else if (condId >= 500 && condId <= 531 ) {
+        image = gtk_image_new_from_file("../images/cloud.drizzle.png");
+    }else if (condId >= 600 && condId <= 622 ) {
+        image = gtk_image_new_from_file("../images/cloud.snow.png");
+    }else if (condId >= 701 && condId <= 781 ) {
+        image = gtk_image_new_from_file("../images/sun.max.png");
+    } else if (condId == 800 ) {
+        image = gtk_image_new_from_file("../images/cloud.drizzle.png");
+    }else if (condId >= 801 && condId <= 804 ) {
+        image = gtk_image_new_from_file("../images/cloud.png");
+    } else {
+        image = gtk_image_new_from_file("../images/cloud.png");
+    }
+
+
+
+    //gtk_widget_set_size_request(image, 5, 5);
+    gtk_widget_set_vexpand(image, true);
+    gtk_widget_set_hexpand(image, true);
+    gtk_table_attach_defaults(this->grid, image, 0, 1, 0, 2);
 
 }
 

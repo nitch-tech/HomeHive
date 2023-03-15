@@ -30,10 +30,20 @@ https://api.openweathermap.org/data/2.5/weather?id=6058560&appid=7caf3dcfe491851
 
         json& o = data["main"];
         json& gi = o["temp"];
+        for (json& weather : data["weather"]) {
+            conditionId = weather["id"];
+
+        }
+
+
+
+
+
 
         temperatureString = gi;
 
         std::cout <<gi<<"     "<<temperatureString <<"\n" ;
+        std::cout <<gi<<"   the cond id  "<<conditionId <<"\n" ;
         return 0;
 
     }else  {
@@ -43,6 +53,10 @@ https://api.openweathermap.org/data/2.5/weather?id=6058560&appid=7caf3dcfe491851
 
 }
 double Weather::getTemp() {
-    std::cout <<"   fre  "<<temperatureString <<"\n" ;
+
     return temperatureString;
+}
+
+int Weather::getCondId() {
+    return conditionId;
 }

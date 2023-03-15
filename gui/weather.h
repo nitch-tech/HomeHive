@@ -22,6 +22,7 @@ class Weather {
 
 private:
     double temperatureString;
+    int conditionId;
 
 
 
@@ -38,6 +39,7 @@ public:
     ~Weather();
     int fetchWeatherData();
     double getTemp();
+    int getCondId();
 };
 
 
