@@ -8,6 +8,7 @@
 
 #include "BaseView.h"
 #include "../request/Unsplash.h"
+#include "../request/weather.h"
 //#include "../event/Timer.h"
 
 class HomeView : public BaseView {
@@ -15,15 +16,17 @@ class HomeView : public BaseView {
 		GtkLayout* layout;
 		GtkGrid* grid;
 		GtkImage* imgBackground;
+		GtkImage* imgWeather;
 
 		GtkLabel* lblTime;
 		GtkLabel* lblDate;
 		GtkLabel* lblGreeting;
-		GtkLabel* lblWeather;
+		GtkWidget* lblWeather;
 		GtkWidget* dateTimeContainer;
 
 		Unsplash* unsplash;
-//		Timer* timer;
+		// Timer* timer;
+		Weather* weather;
 
 	public:
 		HomeView(GtkWindow* window);
@@ -35,6 +38,7 @@ class HomeView : public BaseView {
 		void setFullscreen(bool fullscreen);
 
 		void changeBackgroundImage();
+		void updateWeather();
 
 	protected:
 		void setupLayout() override;

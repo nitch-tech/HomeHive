@@ -6,6 +6,7 @@
 #include "Timer.h"
 
 const int BACKGROUND_INTERVAL = 15 * 60; // every 15 minutes
+const int WEATHER_INTERVAL = 5 * 60; // every 5 minutes
 
 //Timer::Timer(const std::function<void(char *, char *)> &cb)
 //				: callback(cb) {
@@ -43,10 +44,16 @@ const gboolean Timer::onTimerTick(gpointer data) {
 //	(tmr->callback)(tmr->buffDate, tmr->buffTime);
 	tmr->view->setDateAndTime(tmr->buffDate, tmr->buffTime);
 
+	// update background
 	if ((tmr->ticks % BACKGROUND_INTERVAL) == 0) {
 		tmr->view->changeBackgroundImage();
 	}
-	++tmr->ticks;
 
+	// update weather
+	if ((tmr->ticks % WEATHER_INTERVAL) == 0) {
+		tmr->view->updateWeather();
+	}
+
+	++tmr->ticks;
 	return true;
 }

@@ -3,6 +3,8 @@
 //
 
 #include <iostream>
+#include <cmath>
+#include <gtk/gtk.h>
 #include "HomeView.h"
 #include "../event/Timer.h"
 
@@ -48,6 +50,7 @@ static void removeClass(GtkWidget* widget, std::string className) {
 
 HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 	this->unsplash = new Unsplash();
+	this->weather = new Weather();
 }
 
 HomeView::~HomeView() {
@@ -156,11 +159,63 @@ void HomeView::drawWidgets() {
 	gtk_misc_set_alignment(GTK_MISC(lblGreeting), 1.0, 0.0);
 	gtk_grid_attach(this->grid, lblGreeting, 2, 0, 1, 1);
 
+	// create weather's box container
+	GtkWidget* boxWeather = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_grid_attach(this->grid, boxWeather, 2, 3, 1, 1);
+	addClass(boxWeather, "boxWeather");
+
 	// create the weather label
-	GtkWidget* lblWeather = gtk_label_new_with_mnemonic("The weather is cold outside :(");
-	this->lblWeather = (GtkLabel*) lblWeather;
+	this->lblWeather = gtk_label_new_with_mnemonic("Finding the sun...");
+	gtk_misc_set_alignment(GTK_MISC(lblWeather), 0.5, 0.5);
 	addClass(lblWeather, "lblWeather");
-	gtk_grid_attach(this->grid, lblWeather, 2, 3, 1, 1);
+	gtk_box_pack_end(GTK_BOX(boxWeather), lblWeather, TRUE, TRUE, 0);
+
+	// create weather icon
+	this->imgWeather = (GtkImage*) gtk_image_new();
+	gtk_misc_set_alignment(GTK_MISC(imgWeather), 0.5, 0.5);
+	gtk_box_pack_start(GTK_BOX(boxWeather), (GtkWidget*)imgWeather, FALSE, FALSE, 0);
+}
+
+void HomeView::updateWeather() {
+	gchar *text;
+	if (this->weather->fetchWeatherData() != 0) {
+		text = g_strdup_printf("Failed to fetch weather");
+		gtk_label_set_text((GtkLabel*) this->lblWeather, text);
+		return;
+	} else {
+		text = g_strdup_printf(
+						"%s\nCurrently: %d°C | Feels Like: %i°C",
+						this->weather->getLocationName().c_str(),
+						this->weather->getTempRounded(),
+						this->weather->getTempFeelsLikeRounded()
+		);
+		gtk_label_set_text((GtkLabel*) this->lblWeather, text);
+	}
+
+	std::string imagePath;
+	int condId = this->weather->getCondId();
+	if (condId >= 200 && condId <= 232) {
+		imagePath = "resources/icons/cloud.bolt.png";
+	} else if (condId >= 300 && condId <= 321) {
+		imagePath = "resources/icons/cloud.drizzle.png";
+	} else if (condId >= 500 && condId <= 531) {
+		imagePath = "resources/icons/cloud.drizzle.png";
+	} else if (condId >= 600 && condId <= 622) {
+		imagePath = "resources/icons/cloud.snow.png";
+	} else if (condId >= 701 && condId <= 781) {
+		imagePath = "resources/icons/sun.max.png";
+	} else if (condId == 800) {
+		imagePath = "resources/icons/cloud.drizzle.png";
+	} else if (condId >= 801 && condId <= 804) {
+		imagePath = "resources/icons/cloud.png";
+	} else {
+		imagePath = "resources/icons/cloud.png";
+	}
+
+	// resize image  pixbuf
+	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(imagePath.c_str(), NULL);
+	GdkPixbuf *scaled = gdk_pixbuf_scale_simple(pixbuf, 96, 96, GDK_INTERP_BILINEAR);
+	gtk_image_set_from_pixbuf(GTK_IMAGE(imgWeather), scaled);
 }
 
 void HomeView::setDateAndTime(char *date, char *time) {

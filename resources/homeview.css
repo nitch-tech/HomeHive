@@ -36,9 +36,6 @@
 .lblDate {
 	font-size: 32pt;
 }
-.lblWeather {
-	font-size: 18pt;
-}
 .lblGreeting {
 	font-size: 21pt;
 }
@@ -48,7 +45,14 @@
 	padding: 2rem;
 }
 
-
+.boxWeather {
+	background: rgba(32, 30, 30, 0.55);
+	border-radius: 10px;
+	padding-right: 3rem;
+}
+.lblWeather {
+	font-size: 19pt;
+}
 
 /* DEBUG STYLES */
 
