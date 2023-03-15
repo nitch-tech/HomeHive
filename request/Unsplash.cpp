@@ -34,11 +34,12 @@ UnsplashBackground *Unsplash::getRandomBackground() {
 	}
 
 	auto res = nlohmann::json::parse(req->getResponse());
-	std::cout << res.dump() << std::endl;
 
 	auto bg = new UnsplashBackground(res["id"]);
 	bg->setWidth(res["width"]);
 	bg->setHeight(res["height"]);
+
+	// @TODO check if alt_description is null and see if we need this? maybe a little caption label?
 //	bg->setDescription(res["alt_description"]);
 	bg->setURL(res["urls"]["full"]);
 
