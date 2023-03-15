@@ -55,12 +55,16 @@ void HomeView::setup() {
 
     //Just trying something delete later
     Weather* weatherData = new Weather();
-    weatherData->fetchWeatherData();
-    double temp = weatherData->getTemp();
-    int rounded = std::round(temp);
-    std::cout << weatherData << "fefwew";
     gchar *text;
-    text = g_strdup_printf("The current weather in London is %d °C", rounded);
+    if (weatherData->fetchWeatherData() != 0) {
+        text = g_strdup_printf("Not connected... try again l8r");
+
+    } else {
+        double temp = weatherData->getTemp();
+        int rounded = std::round(temp);
+        std::cout << weatherData << "This is a test";
+        text = g_strdup_printf("The current weather in London is %d °C", rounded);
+    }
 
     GtkWidget* lblWeather = gtk_label_new_with_mnemonic(text);
     gtk_widget_override_font(lblWeather, pango_font_description_from_string("Tahoma 20"));
