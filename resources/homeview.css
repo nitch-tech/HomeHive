@@ -48,7 +48,9 @@
 	padding: 2rem;
 }
 
-
+.boxWeather {
+	background: #f00;
+}
 
 /* DEBUG STYLES */
 

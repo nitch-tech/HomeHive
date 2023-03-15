@@ -8,6 +8,7 @@
 
 #include "BaseView.h"
 #include "../request/Unsplash.h"
+#include "../request/weather.h"
 //#include "../event/Timer.h"
 
 class HomeView : public BaseView {
@@ -23,7 +24,8 @@ class HomeView : public BaseView {
 		GtkWidget* dateTimeContainer;
 
 		Unsplash* unsplash;
-//		Timer* timer;
+		// Timer* timer;
+		Weather* weather;
 
 	public:
 		HomeView(GtkWindow* window);

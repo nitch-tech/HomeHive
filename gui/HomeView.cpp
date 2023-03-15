@@ -5,10 +5,11 @@
 #include <iostream>
 #include "HomeView.h"
 #include "../event/Timer.h"
-#include "weather.h"
+#include "../request/weather.h"
 #include <gtk/gtk.h>
+#include <cmath>
 
-//#define DEBUG_GRID 1
+#define DEBUG_GRID 1
 
 /**
  * Size Allocator Signal Handler
@@ -50,6 +51,7 @@ static void removeClass(GtkWidget* widget, std::string className) {
 
 HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 	this->unsplash = new Unsplash();
+	this->weather = new Weather();
 }
 
 HomeView::~HomeView() {
@@ -158,72 +160,62 @@ void HomeView::drawWidgets() {
 	gtk_misc_set_alignment(GTK_MISC(lblGreeting), 1.0, 0.0);
 	gtk_grid_attach(this->grid, lblGreeting, 2, 0, 1, 1);
 
-    //Just trying something delete later
-    Weather* weatherData = new Weather();
-    gchar *text;
-    if (weatherData->fetchWeatherData() != 0) {
-        text = g_strdup_printf("Not connected... try again l8r");
+	// create weather's box container
+	GtkWidget* boxWeather = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_grid_attach(this->grid, boxWeather, 2, 3, 1, 1);
+	addClass(boxWeather, "boxWeather");
+	gtk_widget_set_vexpand(boxWeather, true);
+	gtk_widget_set_hexpand(boxWeather, true);
 
-    } else {
-        double temp = weatherData->getTemp();
-        int rounded = std::round(temp);
-        std::cout << weatherData << "This is a test";
-        text = g_strdup_printf("The current weather in London is %d °C", rounded);
-    }
+	gchar *text;
+	if (this->weather->fetchWeatherData() != 0) {
+		text = g_strdup_printf("Not connected... try again l8r");
 
-    GtkWidget* lblWeather = gtk_label_new_with_mnemonic(text);
-    gtk_widget_override_font(lblWeather, pango_font_description_from_string("Tahoma 20"));
-    gtk_widget_set_size_request(lblWeather, 30, 10);
-    gtk_widget_set_vexpand(lblWeather, true);
-    gtk_widget_set_hexpand(lblWeather, true);
-    gtk_table_attach_defaults(this->grid, lblWeather, 0, 1, 0, 1);
+	} else {
+		text = g_strdup_printf("The current weather in London is %d °C", this->weather->getTempRounded());
+	}
 
+	GtkWidget* lblWeather = gtk_label_new_with_mnemonic(text);
+	gtk_widget_override_font(lblWeather, pango_font_description_from_string("Tahoma 20"));
+//	gtk_widget_set_size_request(lblWeather, 30, 10);
+//	gtk_widget_set_vexpand(lblWeather, true);
+//	gtk_widget_set_hexpand(lblWeather, true);
+	gtk_misc_set_alignment(GTK_MISC(lblWeather), 1, 0);
 
-    GtkWidget *image;
-    std::string imagePath;
-    int condId = weatherData ->getCondId();
-    if (condId >= 200 && condId <= 232 ) {
-        image = gtk_image_new_from_file("../images/cloud.bolt.png");
-    } else if (condId >= 300 && condId <= 321 ) {
-        image = gtk_image_new_from_file("../images/cloud.drizzle.png");
-    }else if (condId >= 500 && condId <= 531 ) {
-        image = gtk_image_new_from_file("../images/cloud.drizzle.png");
-    }else if (condId >= 600 && condId <= 622 ) {
-        image = gtk_image_new_from_file("../images/cloud.snow.png");
-    }else if (condId >= 701 && condId <= 781 ) {
-        image = gtk_image_new_from_file("../images/sun.max.png");
-    } else if (condId == 800 ) {
-        image = gtk_image_new_from_file("../images/cloud.drizzle.png");
-    }else if (condId >= 801 && condId <= 804 ) {
-        image = gtk_image_new_from_file("../images/cloud.png");
-    } else {
-        image = gtk_image_new_from_file("../images/cloud.png");
-    }
+	gtk_box_pack_end(GTK_BOX(boxWeather), lblWeather, TRUE, TRUE, 0);
 
+	GtkWidget *image = gtk_image_new();
+	std::string imagePath;
+	int condId = this->weather->getCondId();
+	if (condId >= 200 && condId <= 232) {
+		imagePath = "../images/cloud.bolt.png";
+	} else if (condId >= 300 && condId <= 321) {
+		imagePath = "../images/cloud.drizzle.png";
+	} else if (condId >= 500 && condId <= 531) {
+		imagePath = "../images/cloud.drizzle.png";
+	} else if (condId >= 600 && condId <= 622) {
+		imagePath = "../images/cloud.snow.png";
+	} else if (condId >= 701 && condId <= 781) {
+		imagePath = "../images/sun.max.png";
+	} else if (condId == 800) {
+		imagePath = "../images/cloud.drizzle.png";
+	} else if (condId >= 801 && condId <= 804) {
+		imagePath = "../images/cloud.png";
+	} else {
+		imagePath = "../images/cloud.png";
+	}
 
-    gtk_widget_set_size_request(image, 5, 5);
-    gtk_widget_set_vexpand(image, true);
-    gtk_widget_set_hexpand(image, true);
-    gtk_table_attach_defaults(this->grid, image, 0, 1, 0, 2);
-
-}
-
-void HomeView::show() {
-}
-
-void HomeView::hide() {
-}
-
-HomeView::HomeView(GtkWindow *window) : BaseView(window) {
-}
-
-HomeView::~HomeView() {
+	// resize image  pixbuf
+	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(imagePath.c_str(), NULL);
+	GdkPixbuf *scaled = gdk_pixbuf_scale_simple(pixbuf, 96, 96, GDK_INTERP_BILINEAR);
+	gtk_image_set_from_pixbuf(GTK_IMAGE(image), scaled);
+	gtk_misc_set_alignment(GTK_MISC(image), 1, 0);
+	gtk_box_pack_start(GTK_BOX(boxWeather), image, FALSE, FALSE, 0);
 }
 
 void HomeView::setDateAndTime(char *date, char *time) {
 	gtk_label_set_text(this->lblDate, date);
 	gtk_label_set_text(this->lblTime, time);
-}
 }
 
 void HomeView::changeBackgroundImage() {
@@ -252,3 +244,4 @@ void HomeView::setFullscreen(bool fullscreen) {
 	} else {
 		gtk_window_unfullscreen(this->window);
 	}
+}

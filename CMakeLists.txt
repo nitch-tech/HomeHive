@@ -22,7 +22,7 @@ link_directories(${GTK_LIBRARY_DIRS})
 
 
 ## BUILD LIBRARIES AND THEIR SOURCES ##
-add_library(HomeHiveRequests request/request.cpp request/request.h request/Unsplash.cpp request/Unsplash.h request/UnsplashBackground.cpp request/UnsplashBackground.h)
+add_library(HomeHiveRequests request/request.cpp request/request.h request/Unsplash.cpp request/Unsplash.h request/UnsplashBackground.cpp request/UnsplashBackground.h request/weather.cpp request/weather.h)
 add_library(HomeHiveEvent event/Timer.cpp event/Timer.h)
 add_library(HomeHiveGUI gui/BaseView.cpp gui/BaseView.h gui/App.cpp gui/App.h gui/HomeView.cpp gui/HomeView.h)
 
