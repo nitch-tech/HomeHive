@@ -15,11 +15,10 @@ class Unsplash {
 		FILE* file;
 		std::map<std::string, std::string> categories;
 		std::string currentCategoryId;
+		bool isBufferImage = false;
 
 	public:
-	bool isBufferImage = false;
-
-	Unsplash();
+		Unsplash();
 		~Unsplash();
 
 		UnsplashBackground* getRandomBackground();

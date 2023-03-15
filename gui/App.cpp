@@ -19,21 +19,6 @@ int App::GetStatus() {
 }
 
 /**
- * Application activation handler
- *
- * Gross weird thing that GTK wants? They seem to expect an app to be static,
- * and thus need a static activation function. Which is supposed to setup
- * the basics (ie: all windows) and then add functionality.
- *
- * @param app
- * @param data
- * @todo improve this
- */
-static void activate(GtkApplication *app, App* data) {
-	data->CreateWindow();
-}
-
-/**
  * Starts the GTK app
  *
  * Setup some GTK windowing stuff, and then open the window.
@@ -44,14 +29,10 @@ static void activate(GtkApplication *app, App* data) {
 void App::Start(int argc, char** argv) {
 	this->app = gtk_application_new(APPLICATION_ID.c_str(), G_APPLICATION_DEFAULT_FLAGS);
 //	g_signal_connect(this->app, "activate", G_CALLBACK(this->OnActivate), (gpointer) this);
-	g_signal_connect(this->app, "activate", G_CALLBACK(activate), (gpointer) this);
+	g_signal_connect(this->app, "activate", G_CALLBACK(App::OnActivate), (gpointer) this);
 
 	this->status = g_application_run(G_APPLICATION(this->app), argc, argv);
 	g_object_unref(this->app);
-}
-
-void App::OnActivate(GtkApplication *app, gpointer data) {
-
 }
 
 /**
@@ -83,4 +64,14 @@ void App::CreateWindow() {
 
 	// auto fullscreen -
 //	((HomeView*) this->view)->setFullscreen(true);
+}
+
+/**
+ * Application activation handler
+ *
+ * @param app
+ * @param data
+ */
+const void App::OnActivate(GtkApplication *app, App *data) {
+	data->CreateWindow();
 }

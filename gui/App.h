@@ -20,8 +20,7 @@ class App {
 		int GetStatus();
 		void CreateWindow();
 
-	private:
-		void OnActivate(GtkApplication *app, gpointer data);
+		static const void OnActivate(GtkApplication *app, App* data);
 };
 
 #endif //HOMEHIVE_APP_H
