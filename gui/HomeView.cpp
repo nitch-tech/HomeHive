@@ -164,52 +164,51 @@ void HomeView::drawWidgets() {
 	GtkWidget* boxWeather = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_grid_attach(this->grid, boxWeather, 2, 3, 1, 1);
 	addClass(boxWeather, "boxWeather");
-	gtk_widget_set_vexpand(boxWeather, true);
-	gtk_widget_set_hexpand(boxWeather, true);
 
 	gchar *text;
 	if (this->weather->fetchWeatherData() != 0) {
 		text = g_strdup_printf("Not connected... try again l8r");
 
 	} else {
-		text = g_strdup_printf("The current weather in London is %d °C", this->weather->getTempRounded());
+		text = g_strdup_printf(
+						"%s\nCurrently: %d°C | Feels Like: %i°C",
+						this->weather->getLocationName().c_str(),
+						this->weather->getTempRounded(),
+						this->weather->getTempFeelsLikeRounded()
+		);
 	}
 
 	GtkWidget* lblWeather = gtk_label_new_with_mnemonic(text);
-	gtk_widget_override_font(lblWeather, pango_font_description_from_string("Tahoma 20"));
-//	gtk_widget_set_size_request(lblWeather, 30, 10);
-//	gtk_widget_set_vexpand(lblWeather, true);
-//	gtk_widget_set_hexpand(lblWeather, true);
-	gtk_misc_set_alignment(GTK_MISC(lblWeather), 1, 0);
-
+	gtk_misc_set_alignment(GTK_MISC(lblWeather), 0.5, 0.5);
+	addClass(lblWeather, "lblWeather");
 	gtk_box_pack_end(GTK_BOX(boxWeather), lblWeather, TRUE, TRUE, 0);
 
 	GtkWidget *image = gtk_image_new();
 	std::string imagePath;
 	int condId = this->weather->getCondId();
 	if (condId >= 200 && condId <= 232) {
-		imagePath = "../images/cloud.bolt.png";
+		imagePath = "resources/icons/cloud.bolt.png";
 	} else if (condId >= 300 && condId <= 321) {
-		imagePath = "../images/cloud.drizzle.png";
+		imagePath = "resources/icons/cloud.drizzle.png";
 	} else if (condId >= 500 && condId <= 531) {
-		imagePath = "../images/cloud.drizzle.png";
+		imagePath = "resources/icons/cloud.drizzle.png";
 	} else if (condId >= 600 && condId <= 622) {
-		imagePath = "../images/cloud.snow.png";
+		imagePath = "resources/icons/cloud.snow.png";
 	} else if (condId >= 701 && condId <= 781) {
-		imagePath = "../images/sun.max.png";
+		imagePath = "resources/icons/sun.max.png";
 	} else if (condId == 800) {
-		imagePath = "../images/cloud.drizzle.png";
+		imagePath = "resources/icons/cloud.drizzle.png";
 	} else if (condId >= 801 && condId <= 804) {
-		imagePath = "../images/cloud.png";
+		imagePath = "resources/icons/cloud.png";
 	} else {
-		imagePath = "../images/cloud.png";
+		imagePath = "resources/icons/cloud.png";
 	}
 
 	// resize image  pixbuf
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(imagePath.c_str(), NULL);
 	GdkPixbuf *scaled = gdk_pixbuf_scale_simple(pixbuf, 96, 96, GDK_INTERP_BILINEAR);
 	gtk_image_set_from_pixbuf(GTK_IMAGE(image), scaled);
-	gtk_misc_set_alignment(GTK_MISC(image), 1, 0);
+	gtk_misc_set_alignment(GTK_MISC(image), 0.5, 0.5);
 	gtk_box_pack_start(GTK_BOX(boxWeather), image, FALSE, FALSE, 0);
 }
 

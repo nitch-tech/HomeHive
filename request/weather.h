@@ -14,24 +14,20 @@
 
 class Weather {
 	private:
+		std::string locationName;
 		double temperatureString;
+		float tempFeelsLike;
 		int conditionId;
 
 	public:
-		struct WeatherModel {
-			int conditionId;
-			std::string cityName;
-			double temperature;
-			const char temperatureString;
-			std::string conditionName;
-
-		};
-
 		Weather();
 		~Weather();
 		int fetchWeatherData();
 		double getTemp();
 		int getTempRounded();
+		std::string getLocationName();
+		float getTempFeelsLike();
+		int getTempFeelsLikeRounded();
 		int getCondId();
 };
 

@@ -28,6 +28,8 @@ int Weather::fetchWeatherData() {
 		}
 
 		temperatureString = data["main"]["temp"];
+		this->tempFeelsLike = data["main"]["feels_like"];
+		this->locationName = data["name"];
 
 		return 0;
 
@@ -50,3 +52,14 @@ int Weather::getTempRounded() {
 	return (int) std::round(this->temperatureString);
 }
 
+float Weather::getTempFeelsLike() {
+	return this->tempFeelsLike;
+}
+
+int Weather::getTempFeelsLikeRounded() {
+	return (int) std::round(this->tempFeelsLike);
+}
+
+std::string Weather::getLocationName() {
+	return this->locationName;
+}
