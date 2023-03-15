@@ -1,37 +1,97 @@
-#ifndef REQUEST_H
-#define REQUEST_H
+/**
+ * HTTP Request Definition
+ *
+ * CS3307 Individual Assignment
+ * David Tkachuk <dtkachu2@uwo.ca>
+ * February 7th 2023
+ */
 
-#include "curl/curl.h"
-#include <stdlib.h>
+#ifndef CS3307_REQUEST_H
+#define CS3307_REQUEST_H
+
+
 #include <string>
-#include <stdio.h>
-#include <fstream>
-#include "json.hpp"
+#include <curl/curl.h>
 
-
-
-using namespace std;
-using std::string;
-using json = nlohmann::json;
-
-struct MemoryStruct {
-    char *memory;
-    size_t size;
-};
-
+/**
+ * Request Class
+ *
+ * Allows us to send some HTTP request and easily extract the error or response.
+ */
 class Request {
-public:
-    string url;
-    CURL *curl;
-    CURLcode response;
-    struct MemoryStruct chunk;
-    static size_t writeMemory(void *contents, size_t size, size_t nmemb, void *userp);
-public:
-    Request(string url);
-    ~Request();
-    void execute();
-    char* result();
-    void printres();
+	private:
+		std::string url;
+		std::string dataBuffer;
+		std::string errorBuffer;
+		CURL* curl;
+		CURLcode res;
+
+		/**
+		 * Filer pointer to wwrite to, if its a binary download
+		 */
+		FILE* filePointer;
+
+		/**
+		 * Whether te reqeust is a binary
+		 *
+		 * If true, we're dealing with binary data and will write data to a file pointer.
+		 */
+		bool isBinaryDownload;
+
+	public:
+		/**
+		 * Class constructor to setup request
+		 * @param url The HTTP URL to send a request to
+		 */
+		explicit Request(std::string url);
+
+		/**
+		 * Class destructor to clean things up
+		 */
+		~Request();
+
+		/**
+		 * Execute the request
+		 * @return True if request successful, false otherwise
+		 */
+		bool execute();
+
+		/**
+		 * Write the response to a file
+		 * @param path The file's path
+		 * @return
+		 */
+		bool writeToFile(std::string path);
+
+		/**
+		 * Write the response to an existing file pointer
+		 * @param file The file pointer
+		 * @return
+		 */
+		bool writeToFile(FILE* file);
+
+		/**
+		 * Returns the file pointer to the file we're writing to, if applicable
+		 * @return The file pointer, null if not set or not a binary download
+		 */
+		FILE* getOutputFile();
+
+		/**
+		 * Returns the raw response body from the HTTP request
+		 * @return String response data
+		 */
+		std::string getResponse();
+
+		/**
+		 * @return The request error code
+		 */
+		CURLcode getErrorCode();
+
+		/**
+		 * @return The request error details
+		 */
+		std::string getError();
 };
+
 
 #endif

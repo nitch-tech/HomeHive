@@ -24,6 +24,11 @@ class BaseView {
 		virtual void setup();
 		virtual void show();
 		virtual void hide();
+
+	protected:
+		virtual void drawWidgets() = 0;
+		virtual void registerInteractivity() = 0;
+		virtual void setupLayout() = 0;
 };
 
 
