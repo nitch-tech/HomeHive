@@ -5,11 +5,10 @@
 #include <iostream>
 #include "HomeView.h"
 #include "../event/Timer.h"
-#include "../request/weather.h"
 #include <gtk/gtk.h>
 #include <cmath>
 
-#define DEBUG_GRID 1
+//#define DEBUG_GRID 1
 
 /**
  * Size Allocator Signal Handler
@@ -165,10 +164,24 @@ void HomeView::drawWidgets() {
 	gtk_grid_attach(this->grid, boxWeather, 2, 3, 1, 1);
 	addClass(boxWeather, "boxWeather");
 
+	// create the weather label
+	this->lblWeather = gtk_label_new_with_mnemonic("Finding the sun...");
+	gtk_misc_set_alignment(GTK_MISC(lblWeather), 0.5, 0.5);
+	addClass(lblWeather, "lblWeather");
+	gtk_box_pack_end(GTK_BOX(boxWeather), lblWeather, TRUE, TRUE, 0);
+
+	// create weather icon
+	this->imgWeather = (GtkImage*) gtk_image_new();
+	gtk_misc_set_alignment(GTK_MISC(imgWeather), 0.5, 0.5);
+	gtk_box_pack_start(GTK_BOX(boxWeather), (GtkWidget*)imgWeather, FALSE, FALSE, 0);
+}
+
+void HomeView::updateWeather() {
 	gchar *text;
 	if (this->weather->fetchWeatherData() != 0) {
-		text = g_strdup_printf("Not connected... try again l8r");
-
+		text = g_strdup_printf("Failed to fetch weather");
+		gtk_label_set_text((GtkLabel*) this->lblWeather, text);
+		return;
 	} else {
 		text = g_strdup_printf(
 						"%s\nCurrently: %d°C | Feels Like: %i°C",
@@ -176,14 +189,9 @@ void HomeView::drawWidgets() {
 						this->weather->getTempRounded(),
 						this->weather->getTempFeelsLikeRounded()
 		);
+		gtk_label_set_text((GtkLabel*) this->lblWeather, text);
 	}
 
-	GtkWidget* lblWeather = gtk_label_new_with_mnemonic(text);
-	gtk_misc_set_alignment(GTK_MISC(lblWeather), 0.5, 0.5);
-	addClass(lblWeather, "lblWeather");
-	gtk_box_pack_end(GTK_BOX(boxWeather), lblWeather, TRUE, TRUE, 0);
-
-	GtkWidget *image = gtk_image_new();
 	std::string imagePath;
 	int condId = this->weather->getCondId();
 	if (condId >= 200 && condId <= 232) {
@@ -207,9 +215,7 @@ void HomeView::drawWidgets() {
 	// resize image  pixbuf
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(imagePath.c_str(), NULL);
 	GdkPixbuf *scaled = gdk_pixbuf_scale_simple(pixbuf, 96, 96, GDK_INTERP_BILINEAR);
-	gtk_image_set_from_pixbuf(GTK_IMAGE(image), scaled);
-	gtk_misc_set_alignment(GTK_MISC(image), 0.5, 0.5);
-	gtk_box_pack_start(GTK_BOX(boxWeather), image, FALSE, FALSE, 0);
+	gtk_image_set_from_pixbuf(GTK_IMAGE(imgWeather), scaled);
 }
 
 void HomeView::setDateAndTime(char *date, char *time) {

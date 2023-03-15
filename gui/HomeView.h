@@ -16,11 +16,12 @@ class HomeView : public BaseView {
 		GtkLayout* layout;
 		GtkGrid* grid;
 		GtkImage* imgBackground;
+		GtkImage* imgWeather;
 
 		GtkLabel* lblTime;
 		GtkLabel* lblDate;
 		GtkLabel* lblGreeting;
-		GtkLabel* lblWeather;
+		GtkWidget* lblWeather;
 		GtkWidget* dateTimeContainer;
 
 		Unsplash* unsplash;
@@ -37,6 +38,7 @@ class HomeView : public BaseView {
 		void setFullscreen(bool fullscreen);
 
 		void changeBackgroundImage();
+		void updateWeather();
 
 	protected:
 		void setupLayout() override;
