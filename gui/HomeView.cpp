@@ -96,8 +96,7 @@ void HomeView::setup() {
     }
 
 
-
-    //gtk_widget_set_size_request(image, 5, 5);
+    gtk_widget_set_size_request(image, 5, 5);
     gtk_widget_set_vexpand(image, true);
     gtk_widget_set_hexpand(image, true);
     gtk_table_attach_defaults(this->grid, image, 0, 1, 0, 2);
