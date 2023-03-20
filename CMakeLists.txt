@@ -44,6 +44,6 @@ add_dependencies(HomeHive resources) # this links the resources to main exec, in
 
 ## LINK LIBRARIES TO EXECUTABLES ##
 target_link_libraries(HomeHiveRequests PRIVATE nlohmann_json::nlohmann_json ${CURL_LIBRARIES})
-target_link_libraries(HomeHiveGUI HomeHiveRequests HomeHiveEvent)
+target_link_libraries(HomeHiveGUI ${GTK_LIBRARIES} HomeHiveRequests HomeHiveEvent)
 target_link_libraries(HomeHive ${GTK_LIBRARIES} HomeHiveRequests HomeHiveEvent HomeHiveGUI)
 target_link_libraries(test PRIVATE nlohmann_json::nlohmann_json HomeHiveRequests)
