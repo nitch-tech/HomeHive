@@ -23,6 +23,7 @@ class HomeView : public BaseView {
 		GtkLabel* lblGreeting;
 		GtkWidget* lblWeather;
 		GtkWidget* dateTimeContainer;
+		GtkWidget* btnSettings;
 
 		Unsplash* unsplash;
 		// Timer* timer;

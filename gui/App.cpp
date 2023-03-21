@@ -27,7 +27,8 @@ int App::GetStatus() {
  * @param argv
  */
 void App::Start(int argc, char** argv) {
-	this->app = gtk_application_new(APPLICATION_ID.c_str(), G_APPLICATION_DEFAULT_FLAGS);
+	this->app = gtk_application_new(APPLICATION_ID.c_str(), G_APPLICATION_FLAGS_NONE);
+
 //	g_signal_connect(this->app, "activate", G_CALLBACK(this->OnActivate), (gpointer) this);
 	g_signal_connect(this->app, "activate", G_CALLBACK(App::OnActivate), (gpointer) this);
 

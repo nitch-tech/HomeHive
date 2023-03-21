@@ -1,0 +1,10 @@
+/root/HomeHive/CMakeFiles/HomeHiveRequests.dir
+/root/HomeHive/CMakeFiles/HomeHiveEvent.dir
+/root/HomeHive/CMakeFiles/HomeHiveGUI.dir
+/root/HomeHive/CMakeFiles/HomeHive.dir
+/root/HomeHive/CMakeFiles/test.dir
+/root/HomeHive/CMakeFiles/resources.dir
+/root/HomeHive/CMakeFiles/edit_cache.dir
+/root/HomeHive/CMakeFiles/rebuild_cache.dir
+/root/HomeHive/_deps/json-build/CMakeFiles/edit_cache.dir
+/root/HomeHive/_deps/json-build/CMakeFiles/rebuild_cache.dir

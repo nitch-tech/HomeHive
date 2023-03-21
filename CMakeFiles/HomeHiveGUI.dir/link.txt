@@ -1,0 +1,2 @@
+/usr/bin/ar qc libHomeHiveGUI.a CMakeFiles/HomeHiveGUI.dir/gui/BaseView.cpp.o CMakeFiles/HomeHiveGUI.dir/gui/App.cpp.o CMakeFiles/HomeHiveGUI.dir/gui/HomeView.cpp.o CMakeFiles/HomeHiveGUI.dir/gui/settings.cpp.o
+/usr/bin/ranlib libHomeHiveGUI.a
