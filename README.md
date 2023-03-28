@@ -113,7 +113,12 @@ make -C cmake-build-debug -j 4
 ```
 
 ----
-
+### Install Scheme files
+to compile and install scheme files these bash commands can help
+'''bash
+glib-compile-schemas .
+sudo glib-compile-schemas . --targetdir /usr/share/glib-2.0/schemas/
+'''
 
 ## Development
 Development is done by using branches `feature/name` or `bugfix/name` and then merging into `master`,
