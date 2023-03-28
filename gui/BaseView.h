@@ -21,9 +21,13 @@ class BaseView {
 		// App* getApp();
 		bool isVisible();
 
+		GtkWindow* getWindow();
+
 		virtual void setup();
 		virtual void show();
 		virtual void hide();
+
+		virtual void onWindowResize(GdkRectangle* size);
 
 	protected:
 		virtual void drawWidgets() = 0;
