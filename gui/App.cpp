@@ -44,6 +44,7 @@ void App::Start(int argc, char** argv) {
  */
 void App::CreateWindow() {
 	GtkWindow* window;
+	GSettings* settings = g_settings_new(APPLICATION_ID.c_str());
 	this->window = gtk_application_window_new(this->app);
 	window = GTK_WINDOW(this->window);
 

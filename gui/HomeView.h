@@ -37,13 +37,14 @@ class HomeView : public BaseView {
 		void setDateAndTime(char* date, char* time);
 
 		void setFullscreen(bool fullscreen);
-
+		
 		void changeBackgroundImage();
 		void updateWeather();
 
 	protected:
 		void setupLayout() override;
 		void drawWidgets() override;
+		
 		void registerInteractivity() override;
 };
 

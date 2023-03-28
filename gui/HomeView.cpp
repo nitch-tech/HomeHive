@@ -159,21 +159,42 @@ void HomeView::drawWidgets() {
 	gtk_widget_set_hexpand(midSeperator, true);
 	addClass(midSeperator, "midSeperator");
 
+	
+	//get preset value from Gsettings
+	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
+	const gchar* name = g_settings_get_string(settings,"name");
+	gchar* greeting = g_strdup_printf("Howdy, %s!", name);
+
 	// create the greeting label
-	GtkWidget* lblGreeting = gtk_label_new_with_mnemonic("Howdy, unknown user!");
+	GtkWidget* lblGreeting = gtk_label_new_with_mnemonic(greeting);
+	g_free(greeting);
 	this->lblGreeting = (GtkLabel*) lblGreeting;
 	addClass(lblGreeting, "lblGreeting");
 	gtk_misc_set_alignment(GTK_MISC(lblGreeting), 1.0, 0.0);
 	gtk_grid_attach(this->grid, lblGreeting, 2, 0, 1, 1);
 
+
 	// create the settings button
-	GtkWidget* btnSettings = gtk_button_new_with_label("settings");
-	// this->btnSettings = (GtkLabel*) lblGreeting;
-	// addClass(, "lblGreeting");
+	GtkWidget* btnSettings = gtk_button_new();
+	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file ("resources/icon_gray.png", NULL);// get gray icon for button
+	GdkPixbuf *scaled_pixbuf = gdk_pixbuf_scale_simple(pixbuf, 50, 50, GDK_INTERP_BILINEAR);// make it not huge
+	GtkWidget *image = gtk_image_new_from_pixbuf (scaled_pixbuf);
+	gtk_container_add (GTK_CONTAINER (btnSettings), image);
+
+
+	// create weather's box container
+	GtkWidget* boxSettings = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_grid_attach(this->grid, boxSettings, 0, 3, 1, 1);
+	addClass(boxSettings, "boxSettings");
+
+	// set the button size
+	gtk_widget_set_size_request (btnSettings, 200, 200);
+	gtk_button_set_image (GTK_BUTTON (btnSettings), image);
 	g_signal_connect(G_OBJECT(btnSettings), "clicked", 
     G_CALLBACK(clickedSettings), NULL);
-	gtk_misc_set_alignment(GTK_MISC(btnSettings), 0.5, 0.5);
-	gtk_grid_attach(this->grid, btnSettings, 0, 2, 1, 1);
+	gtk_widget_set_size_request (btnSettings, 50, 50);
+	//gtk_misc_set_alignment(GTK_MISC(btnSettings), 0.5, 0.5);
+	gtk_box_pack_end(GTK_BOX(boxSettings), btnSettings, TRUE, TRUE, 0);
 
 
 	// create weather's box container

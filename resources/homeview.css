@@ -50,6 +50,11 @@
 	border-radius: 10px;
 	padding-right: 3rem;
 }
+.boxSetting{
+	background: rgba(32, 30, 30, 0.55);
+	border-radius: 10px;
+	padding-left: 1rem;
+}
 .lblWeather {
 	font-size: 19pt;
 }
@@ -76,4 +81,7 @@
 }
 .debug .lblDate {
 	background: yellow;
+}
+.debug .boxSetting {
+	background: rgb(215, 18, 146);
 }

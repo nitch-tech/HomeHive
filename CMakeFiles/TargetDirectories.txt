@@ -6,5 +6,13 @@
 /root/HomeHive/CMakeFiles/resources.dir
 /root/HomeHive/CMakeFiles/edit_cache.dir
 /root/HomeHive/CMakeFiles/rebuild_cache.dir
+/root/HomeHive/CMakeFiles/list_install_components.dir
+/root/HomeHive/CMakeFiles/install.dir
+/root/HomeHive/CMakeFiles/install/local.dir
+/root/HomeHive/CMakeFiles/install/strip.dir
 /root/HomeHive/_deps/json-build/CMakeFiles/edit_cache.dir
 /root/HomeHive/_deps/json-build/CMakeFiles/rebuild_cache.dir
+/root/HomeHive/_deps/json-build/CMakeFiles/list_install_components.dir
+/root/HomeHive/_deps/json-build/CMakeFiles/install.dir
+/root/HomeHive/_deps/json-build/CMakeFiles/install/local.dir
+/root/HomeHive/_deps/json-build/CMakeFiles/install/strip.dir

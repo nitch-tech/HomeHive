@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="ca.uwo.cs3307.homehive" path="/ca/uwo/cs3307/homehive/">
+    <key name="name" type="s">
+      <default>"john"</default>
+      <summary>Username</summary>
+      <description>The user's name</description>
+    </key>
+    <key name="back" type="i">
+      <default>15</default>
+      <summary>Back Value</summary>
+      <description>An integer value for "back".</description>
+    </key>
+  </schema>
+</schemalist>
