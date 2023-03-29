@@ -44,7 +44,8 @@ class HomeView : public BaseView {
 		void updateWeather();
 
         void setAlarm();
-    GCallback on_button_clicked(GtkWidget* button, gpointer data);
+        static gboolean button_press_event ( GtkWidget *widget, GdkEvent *event );
+
 
 
 

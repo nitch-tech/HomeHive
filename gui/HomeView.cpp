@@ -180,18 +180,14 @@ void HomeView::drawWidgets() {
     gtk_grid_attach(this->grid, boxAlarm, 0, 3, 1, 1);
     addClass(boxAlarm, "boxAlarm");
 
+
     //Create the alarm button
     setAlarmButton = gtk_button_new_with_label("Set Alarm");
 
-    //Trying to get the alarm to call a function when clicked
+    //callback function whenever the button gets clicked
+    g_signal_connect(setAlarmButton, "clicked", G_CALLBACK(button_press_event), NULL);
 
-    g_signal_connect(setAlarmButton, "clicked", G_CALLBACK(+[](GtkButton* setAlarmButton, gpointer user_data) -> void {
-        Alarm* alarm = static_cast<Alarm*>(user_data);
-        alarm->on_button_clicked(setAlarmButton);
-    }), &alarm);
-
-
-    //Calender widget
+    //Create calender widget, might delte later
     GtkWidget* calendar = gtk_calendar_new();
 
 
@@ -200,12 +196,18 @@ void HomeView::drawWidgets() {
     minuteSpin = gtk_spin_button_new_with_range(0, 59, 1);
 
 
+    //Add everything onto the screen
     gtk_box_pack_start(GTK_BOX(boxAlarm), hourSpin, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(boxAlarm), minuteSpin, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(boxAlarm), setAlarmButton, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(boxAlarm), calendar, FALSE, FALSE, 0);
 
 
+}
+
+gboolean HomeView::button_press_event ( GtkWidget *widget, GdkEvent *event )
+{
+    g_print("Button clicked\n");
 }
 
 void HomeView::setAlarm() {
