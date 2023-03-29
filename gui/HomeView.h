@@ -10,6 +10,7 @@
 #include "../request/Unsplash.h"
 #include "../request/weather.h"
 //#include "../event/Timer.h"
+#include "Alarm.h"
 
 class HomeView : public BaseView {
 	private:
@@ -23,10 +24,12 @@ class HomeView : public BaseView {
 		GtkLabel* lblGreeting;
 		GtkWidget* lblWeather;
 		GtkWidget* dateTimeContainer;
-
+        GtkWidget* hourSpin;
+        GtkWidget* minuteSpin;
+        GtkWidget* setAlarmButton;
 		Unsplash* unsplash;
-		// Timer* timer;
 		Weather* weather;
+        Alarm alarm;
 
 	public:
 		HomeView(GtkWindow* window);
@@ -40,7 +43,12 @@ class HomeView : public BaseView {
 		void changeBackgroundImage();
 		void updateWeather();
 
-	protected:
+        void setAlarm();
+    GCallback on_button_clicked(GtkWidget* button, gpointer data);
+
+
+
+protected:
 		void setupLayout() override;
 		void drawWidgets() override;
 		void registerInteractivity() override;
