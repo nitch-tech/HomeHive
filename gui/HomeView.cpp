@@ -243,11 +243,6 @@ void HomeView::changeBackgroundImage() {
 	// gtk_image_set_from_file(this->imgBackground, this->unsplash->getBackgroundImage().c_str());
 
 	this->LoadBackgroundImage(this->unsplash->getBackgroundImage());
-	this->DrawBackgroundScaled();
-
-	// refresh and reload background
-	gtk_widget_queue_draw((GtkWidget*) this->imgBackground);
-	gtk_widget_show((GtkWidget*) this->imgBackground);
 }
 
 void HomeView::setFullscreen(bool fullscreen) {
@@ -258,10 +253,28 @@ void HomeView::setFullscreen(bool fullscreen) {
 	}
 }
 
+/**
+ * Loads a new background image from a given file path
+ *
+ * @param fname The file path to load an image from
+ */
 void HomeView::LoadBackgroundImage(std::string fname) {
 	this->bgBuff = gdk_pixbuf_new_from_file(fname.c_str(), NULL);
+	this->DrawBackgroundScaled();
+
+	// refresh and reload background
+	gtk_widget_queue_draw((GtkWidget*) this->imgBackground);
+	gtk_widget_show((GtkWidget*) this->imgBackground);
 }
 
+/**
+ * Draws the background image, scaled to the window size
+ *
+ * @param width The window width
+ * @param height The window height
+ * @todo Look into gdk_pixbuf_scale(), to be able to use the offset, so the background
+ * can be centered to the window.
+ */
 void HomeView::DrawBackgroundScaled(int width, int height) {
 	// if invalid, or no size was specific, then we'll have to manually get window size.
 	if (width < 1 || height < 1) {
@@ -280,22 +293,37 @@ void HomeView::DrawBackgroundScaled(int width, int height) {
 	std::cout << "Background{W=" << bgWidth << ", H=" << bgHeight << "} Window{W=" <<
 		width << ", H="<<height << "} RATIO="<<r << std::endl;
 
+	// scale the buffer image into a new buffer, the final background image to render
 	this->bgBuffScaled = gdk_pixbuf_scale_simple(
-					this->bgBuff,
-					(float) bgWidth * r, (float) bgHeight * r,
-					GDK_INTERP_BILINEAR);
+		this->bgBuff,
+		(float) bgWidth * r,
+		(float) bgHeight * r,
+		GDK_INTERP_NEAREST
+	);
+
+	// set the background image
 	gtk_image_set_from_pixbuf(this->imgBackground, this->bgBuffScaled);
 }
 
+/**
+ * On Window Resize
+ *
+ * Whenever the window is resized, full screen, maximized, etc, this function will be called.
+ * The actual implementation is to resize the background image to fit the window size, and to
+ * resize the grid to fit the window size, to make it perfectly responsive.
+ *
+ * @param size The new window size structure
+ */
 void HomeView::onWindowResize(GdkRectangle *size) {
 	BaseView::onWindowResize(size);
 	std::cout << "resized to w=" << size->width << ", h=" << size->height << ", x=" << size->x << ", y=" << size->y << std::endl;
 
+	// resize the grid to fit the window
 	gtk_widget_set_size_request(GTK_WIDGET(this->grid), size->width, size->height);
 
 	// int width, height;
 	// gtk_window_get_size(data->getWindow(), &width, &height);
 
+	// redraw the background to scale to the window size
 	this->DrawBackgroundScaled(size->width, size->height);
-
 }

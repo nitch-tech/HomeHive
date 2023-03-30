@@ -27,6 +27,15 @@ class BaseView {
 		virtual void show();
 		virtual void hide();
 
+		/**
+		 * On Window Resize
+		 *
+		 * Whenever the window is resized, full screen, maximized, etc, this function will be called.
+		 * The actual implementation is to resize the background image to fit the window size, and to
+		 * resize the grid to fit the window size, to make it perfectly responsive.
+		 *
+		 * @param size The new window size structure
+		 */
 		virtual void onWindowResize(GdkRectangle* size);
 
 	protected:
