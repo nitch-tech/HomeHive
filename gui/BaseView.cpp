@@ -6,6 +6,7 @@
 
 BaseView::BaseView(GtkWindow* window) {
 	this->window = window;
+	this->visible = false;
 }
 
 BaseView::~BaseView() {
@@ -31,4 +32,11 @@ void BaseView::show() {
 
 void BaseView::hide() {
 	this->visible = false;
+}
+
+GtkWindow *BaseView::getWindow() {
+	return this->window;
+}
+
+void BaseView::onWindowResize(GdkRectangle* size) {
 }
