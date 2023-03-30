@@ -1,2 +1,0 @@
-/usr/bin/ar qc libHomeHiveRequests.a CMakeFiles/HomeHiveRequests.dir/request/request.cpp.o CMakeFiles/HomeHiveRequests.dir/request/Unsplash.cpp.o CMakeFiles/HomeHiveRequests.dir/request/UnsplashBackground.cpp.o CMakeFiles/HomeHiveRequests.dir/request/weather.cpp.o
-/usr/bin/ranlib libHomeHiveRequests.a
