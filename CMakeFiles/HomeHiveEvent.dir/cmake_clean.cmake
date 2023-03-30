@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o"
+  "CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o.d"
   "CMakeFiles/HomeHiveEvent.dir/event/Timer.cpp.o"
   "CMakeFiles/HomeHiveEvent.dir/event/Timer.cpp.o.d"
   "libHomeHiveEvent.a"

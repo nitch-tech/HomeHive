@@ -239,6 +239,30 @@ resources/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/resources.dir/build.make CMakeFiles/resources.dir/build
 .PHONY : resources/fast
 
+event/SettingsEvent.o: event/SettingsEvent.cpp.o
+.PHONY : event/SettingsEvent.o
+
+# target to build an object file
+event/SettingsEvent.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/HomeHiveEvent.dir/build.make CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o
+.PHONY : event/SettingsEvent.cpp.o
+
+event/SettingsEvent.i: event/SettingsEvent.cpp.i
+.PHONY : event/SettingsEvent.i
+
+# target to preprocess a source file
+event/SettingsEvent.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/HomeHiveEvent.dir/build.make CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.i
+.PHONY : event/SettingsEvent.cpp.i
+
+event/SettingsEvent.s: event/SettingsEvent.cpp.s
+.PHONY : event/SettingsEvent.s
+
+# target to generate assembly for a file
+event/SettingsEvent.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/HomeHiveEvent.dir/build.make CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.s
+.PHONY : event/SettingsEvent.cpp.s
+
 event/Timer.o: event/Timer.cpp.o
 .PHONY : event/Timer.o
 
@@ -521,6 +545,9 @@ help:
 	@echo "... HomeHiveGUI"
 	@echo "... HomeHiveRequests"
 	@echo "... test"
+	@echo "... event/SettingsEvent.o"
+	@echo "... event/SettingsEvent.i"
+	@echo "... event/SettingsEvent.s"
 	@echo "... event/Timer.o"
 	@echo "... event/Timer.i"
 	@echo "... event/Timer.s"

@@ -29,7 +29,7 @@ class Timer {
 		~Timer();
 		void Register();
 		void Unregister();
-
+		void SetBackInterval(int set);
 	private:
 		static const gboolean onTimerTick(gpointer data);
 };

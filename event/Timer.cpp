@@ -5,7 +5,7 @@
 #include <string>
 #include "Timer.h"
 
-const int BACKGROUND_INTERVAL = 15 * 60; // every 15 minutes
+int BACKGROUND_INTERVAL = 15 * 60; // every 15 minutes
 const int WEATHER_INTERVAL = 5 * 60; // every 5 minutes
 
 //Timer::Timer(const std::function<void(char *, char *)> &cb)
@@ -21,7 +21,9 @@ Timer::~Timer() {
 	delete this->buffDate;
 	delete this->buffTime;
 }
-
+void Timer::SetBackInterval(int set){
+	BACKGROUND_INTERVAL = set;
+}
 void Timer::Register() {
 	// nifty lil hack, run the timer callback FIRST to populate the time before scheduling the timer
 	Timer::onTimerTick(this);

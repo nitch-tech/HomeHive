@@ -83,17 +83,33 @@ CMakeFiles/HomeHiveEvent.dir/event/Timer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HomeHiveEvent.dir/event/Timer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/HomeHive/event/Timer.cpp -o CMakeFiles/HomeHiveEvent.dir/event/Timer.cpp.s
 
+CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o: CMakeFiles/HomeHiveEvent.dir/flags.make
+CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o: event/SettingsEvent.cpp
+CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o: CMakeFiles/HomeHiveEvent.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/HomeHive/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o -MF CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o.d -o CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o -c /root/HomeHive/event/SettingsEvent.cpp
+
+CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/HomeHive/event/SettingsEvent.cpp > CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.i
+
+CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/HomeHive/event/SettingsEvent.cpp -o CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.s
+
 # Object files for target HomeHiveEvent
 HomeHiveEvent_OBJECTS = \
-"CMakeFiles/HomeHiveEvent.dir/event/Timer.cpp.o"
+"CMakeFiles/HomeHiveEvent.dir/event/Timer.cpp.o" \
+"CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o"
 
 # External object files for target HomeHiveEvent
 HomeHiveEvent_EXTERNAL_OBJECTS =
 
 libHomeHiveEvent.a: CMakeFiles/HomeHiveEvent.dir/event/Timer.cpp.o
+libHomeHiveEvent.a: CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o
 libHomeHiveEvent.a: CMakeFiles/HomeHiveEvent.dir/build.make
 libHomeHiveEvent.a: CMakeFiles/HomeHiveEvent.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/HomeHive/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libHomeHiveEvent.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/HomeHive/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libHomeHiveEvent.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/HomeHiveEvent.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/HomeHiveEvent.dir/link.txt --verbose=$(VERBOSE)
 

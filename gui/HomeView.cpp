@@ -5,10 +5,13 @@
 #include <iostream>
 #include <cmath>
 #include <gtk/gtk.h>
+#include <glib.h>
 #include "HomeView.h"
 #include "../event/Timer.h"
 #include "settings.h"
+//#include <sigc++-2.0/sigc++/sigc++.h>
 //#define DEBUG_GRID 1
+
 
 /**
  * Size Allocator Signal Handler
@@ -19,6 +22,7 @@
  * @param allocation The new allocation of the widget (window dimemsions)
  * @param data Signal data (grid widget)
  */
+Timer* Localtimer = nullptr;
 static void onSizeAllocate(GtkWidget* widget, GdkRectangle* allocation, gpointer data) {
 	GtkWidget* grid = (GtkWidget*) data;
 	gtk_widget_set_size_request(grid, allocation->width, allocation->height);
@@ -51,6 +55,8 @@ static void removeClass(GtkWidget* widget, std::string className) {
 HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 	this->unsplash = new Unsplash();
 	this->weather = new Weather();
+		// get settings instance 
+	this->settings = Settings::getInstance();
 }
 
 HomeView::~HomeView() {
@@ -59,11 +65,24 @@ HomeView::~HomeView() {
 /**
 * Callback function for settings button
 */
-void clickedSettings(GtkWidget *widget, gpointer data) {
-  open_settings_window();
+void HomeView::clickedSettings(GtkWidget *widget, gpointer data) {
+	Settings* set =  Settings::getInstance();
+	set->open_settings_window();
+  //this->settings->HomeView::open_settings_window();
   g_print("Settings Opened\n");
 }
+void HomeView::update_labels(){
+	//g_print(g_get_application_id());
+	
+	
+	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
+	const gchar* name = g_settings_get_string(settings,"name");
+	gchar* greeting = g_strdup_printf("Howdy, %s!", name);
+	gtk_label_set_text(lblGreeting, greeting);
 
+	int interval = g_settings_get_int(settings,"back");
+	Localtimer->SetBackInterval(interval);
+}
 /**
  * Setup the view's layout and grid components
  */
@@ -117,6 +136,7 @@ void HomeView::registerInteractivity() {
 	// create our timer, which does some background work frequently
 	Timer* timer = new Timer(this);
 	timer->Register();
+	Localtimer = timer;
 
 	// load the CSS file, and set up styles
 	auto provider = gtk_css_provider_new();
@@ -159,9 +179,8 @@ void HomeView::drawWidgets() {
 	gtk_widget_set_hexpand(midSeperator, true);
 	addClass(midSeperator, "midSeperator");
 
-	
-	//get preset value from Gsettings
 	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
+	//get preset value from Gsettings
 	const gchar* name = g_settings_get_string(settings,"name");
 	gchar* greeting = g_strdup_printf("Howdy, %s!", name);
 
@@ -179,23 +198,22 @@ void HomeView::drawWidgets() {
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file ("resources/icon_gray.png", NULL);// get gray icon for button
 	GdkPixbuf *scaled_pixbuf = gdk_pixbuf_scale_simple(pixbuf, 50, 50, GDK_INTERP_BILINEAR);// make it not huge
 	GtkWidget *image = gtk_image_new_from_pixbuf (scaled_pixbuf);
-	gtk_container_add (GTK_CONTAINER (btnSettings), image);
-
+	
+	//gtk_container_add (GTK_CONTAINER (btnSettings), image);
+	
 
 	// create weather's box container
 	GtkWidget* boxSettings = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_grid_attach(this->grid, boxSettings, 0, 3, 1, 1);
-	addClass(boxSettings, "boxSettings");
 
 	// set the button size
 	gtk_widget_set_size_request (btnSettings, 200, 200);
 	gtk_button_set_image (GTK_BUTTON (btnSettings), image);
-	g_signal_connect(G_OBJECT(btnSettings), "clicked", 
-    G_CALLBACK(clickedSettings), NULL);
+	g_signal_connect(G_OBJECT(btnSettings), "clicked", G_CALLBACK(&HomeView::clickedSettings), NULL);
 	gtk_widget_set_size_request (btnSettings, 50, 50);
 	//gtk_misc_set_alignment(GTK_MISC(btnSettings), 0.5, 0.5);
-	gtk_box_pack_end(GTK_BOX(boxSettings), btnSettings, TRUE, TRUE, 0);
-
+	gtk_box_pack_end(GTK_BOX(boxSettings), btnSettings, false, false, 0);
+	addClass(btnSettings, "settingsButton");
 
 	// create weather's box container
 	GtkWidget* boxWeather = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);

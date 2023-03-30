@@ -62,6 +62,10 @@ void App::CreateWindow() {
 	this->view = new HomeView(window);
 	this->view->setup();
 	this->view->show();
+	this->event->SettingsEvent::getInstance();
+	HomeView* home = dynamic_cast<HomeView*>(this->view);
+	this->event->subscribe(home);
+
 	gtk_widget_show_all(this->window);
 
 	// auto fullscreen -

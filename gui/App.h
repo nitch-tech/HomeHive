@@ -1,6 +1,6 @@
 #include <gtk/gtk.h>
 #include "BaseView.h"
-
+#include "../event/SettingsEvent.h"
 #ifndef HOMEHIVE_APP_H
 #define HOMEHIVE_APP_H
 
@@ -10,6 +10,7 @@ class App {
 		GtkApplication* app;
 		int status;
 		BaseView* view;
+		SettingsEvent* event;
 
 	public:
 		App();
