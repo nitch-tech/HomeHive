@@ -61,3 +61,17 @@ ehthumbs.db
 Thumbs.db
 
 
+# build stuff
+build/
+_deps/
+cmake-build-debug/
+CMakeFiles/
+cmake-build-release/
+cmake_install.cmake
+*.cmake
+install_manifest.txt
+Makefile
+
+test
+HomeHive
+CMakeCache.txt
