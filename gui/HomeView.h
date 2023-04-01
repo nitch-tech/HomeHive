@@ -49,7 +49,7 @@ class HomeView : public BaseView {
 
         static int* mintest;
 		HomeView(GtkWindow* window);
-    void on_activate (GApplication* app, gpointer data);
+        void on_activate (GApplication* app, gpointer data);
 		// BaseView(App* app, GtkWindow* window);
 		~HomeView();
 
@@ -62,16 +62,8 @@ class HomeView : public BaseView {
 
 
         static void button_clicked_callback(GtkWidget *widget, gpointer user_data);
-        static void button_clicked_callback_minute(GtkWidget *widget, gpointer user_data);
         void on_button_clicked(GtkWidget *widget, gpointer user_data);
-        void on_hour_button_clicked(GtkWidget *widget, gpointer user_data);
         void checkAlarm();
-        void alarmNotification();
-
-        int* hourData;
-
-
-        void setAlarm();
         void isClicked();
 
 

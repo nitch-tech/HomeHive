@@ -200,9 +200,7 @@ void HomeView::drawWidgets() {
     g_object_set_data(G_OBJECT(setAlarmButton), "minute_data", minuteSpin);
     g_object_set_data(G_OBJECT(setAlarmButton), "hour_data", hourSpin);
 
-    //callback function whenever the button gets clicked
-    //g_signal_connect(setAlarmButton, "clicked", G_CALLBACK(button_press_event), NULL);
-    // Create the GApplication object
+
 
 
 
@@ -245,12 +243,12 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
     this->alarmTime = g_date_time_new_local(year, month + 1, day, this->alarm->getHour(), this->alarm->getMinute(),0);
     g_print("Alarm set for %s\n", g_date_time_format(this->alarmTime, "%F %T"));
 
-    //---------CHeck how much time is left between now and the alarm---------//
+    //---------Check how much time is left between now and the alarm---------//
 
     this->current_time = g_date_time_new_now_local();
     g_print("Current time %s\n", g_date_time_format(this->current_time, "%F %T"));
 
-  //In order to makes sure that time alarm can go off at the set time, the seconds and the microseconds of the current time needs to be normalized
+    //In order to makes sure that time alarm can go off at the set time, the seconds and the microseconds of the current time needs to be normalized
     gint64 microsec = g_date_time_get_microsecond(this->current_time);
     gint64 sec = g_date_time_to_unix(this->current_time);
     GDateTime *new_dt = g_date_time_new_from_unix_utc(sec);
@@ -261,16 +259,8 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
     GDateTime *new_dt2 = g_date_time_new_from_unix_utc(sec2);
     this->alarmTime = g_date_time_add_seconds(new_dt2, microsec2 / G_USEC_PER_SEC);
 
-
-
-
-    gint curr_micro = g_date_time_get_microsecond(this->current_time);
-    gint al_micro = g_date_time_get_microsecond(this->alarmTime);
-    std::cout<<"The current time microsecond is " <<al_micro << std::endl;
-
-
-//Check if the alarm the user wants to set already exists
-    int isPresent;
+    //Check if the alarm the user wants to set already exists
+    int isPresent = -2;
     GDateTime *norm_dt2 = g_date_time_add_seconds(this->alarmTime, -g_date_time_get_second(this->alarmTime));
     for (const auto& alarm1 : alarms_) {
         isPresent = g_date_time_compare(alarm1->getAlarm(), norm_dt2);
@@ -278,11 +268,12 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
             std::cerr<< "The alarm already exits " << std::endl;
             break;
         }
-    } if (isPresent != 0 ) {alarm->setNewAlarm(norm_dt2);
+    } if (isPresent != 0 ) {
+        alarm->setNewAlarm(norm_dt2);
         alarms_.push_back(alarm);}
 
 
-    //Comapres current time with the alarm time, return 0 if they're equal, meaning the alarm is going off
+    //Compares current time with the alarm time, return 0 if they're equal, meaning the alarm is going off
     for (const auto& alarm : alarms_) {
 
         GDateTime *norm_dt1 = g_date_time_add_seconds(this->current_time, -g_date_time_get_second(this->current_time));
@@ -300,34 +291,11 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
         std::cout << "Alarm is going off \n" <<std::endl;
         GtkWidget* popup_window;
         popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-        // Set the transient parent of the pop-up window to the main window
         gtk_window_set_transient_for(GTK_WINDOW(popup_window), GTK_WINDOW(this->window));
 
         gtk_widget_show_all(popup_window);
     } }
 
-/*
-
-
-
-
-
-}
-
-void HomeView::on_activate(GApplication* app, gpointer data) {
-    // Handle the activation of your application
-    GtkWidget* window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "Alarm Clock");
-
-    GtkWidget* button = gtk_button_new_with_label("Trigger Alarm");
-    g_signal_connect(button, "clicked", G_CALLBACK(button_clicked_callback), window);
-
-    g_object_set_data(G_OBJECT(window), "app", app);
-
-    gtk_container_add(GTK_CONTAINER(window), button);
-    gtk_widget_show_all(window);
-}
-*/
 
 }
 
@@ -336,29 +304,11 @@ void HomeView::checkAlarm() {
 
 }
 
-
-
-
-
-
-
-
-
-
 void HomeView::isClicked() {
+    //callback function whenever the button gets clicked
     g_signal_connect(setAlarmButton, "clicked", G_CALLBACK(button_clicked_callback), this);
-    g_signal_connect(setAlarmButton, "clicked", G_CALLBACK(button_clicked_callback), this);
-}
-void HomeView::alarmNotification() {
-    GNotification* notification = g_notification_new("Notification Title");
-    g_notification_set_body(notification, "Notification Body");
-    g_notification_set_priority(notification, G_NOTIFICATION_PRIORITY_URGENT);
-    //gtk_notification_set_timeout(notification, 5000);
-    g_notification_set_urgent(notification, true);
-    //gtk_notification_show(notification);
-    g_application_send_notification(reinterpret_cast<GApplication *>(this->window), NULL, notification);
-    std::this_thread::sleep_for(std::chrono::seconds(5)); // wait 5 seconds
-    gtk_widget_destroy(GTK_WIDGET(notification));
+
+
 }
 
 void HomeView::updateWeather() {
