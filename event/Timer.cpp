@@ -7,6 +7,7 @@
 
 const int BACKGROUND_INTERVAL = 15 * 60; // every 15 minutes
 const int WEATHER_INTERVAL = 5 * 60; // every 5 minutes
+const int ALARM_INTERVAL = 5;// every minute
 
 //Timer::Timer(const std::function<void(char *, char *)> &cb)
 //				: callback(cb) {
@@ -53,6 +54,15 @@ const gboolean Timer::onTimerTick(gpointer data) {
 	if ((tmr->ticks % WEATHER_INTERVAL) == 0) {
 		tmr->view->updateWeather();
 	}
+
+    // check alarm
+    if ((tmr->ticks % ALARM_INTERVAL) == 0) {
+        tmr->view->checkAlarm();
+    }
+    if ((tmr->ticks % 1) == 0) {
+        tmr->view->isClicked();
+    }
+
 
 	++tmr->ticks;
 	return true;

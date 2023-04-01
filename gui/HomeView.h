@@ -11,6 +11,10 @@
 #include "../request/weather.h"
 //#include "../event/Timer.h"
 #include "Alarm.h"
+#include <chrono>
+#include <iostream>
+#include <iomanip>
+#include <vector>
 
 class HomeView : public BaseView {
 	private:
@@ -29,10 +33,23 @@ class HomeView : public BaseView {
         GtkWidget* setAlarmButton;
 		Unsplash* unsplash;
 		Weather* weather;
-        Alarm alarm;
+        GtkWidget* calendar;
+        GApplication* app;
+
+        GDateTime* alarmTime;
+    GDateTime* current_time;
+    std::vector<Alarm*> alarms_;
+    Alarm* alarm;
+
+
+
 
 	public:
+
+
+        static int* mintest;
 		HomeView(GtkWindow* window);
+    void on_activate (GApplication* app, gpointer data);
 		// BaseView(App* app, GtkWindow* window);
 		~HomeView();
 
@@ -43,8 +60,19 @@ class HomeView : public BaseView {
 		void changeBackgroundImage();
 		void updateWeather();
 
+
+        static void button_clicked_callback(GtkWidget *widget, gpointer user_data);
+        static void button_clicked_callback_minute(GtkWidget *widget, gpointer user_data);
+        void on_button_clicked(GtkWidget *widget, gpointer user_data);
+        void on_hour_button_clicked(GtkWidget *widget, gpointer user_data);
+        void checkAlarm();
+        void alarmNotification();
+
+        int* hourData;
+
+
         void setAlarm();
-        static gboolean button_press_event ( GtkWidget *widget, GdkEvent *event );
+        void isClicked();
 
 
 
