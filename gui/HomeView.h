@@ -9,6 +9,7 @@
 #include "BaseView.h"
 #include "../request/Unsplash.h"
 #include "../request/weather.h"
+#include "../request/news.h"
 //#include "../event/Timer.h"
 
 class HomeView : public BaseView {
@@ -22,11 +23,13 @@ class HomeView : public BaseView {
 		GtkLabel* lblDate;
 		GtkLabel* lblGreeting;
 		GtkWidget* lblWeather;
+		GtkWidget* lblNews;
 		GtkWidget* dateTimeContainer;
 
 		Unsplash* unsplash;
 		// Timer* timer;
 		Weather* weather;
+		News* news;
 
 	public:
 		HomeView(GtkWindow* window);
@@ -39,6 +42,7 @@ class HomeView : public BaseView {
 
 		void changeBackgroundImage();
 		void updateWeather();
+		void updateNews(bool fetchNews);
 
 	protected:
 		void setupLayout() override;
