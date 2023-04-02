@@ -6,12 +6,19 @@
 #include <cmath>
 #include <gtk/gtk.h>
 #include <glib.h>
+#include <algorithm>
 #include "HomeView.h"
 #include "../event/Timer.h"
 #include "settings.h"
+<<<<<<< HEAD
 //#include <sigc++-2.0/sigc++/sigc++.h>
  //#define DEBUG_GRID 1
+=======
 
+//#define DEBUG_GRID 1
+>>>>>>> 46846d17872b41f962eb85e9163c4da74878adc0
+
+Timer* Localtimer = nullptr;
 
 /**
  * Size Allocator Signal Handler
@@ -22,10 +29,8 @@
  * @param allocation The new allocation of the widget (window dimemsions)
  * @param data Signal data (grid widget)
  */
-Timer* Localtimer = nullptr;
-static void onSizeAllocate(GtkWidget* widget, GdkRectangle* allocation, gpointer data) {
-	GtkWidget* grid = (GtkWidget*) data;
-	gtk_widget_set_size_request(grid, allocation->width, allocation->height);
+static void onSizeAllocate(GtkWidget* widget, GdkRectangle* allocation, HomeView* data) {
+	data->onWindowResize(allocation);
 }
 
 /**
@@ -62,6 +67,7 @@ HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 HomeView::~HomeView() {
 	delete this->unsplash;
 }
+
 /**
 * Callback function for settings button
 */
@@ -71,10 +77,9 @@ void HomeView::clickedSettings(GtkWidget *widget, gpointer data) {
   //this->settings->HomeView::open_settings_window();
   g_print("Settings Opened\n");
 }
+
 void HomeView::update_labels(){
 	//g_print(g_get_application_id());
-	
-	
 	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
 	const gchar* name = g_settings_get_string(settings,"name");
 	gchar* greeting = g_strdup_printf("Howdy, %s!", name);
@@ -97,7 +102,11 @@ void HomeView::setupLayout() {
 	#endif
 
 	// load & add the default background image, will be behind everything
-	this->imgBackground = (GtkImage*) gtk_image_new_from_file("background.jpg");
+	std::cout << "what\n";
+//	this->imgBackground = (GtkImage*) gtk_image_new_from_file("background.jpg");
+	this->imgBackground = (GtkImage*) gtk_image_new();
+	this->bgBuff = gdk_pixbuf_new_from_file("background.jpg", NULL);
+	gtk_image_set_from_pixbuf(this->imgBackground, this->bgBuff);
 	gtk_layout_put(layout, (GtkWidget*) imgBackground, 0, 0);
 
 	// create a new grid, to position our UI elements
@@ -131,7 +140,7 @@ void HomeView::setupLayout() {
  */
 void HomeView::registerInteractivity() {
 	// register size-allocate signal to dynamically resize grid to window
-	g_signal_connect(this->window, "size-allocate", G_CALLBACK(onSizeAllocate), this->grid);
+	g_signal_connect(this->window, "size-allocate", G_CALLBACK(onSizeAllocate), this);
 
 	// create our timer, which does some background work frequently
 	Timer* timer = new Timer(this);
@@ -292,11 +301,9 @@ void HomeView::changeBackgroundImage() {
 	}
 
 	// reload the background image
-	gtk_image_set_from_file(this->imgBackground, this->unsplash->getBackgroundImage().c_str());
+	// gtk_image_set_from_file(this->imgBackground, this->unsplash->getBackgroundImage().c_str());
 
-	// refresh and reload background
-	gtk_widget_queue_draw((GtkWidget*) this->imgBackground);
-	gtk_widget_show((GtkWidget*) this->imgBackground);
+	this->LoadBackgroundImage(this->unsplash->getBackgroundImage());
 }
 
 void HomeView::setFullscreen(bool fullscreen) {
@@ -305,4 +312,79 @@ void HomeView::setFullscreen(bool fullscreen) {
 	} else {
 		gtk_window_unfullscreen(this->window);
 	}
+}
+
+/**
+ * Loads a new background image from a given file path
+ *
+ * @param fname The file path to load an image from
+ */
+void HomeView::LoadBackgroundImage(std::string fname) {
+	this->bgBuff = gdk_pixbuf_new_from_file(fname.c_str(), NULL);
+	this->DrawBackgroundScaled();
+
+	// refresh and reload background
+	gtk_widget_queue_draw((GtkWidget*) this->imgBackground);
+	gtk_widget_show((GtkWidget*) this->imgBackground);
+}
+
+/**
+ * Draws the background image, scaled to the window size
+ *
+ * @param width The window width
+ * @param height The window height
+ * @todo Look into gdk_pixbuf_scale(), to be able to use the offset, so the background
+ * can be centered to the window.
+ */
+void HomeView::DrawBackgroundScaled(int width, int height) {
+	// if invalid, or no size was specific, then we'll have to manually get window size.
+	if (width < 1 || height < 1) {
+		gtk_window_get_size(this->window, &width, &height);
+	}
+
+	// retrieve the background image size
+	int bgWidth = gdk_pixbuf_get_width(this->bgBuff);
+	int bgHeight = gdk_pixbuf_get_height(this->bgBuff);
+
+	// calculate the image ratio, respective to the window size. and we use the LARGEST ratio, so we can
+	// cover the entire window screen, but still maintain aspect raatio
+	// float r = std::min((float)width / (float)bgWidth, (float)height / (float)bgHeight);
+	float r = std::max((float)width / (float)bgWidth, (float)height / (float)bgHeight);
+
+	std::cout << "Background{W=" << bgWidth << ", H=" << bgHeight << "} Window{W=" <<
+		width << ", H="<<height << "} RATIO="<<r << std::endl;
+
+	// scale the buffer image into a new buffer, the final background image to render
+	this->bgBuffScaled = gdk_pixbuf_scale_simple(
+		this->bgBuff,
+		(float) bgWidth * r,
+		(float) bgHeight * r,
+		GDK_INTERP_NEAREST
+	);
+
+	// set the background image
+	gtk_image_set_from_pixbuf(this->imgBackground, this->bgBuffScaled);
+}
+
+/**
+ * On Window Resize
+ *
+ * Whenever the window is resized, full screen, maximized, etc, this function will be called.
+ * The actual implementation is to resize the background image to fit the window size, and to
+ * resize the grid to fit the window size, to make it perfectly responsive.
+ *
+ * @param size The new window size structure
+ */
+void HomeView::onWindowResize(GdkRectangle *size) {
+	BaseView::onWindowResize(size);
+	std::cout << "resized to w=" << size->width << ", h=" << size->height << ", x=" << size->x << ", y=" << size->y << std::endl;
+
+	// resize the grid to fit the window
+	gtk_widget_set_size_request(GTK_WIDGET(this->grid), size->width, size->height);
+
+	// int width, height;
+	// gtk_window_get_size(data->getWindow(), &width, &height);
+
+	// redraw the background to scale to the window size
+	this->DrawBackgroundScaled(size->width, size->height);
 }

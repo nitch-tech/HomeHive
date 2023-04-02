@@ -1,2 +1,0 @@
-/usr/bin/ar qc libHomeHiveEvent.a CMakeFiles/HomeHiveEvent.dir/event/Timer.cpp.o CMakeFiles/HomeHiveEvent.dir/event/SettingsEvent.cpp.o
-/usr/bin/ranlib libHomeHiveEvent.a
