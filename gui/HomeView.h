@@ -46,6 +46,8 @@ class HomeView : public BaseView, public IntervalView {
         GDateTime* current_time;
         std::vector<Alarm*> alarms_;
         Alarm* alarm;
+        GtkWidget* alarm_ok;
+        GtkWidget* popup_window;
 
 
 
@@ -62,12 +64,15 @@ class HomeView : public BaseView, public IntervalView {
 
         static void button_clicked_callback(GtkWidget *widget, gpointer user_data);
         void on_button_clicked(GtkWidget *widget, gpointer user_data);
+        static void ok_clicked_callback(GtkWidget *widget, gpointer user_data);
+        void on_ok_button_clicked(GtkWidget *widget, gpointer user_data);
 
         void setDateAndTime(char* date, char* time) override;
         void changeBackgroundImage() override;
         void updateWeather() override;
         int checkAlarm() override;
         void isClicked() override;
+
 
 
 

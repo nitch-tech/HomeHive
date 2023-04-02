@@ -215,6 +215,28 @@ void HomeView::drawWidgets() {
 
 
 
+
+    popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_position(GTK_WINDOW(popup_window), GTK_WIN_POS_CENTER_ALWAYS);
+    gtk_window_set_default_size(GTK_WINDOW(popup_window), 400, 300);
+    this->alarm_ok = gtk_button_new_with_label("OK");
+
+    GtkWidget* label = gtk_label_new("Wake Up!");
+
+    // Add the label to the window
+    GtkWidget* box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
+    gtk_widget_set_halign(box, GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(box, GTK_ALIGN_CENTER);
+    gtk_container_add(GTK_CONTAINER(box), label);
+    gtk_container_add(GTK_CONTAINER(box), this->alarm_ok);
+
+    gtk_container_add(GTK_CONTAINER(popup_window), box);
+    // Show the window and box
+    gtk_window_set_keep_above(GTK_WINDOW(popup_window), TRUE);
+    gtk_window_set_transient_for(GTK_WINDOW(popup_window), GTK_WINDOW(this->window));
+
+
+
 }
 
 void HomeView::button_clicked_callback(GtkWidget *widget, gpointer user_data) {
@@ -224,6 +246,24 @@ void HomeView::button_clicked_callback(GtkWidget *widget, gpointer user_data) {
 
 
 }
+void HomeView::ok_clicked_callback(GtkWidget *widget, gpointer user_data) {
+    HomeView *obj = static_cast<HomeView *>(user_data);
+    //When the alarm button gets clicked, call this function
+    obj->on_ok_button_clicked(widget, user_data);
+
+
+}
+void HomeView::on_ok_button_clicked(GtkWidget *widget, gpointer user_data) {
+
+    //g_signal_handlers_disconnect_by_data(widget, user_data);
+    //gtk_widget_destroy(popup_window);
+    GtkWindow *window = GTK_WINDOW(user_data);
+    GtkContainer *container = GTK_CONTAINER(gtk_widget_get_parent(GTK_WIDGET(window)));
+    gtk_container_remove(container, GTK_WIDGET(window));
+    gtk_widget_hide(GTK_WIDGET(window));
+
+}
+
 void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
 
     g_signal_handlers_disconnect_by_data(widget, user_data);
@@ -257,9 +297,9 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
 
     //Check if the alarm the user wants to set already exists. isPresent is 0, if the user has already set an alarm for that date and time.
     int isPresent = -2;
-    GDateTime *norm_dt2 = g_date_time_add_seconds(this->alarmTime, -g_date_time_get_second(this->alarmTime));
+    //GDateTime *norm_dt2 = g_date_time_add_seconds(this->alarmTime, -g_date_time_get_second(this->alarmTime));
     for (const auto& alarm1 : alarms_) {
-        isPresent = g_date_time_compare(alarm1->getAlarm(), norm_dt2);
+        isPresent = g_date_time_compare(alarm1->getAlarm(), this->alarmTime);
         if (isPresent == 0) {
             std::cerr<< "The alarm already exits " << std::endl;
             break;
@@ -268,7 +308,7 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
 
     //If the alarm is not present,  push it onto the vector
     if (isPresent != 0 ) {
-        alarm->setNewAlarm(norm_dt2);
+        alarm->setNewAlarm(this->alarmTime);
         alarms_.push_back(alarm);
     }
     this->checkAlarm();
@@ -307,6 +347,9 @@ int HomeView::checkAlarm() {
                 return 1;
             }
 
+            gtk_widget_show_all(popup_window);
+            g_signal_connect(alarm_ok, "clicked", G_CALLBACK(ok_clicked_callback), popup_window);
+
             SDL_AudioSpec wavSpec;
             Uint8* wavBuffer;
             Uint32 wavLength;
@@ -339,20 +382,11 @@ int HomeView::checkAlarm() {
             SDL_Quit();
 
 
-            GtkWidget* popup_window;
-            popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-            gtk_window_set_position(GTK_WINDOW(popup_window), GTK_WIN_POS_CENTER_ALWAYS);
-            gtk_window_set_default_size(GTK_WINDOW(popup_window), 400, 300);
 
-            GtkWidget* label = gtk_label_new("Wake Up!");
 
-            // Add the label to the window
-            gtk_container_add(GTK_CONTAINER(popup_window), label);
-            // Show the window and box
-            gtk_window_set_keep_above(GTK_WINDOW(popup_window), TRUE);
-            gtk_window_set_transient_for(GTK_WINDOW(popup_window), GTK_WINDOW(this->window));
 
-            gtk_widget_show_all(popup_window);
+
+
 
 
 
@@ -365,6 +399,7 @@ int HomeView::checkAlarm() {
 void HomeView::isClicked() {
     //callback function whenever the button gets clicked
     g_signal_connect(setAlarmButton, "clicked", G_CALLBACK(button_clicked_callback), this);
+
 
 
 }
