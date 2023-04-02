@@ -11,7 +11,7 @@ const int ALARM_INTERVAL = 60;// every minute
 
 //Timer::Timer(const std::function<void(char *, char *)> &cb)
 //				: callback(cb) {
-Timer::Timer(HomeView* v) {
+Timer::Timer(IntervalView* v) {
 	this->view = v;
 	this->buffDate = (char*)malloc(sizeof(char)*69);
 	this->buffTime = (char*)malloc(sizeof(char)*69);

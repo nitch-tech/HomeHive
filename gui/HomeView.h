@@ -9,16 +9,20 @@
 #include "BaseView.h"
 #include "../request/Unsplash.h"
 #include "../request/weather.h"
-//#include "../event/Timer.h"
+#include "../event/IntervalView.h"
 #include "Alarm.h"
 #include <chrono>
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <AudioToolbox/AudioToolbox.h>
+#include <SDL2/SDL.h>
 
 
 
-class HomeView : public BaseView {
+
+
+class HomeView : public BaseView, public IntervalView {
 	private:
 		GtkLayout* layout;
 		GtkGrid* grid;
@@ -53,18 +57,17 @@ class HomeView : public BaseView {
 		// BaseView(App* app, GtkWindow* window);
 		~HomeView();
 
-		void setDateAndTime(char* date, char* time);
-
 		void setFullscreen(bool fullscreen);
-
-		void changeBackgroundImage();
-		void updateWeather();
 
 
         static void button_clicked_callback(GtkWidget *widget, gpointer user_data);
         void on_button_clicked(GtkWidget *widget, gpointer user_data);
-        void checkAlarm();
-        void isClicked();
+
+        void setDateAndTime(char* date, char* time) override;
+        void changeBackgroundImage() override;
+        void updateWeather() override;
+        int checkAlarm() override;
+        void isClicked() override;
 
 
 

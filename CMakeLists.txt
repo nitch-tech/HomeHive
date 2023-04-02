@@ -11,12 +11,14 @@ include(FetchContent)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.2/json.tar.xz)
 FetchContent_MakeAvailable(json)
 
+find_package(SDL2 REQUIRED)
 find_package(CURL REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED gtk+-3.0)
 
 
 ## INCLUDE AND LINKING DEPENDENCIES DIRECTORIES ##
+include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${CURL_INCLUDE_DIR})
 include_directories(${GTK_INCLUDE_DIRS})
 link_directories(${GTK_LIBRARY_DIRS})
@@ -24,7 +26,7 @@ link_directories(${GTK_LIBRARY_DIRS})
 
 ## BUILD LIBRARIES AND THEIR SOURCES ##
 add_library(HomeHiveRequests request/request.cpp request/request.h request/Unsplash.cpp request/Unsplash.h request/UnsplashBackground.cpp request/UnsplashBackground.h request/weather.cpp request/weather.h)
-add_library(HomeHiveEvent event/Timer.cpp event/Timer.h )
+add_library(HomeHiveEvent event/Timer.cpp event/Timer.h event/IntervalView.h event/IntervalView.cpp)
 add_library(HomeHiveGUI gui/BaseView.cpp gui/BaseView.h gui/App.cpp gui/App.h gui/HomeView.cpp gui/HomeView.h gui/Alarm.cpp gui/Alarm.h)
 
 
@@ -48,5 +50,5 @@ add_dependencies(HomeHive resources) # this links the resources to main exec, in
 ## LINK LIBRARIES TO EXECUTABLES ##
 target_link_libraries(HomeHiveRequests PRIVATE nlohmann_json::nlohmann_json ${CURL_LIBRARIES})
 target_link_libraries(HomeHiveGUI ${GTK_LIBRARIES} HomeHiveRequests HomeHiveEvent)
-target_link_libraries(HomeHive ${GTK_LIBRARIES} HomeHiveRequests HomeHiveEvent HomeHiveGUI)
+target_link_libraries(HomeHive ${GTK_LIBRARIES} ${SDL2_LIBRARIES} HomeHiveRequests HomeHiveEvent HomeHiveGUI)
 target_link_libraries(test PRIVATE nlohmann_json::nlohmann_json HomeHiveRequests)

@@ -275,7 +275,7 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
 
 }
 
-void HomeView::checkAlarm() {
+int HomeView::checkAlarm() {
     //loop through all alarms
     for (const auto& alarm : alarms_) {
         this->current_time = g_date_time_new_now_local();
@@ -302,6 +302,43 @@ void HomeView::checkAlarm() {
         else if(compare == 0) {
             std::cout << "Alarm is going off \n" <<std::endl;
 
+            if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+                std::cerr << "SDL_Init() error: " << SDL_GetError() << std::endl;
+                return 1;
+            }
+
+            SDL_AudioSpec wavSpec;
+            Uint8* wavBuffer;
+            Uint32 wavLength;
+
+            if (SDL_LoadWAV("../resources/s4-hilo.wav", &wavSpec, &wavBuffer, &wavLength) == NULL) {
+                std::cerr << "SDL_LoadWAV() error: " << SDL_GetError() << std::endl;
+                return 1;
+            }
+
+            SDL_AudioDeviceID deviceId = SDL_OpenAudioDevice(NULL, 0, &wavSpec, NULL, 0);
+            if (deviceId == 0) {
+                std::cerr << "SDL_OpenAudioDevice() error: " << SDL_GetError() << std::endl;
+                SDL_FreeWAV(wavBuffer);
+                return 1;
+            }
+
+            if (SDL_QueueAudio(deviceId, wavBuffer, wavLength) < 0) {
+                std::cerr << "SDL_QueueAudio() error: " << SDL_GetError() << std::endl;
+                SDL_CloseAudioDevice(deviceId);
+                SDL_FreeWAV(wavBuffer);
+                return 1;
+            }
+
+            SDL_PauseAudioDevice(deviceId, 0);
+
+            SDL_Delay(500);
+
+            SDL_CloseAudioDevice(deviceId);
+            SDL_FreeWAV(wavBuffer);
+            SDL_Quit();
+
+
             GtkWidget* popup_window;
             popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
             gtk_window_set_position(GTK_WINDOW(popup_window), GTK_WIN_POS_CENTER_ALWAYS);
@@ -311,6 +348,9 @@ void HomeView::checkAlarm() {
             gtk_window_set_transient_for(GTK_WINDOW(popup_window), GTK_WINDOW(this->window));
 
             gtk_widget_show_all(popup_window);
+
+
+
         } }
 
 

@@ -10,22 +10,20 @@
 #include <glib.h>
 #include <glib/gprintf.h>
 #include <functional>
-#include "../gui/HomeView.h"
+#include "./IntervalView.h"
 
 class Timer {
 	private:
-		HomeView* view;
+        IntervalView* view;
 		std::time_t time;
 		std::tm* tm;
 		guint timerId;
 		char* buffDate;
 		char* buffTime;
 		int ticks = 0;
-//		const std::function<void(char*,char*)>& callback;
 
 	public:
-//		Timer(const std::function<void(char *, char *)> &callback);
-		Timer(HomeView* view);
+		Timer(IntervalView* view);
 		~Timer();
 		void Register();
 		void Unregister();
