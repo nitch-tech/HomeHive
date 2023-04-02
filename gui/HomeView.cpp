@@ -194,7 +194,7 @@ void HomeView::drawWidgets() {
     calendar = gtk_calendar_new();
     gtk_widget_set_name(calendar, "calendar");
 
-    //hour and minute button - hours from 0 to 23, minutes from 0 to 59
+    //Create the hour and minute button - hour ranges from 0 to 23, minutes range from 0 to 59
     hourSpin = gtk_spin_button_new_with_range(0, 23, 1);
     minuteSpin = gtk_spin_button_new_with_range(0, 59, 1);
     g_object_set_data(G_OBJECT(setAlarmButton), "minute_data", minuteSpin);
@@ -207,7 +207,7 @@ void HomeView::drawWidgets() {
 
 
 
-    //Add everything onto the screen
+    //Add everything alarm related onto the screen - will be moved later onto settings pane
     gtk_box_pack_start(GTK_BOX(boxAlarm), hourSpin, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(boxAlarm), minuteSpin, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(boxAlarm), setAlarmButton, FALSE, FALSE, 0);
@@ -228,14 +228,14 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
 
     g_signal_handlers_disconnect_by_data(widget, user_data);
 
-    //Set the current date and time for an alarm object
+    //Set the current date and time for the alarm object - based on whatever numbers were displayed when the user clicked set alarm
     int alarmMin = gtk_spin_button_get_value_as_int(reinterpret_cast<GtkSpinButton *>(minuteSpin));
     this->alarm->setMinute(alarmMin);
     int alarmHour = gtk_spin_button_get_value_as_int(reinterpret_cast<GtkSpinButton *>(hourSpin));
     this->alarm->setHour(alarmHour);
 
 
-    //Set the date of the alarm from the calendar widget
+    //Get the date of the alarm from the calendar widget when the user clicked the alarm
     guint year, month, day;
     gtk_calendar_get_date(GTK_CALENDAR(this->calendar), &year, &month, &day);
 
@@ -243,10 +243,10 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
     this->alarmTime = g_date_time_new_local(year, month + 1, day, this->alarm->getHour(), this->alarm->getMinute(),0);
     g_print("Alarm set for %s\n", g_date_time_format(this->alarmTime, "%F %T"));
 
-    //---------Check how much time is left between now and the alarm---------//
 
+
+    //Get the current time
     this->current_time = g_date_time_new_now_local();
-    g_print("Current time %s\n", g_date_time_format(this->current_time, "%F %T"));
 
     //In order to makes sure that time alarm can go off at the set time, the seconds and the microseconds of the current time needs to be normalized
     gint64 microsec = g_date_time_get_microsecond(this->current_time);
@@ -254,12 +254,8 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
     GDateTime *new_dt = g_date_time_new_from_unix_utc(sec);
     this->current_time = g_date_time_add_seconds(new_dt, microsec / G_USEC_PER_SEC);
 
-    gint64 microsec2 = g_date_time_get_microsecond(this->alarmTime);
-    gint64 sec2 = g_date_time_to_unix(this->alarmTime);
-    GDateTime *new_dt2 = g_date_time_new_from_unix_utc(sec2);
-    this->alarmTime = g_date_time_add_seconds(new_dt2, microsec2 / G_USEC_PER_SEC);
 
-    //Check if the alarm the user wants to set already exists
+    //Check if the alarm the user wants to set already exists. isPresent is 0, if the user has already set an alarm for that date and time.
     int isPresent = -2;
     GDateTime *norm_dt2 = g_date_time_add_seconds(this->alarmTime, -g_date_time_get_second(this->alarmTime));
     for (const auto& alarm1 : alarms_) {
@@ -268,18 +264,19 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
             std::cerr<< "The alarm already exits " << std::endl;
             break;
         }
-    } if (isPresent != 0 ) {
+    }
+
+    //If the alarm is not present,  push it onto the vector
+    if (isPresent != 0 ) {
         alarm->setNewAlarm(norm_dt2);
-        alarms_.push_back(alarm);}
+        alarms_.push_back(alarm);
+    }
     this->checkAlarm();
-
-
-
 
 }
 
 void HomeView::checkAlarm() {
-    //Compares current time with the alarm time, return 0 if they're equal, meaning the alarm is going off
+    //loop through all alarms
     for (const auto& alarm : alarms_) {
         this->current_time = g_date_time_new_now_local();
         g_print("Current time %s\n", g_date_time_format(this->current_time, "%F %T"));
@@ -292,20 +289,24 @@ void HomeView::checkAlarm() {
 
         GDateTime *norm_dt1 = g_date_time_add_seconds(this->current_time, -g_date_time_get_second(this->current_time));
         g_print("Current time with normalized seconds %s\n", g_date_time_format(norm_dt1, "%F %T"));
+
+
+        //Compares current time with the alarm time, return 0 if they're equal, meaning the alarm is going off
         int compare = g_date_time_compare(alarm->getAlarm(), norm_dt1);
 
         if (compare == -1) {
             std::cout << "You have entered a date that has already passed. It will be removed \n" <<std::endl;
 
-
         }else if (compare == 1) {
-            std::cout << "There is this much time " << compare << "\n" << std::endl;}
+            std::cout << "Alarm has not gone off yet" << compare << "\n" << std::endl;}
         else if(compare == 0) {
-
             std::cout << "Alarm is going off \n" <<std::endl;
+
             GtkWidget* popup_window;
             popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
             gtk_window_set_position(GTK_WINDOW(popup_window), GTK_WIN_POS_CENTER_ALWAYS);
+
+            // Show the window and box
             gtk_window_set_keep_above(GTK_WINDOW(popup_window), TRUE);
             gtk_window_set_transient_for(GTK_WINDOW(popup_window), GTK_WINDOW(this->window));
 

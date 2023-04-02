@@ -16,6 +16,8 @@
 #include <iomanip>
 #include <vector>
 
+
+
 class HomeView : public BaseView {
 	private:
 		GtkLayout* layout;
