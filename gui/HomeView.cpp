@@ -271,35 +271,47 @@ void HomeView::on_button_clicked(GtkWidget *widget, gpointer user_data) {
     } if (isPresent != 0 ) {
         alarm->setNewAlarm(norm_dt2);
         alarms_.push_back(alarm);}
+    this->checkAlarm();
 
 
-    //Compares current time with the alarm time, return 0 if they're equal, meaning the alarm is going off
-    for (const auto& alarm : alarms_) {
-
-        GDateTime *norm_dt1 = g_date_time_add_seconds(this->current_time, -g_date_time_get_second(this->current_time));
-        g_print("Current time with normalized seconds %s\n", g_date_time_format(norm_dt1, "%F %T"));
-        int compare = g_date_time_compare(alarm->getAlarm(), norm_dt1);
-
-    if (compare == -1) {
-        std::cout << "You have entered a date that has already passed. It will be removed \n" <<std::endl;
-
-
-    }else if (compare == 1) {
-    std::cout << "There is this much time " << compare << "\n" << std::endl;}
-    else if(compare == 0) {
-
-        std::cout << "Alarm is going off \n" <<std::endl;
-        GtkWidget* popup_window;
-        popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-        gtk_window_set_transient_for(GTK_WINDOW(popup_window), GTK_WINDOW(this->window));
-
-        gtk_widget_show_all(popup_window);
-    } }
 
 
 }
 
 void HomeView::checkAlarm() {
+    //Compares current time with the alarm time, return 0 if they're equal, meaning the alarm is going off
+    for (const auto& alarm : alarms_) {
+        this->current_time = g_date_time_new_now_local();
+        g_print("Current time %s\n", g_date_time_format(this->current_time, "%F %T"));
+
+        //In order to makes sure that time alarm can go off at the set time, the seconds and the microseconds of the current time needs to be normalized
+        gint64 microsec = g_date_time_get_microsecond(this->current_time);
+        gint64 sec = g_date_time_to_unix(this->current_time);
+        GDateTime *new_dt = g_date_time_new_from_unix_utc(sec);
+        this->current_time = g_date_time_add_seconds(new_dt, microsec / G_USEC_PER_SEC);
+
+        GDateTime *norm_dt1 = g_date_time_add_seconds(this->current_time, -g_date_time_get_second(this->current_time));
+        g_print("Current time with normalized seconds %s\n", g_date_time_format(norm_dt1, "%F %T"));
+        int compare = g_date_time_compare(alarm->getAlarm(), norm_dt1);
+
+        if (compare == -1) {
+            std::cout << "You have entered a date that has already passed. It will be removed \n" <<std::endl;
+
+
+        }else if (compare == 1) {
+            std::cout << "There is this much time " << compare << "\n" << std::endl;}
+        else if(compare == 0) {
+
+            std::cout << "Alarm is going off \n" <<std::endl;
+            GtkWidget* popup_window;
+            popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+            gtk_window_set_position(GTK_WINDOW(popup_window), GTK_WIN_POS_CENTER_ALWAYS);
+            gtk_window_set_keep_above(GTK_WINDOW(popup_window), TRUE);
+            gtk_window_set_transient_for(GTK_WINDOW(popup_window), GTK_WINDOW(this->window));
+
+            gtk_widget_show_all(popup_window);
+        } }
+
 
 
 }

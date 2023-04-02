@@ -7,7 +7,7 @@
 
 const int BACKGROUND_INTERVAL = 15 * 60; // every 15 minutes
 const int WEATHER_INTERVAL = 5 * 60; // every 5 minutes
-const int ALARM_INTERVAL = 5;// every minute
+const int ALARM_INTERVAL = 60;// every minute
 
 //Timer::Timer(const std::function<void(char *, char *)> &cb)
 //				: callback(cb) {
