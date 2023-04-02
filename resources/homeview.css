@@ -20,7 +20,7 @@
 /**
  * Apply some text effects to the labels to make it legible.
  */
-.lblTime, .lblDate, .lblGreeting, .lblWeather {
+.lblTime, .lblDate, .lblGreeting, .lblWeather , .lblNews{
 	color: #fff;
 	text-shadow: 0 2px 2px #383838;
 	/*text-align: left; aligning doesnt work in GTK */
@@ -51,6 +51,18 @@
 	padding-right: 3rem;
 }
 .lblWeather {
+	font-size: 19pt;
+}
+
+.boxNews {
+	background: rgba(32, 30, 30, 0.55);
+	border-radius:  10px;
+	padding-right:  3rem;
+	padding-left:   3rem;
+	padding-top:    1rem;
+	padding-bottom: 1rem;
+}
+.lblNews {
 	font-size: 19pt;
 }
 
