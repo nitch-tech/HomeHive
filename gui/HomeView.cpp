@@ -200,10 +200,10 @@ void HomeView::drawWidgets() {
 
 	// create the settings button
 	GtkWidget* btnSettings = gtk_button_new();
-	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file ("resources/icon_gray.png", NULL);// get gray icon for button
+	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file ("resources/icons/gears-solid.png", NULL);// get gray icon for button
 	GdkPixbuf *scaled_pixbuf = gdk_pixbuf_scale_simple(pixbuf, 50, 50, GDK_INTERP_BILINEAR);// make it not huge
 	GtkWidget *image = gtk_image_new_from_pixbuf (scaled_pixbuf);
-	
+
 	//gtk_container_add (GTK_CONTAINER (btnSettings), image);
 	
 
@@ -212,12 +212,12 @@ void HomeView::drawWidgets() {
 	gtk_grid_attach(this->grid, boxSettings, 4, 3, 1, 1);
 
 	// set the button size
-	gtk_widget_set_size_request (btnSettings, 50, 50);
+	gtk_widget_set_size_request (btnSettings, 60, 50);
 	gtk_button_set_image (GTK_BUTTON (btnSettings), image);
 	g_signal_connect(G_OBJECT(btnSettings), "clicked", G_CALLBACK(&HomeView::clickedSettings), NULL);
-	gtk_widget_set_size_request (btnSettings, 50, 50);
+	gtk_widget_set_size_request (btnSettings, 100, 50);
 	//gtk_misc_set_alignment(GTK_MISC(btnSettings), 0.5, 0.5);
-	gtk_box_pack_start(GTK_BOX(boxSettings), btnSettings, TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(boxSettings), btnSettings, true, true, 10);
 	addClass(btnSettings, "settingsButton");
 
 	// create weather's box container
