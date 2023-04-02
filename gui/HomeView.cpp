@@ -342,7 +342,12 @@ int HomeView::checkAlarm() {
             GtkWidget* popup_window;
             popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
             gtk_window_set_position(GTK_WINDOW(popup_window), GTK_WIN_POS_CENTER_ALWAYS);
+            gtk_window_set_default_size(GTK_WINDOW(popup_window), 400, 300);
 
+            GtkWidget* label = gtk_label_new("Wake Up!");
+
+            // Add the label to the window
+            gtk_container_add(GTK_CONTAINER(popup_window), label);
             // Show the window and box
             gtk_window_set_keep_above(GTK_WINDOW(popup_window), TRUE);
             gtk_window_set_transient_for(GTK_WINDOW(popup_window), GTK_WINDOW(this->window));
