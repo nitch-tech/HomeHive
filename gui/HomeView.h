@@ -8,9 +8,8 @@
 
 #include "BaseView.h"
 #include "../request/Unsplash.h"
-//#include <sigc++-2.0/sigc++/sigc++.h>
 #include "../request/weather.h"
-//#include "../event/Timer.h"
+#include "../request/news.h"
 #include "settings.h"
 
 class HomeView : public BaseView {
@@ -24,12 +23,15 @@ class HomeView : public BaseView {
 		GtkLabel* lblDate;
 		GtkLabel* lblGreeting;
 		GtkWidget* lblWeather;
+		GtkWidget* lblNews;
 		GtkWidget* dateTimeContainer;
 		GtkWidget* btnSettings;
 
 		Unsplash* unsplash;
 		// Timer* timer;
 		Weather* weather;
+		News* news;
+
 		GdkPixbuf* bgBuff;
 		GdkPixbuf* bgBuffScaled;
 
@@ -46,6 +48,7 @@ class HomeView : public BaseView {
 
 		void changeBackgroundImage();
 		void updateWeather();
+		void updateNews(bool fetchNews);
 
 		/**
 		 * On Window Resize

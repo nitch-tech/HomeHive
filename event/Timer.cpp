@@ -7,6 +7,8 @@
 
 int BACKGROUND_INTERVAL = 15 * 60; // every 15 minutes
 const int WEATHER_INTERVAL = 5 * 60; // every 5 minutes
+const int NEWS_INTERVAL = 30; // every 30 seconds
+const int NEWS_FETCH_INTERVAL = 30 * 60; // every 1 minute 
 
 //Timer::Timer(const std::function<void(char *, char *)> &cb)
 //				: callback(cb) {
@@ -56,6 +58,17 @@ const gboolean Timer::onTimerTick(gpointer data) {
 		tmr->view->updateWeather();
 	}
 
+	// does news need to be fetched
+	if((tmr->ticks % NEWS_FETCH_INTERVAL) == 0) {
+		tmr->fetchNews = TRUE;
+	} else {
+		tmr->fetchNews = FALSE;
+	}
+
+	// refresh headline
+	if((tmr->ticks % NEWS_INTERVAL) == 0) {
+		tmr->view->updateNews(tmr->fetchNews);
+	}
 	++tmr->ticks;
 	return true;
 }

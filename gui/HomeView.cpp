@@ -56,8 +56,9 @@ static void removeClass(GtkWidget* widget, std::string className) {
 HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 	this->unsplash = new Unsplash();
 	this->weather = new Weather();
-		// get settings instance 
+	// get settings instance
 	this->settings = Settings::getInstance();
+	this->news = new News();
 }
 
 HomeView::~HomeView() {
@@ -235,6 +236,18 @@ void HomeView::drawWidgets() {
 	this->imgWeather = (GtkImage*) gtk_image_new();
 	gtk_misc_set_alignment(GTK_MISC(imgWeather), 0.5, 0.5);
 	gtk_box_pack_start(GTK_BOX(boxWeather), (GtkWidget*)imgWeather, FALSE, FALSE, 0);
+
+	// create news's box container
+	GtkWidget* boxNews = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_grid_attach(this->grid, boxNews, 0, 3, 1, 1);
+	addClass(boxNews, "boxNews");
+
+	// create the news label
+	this->lblNews = gtk_label_new_with_mnemonic("What's going on in the world?");
+	gtk_misc_set_alignment(GTK_MISC(lblNews), 0.5, 0.5);
+	addClass(lblNews, "lblNews");
+	gtk_box_pack_end(GTK_BOX(boxNews), lblNews, TRUE, TRUE, 0);
+
 }
 
 void HomeView::updateWeather() {
@@ -277,6 +290,24 @@ void HomeView::updateWeather() {
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(imagePath.c_str(), NULL);
 	GdkPixbuf *scaled = gdk_pixbuf_scale_simple(pixbuf, 96, 96, GDK_INTERP_BILINEAR);
 	gtk_image_set_from_pixbuf(GTK_IMAGE(imgWeather), scaled);
+}
+
+void HomeView::updateNews(bool fetchNews){
+	gchar *text;
+	if(fetchNews == true){
+		if (this->news->fetchNewsData() != 0) {
+			text = g_strdup_printf("Failed to fetch news");
+			gtk_label_set_text((GtkLabel*) this->lblNews, text);
+			return;
+		}
+	}
+	
+	text = g_strdup_printf(
+					"Your Top Stories Today\n%s",
+					this->news->getHeadline().c_str()
+		);
+	gtk_label_set_text((GtkLabel*) this->lblNews, text);
+
 }
 
 void HomeView::setDateAndTime(char *date, char *time) {

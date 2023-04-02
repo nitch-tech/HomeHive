@@ -21,6 +21,7 @@ class Timer {
 		char* buffDate;
 		char* buffTime;
 		int ticks = 0;
+		bool fetchNews = TRUE;
 //		const std::function<void(char*,char*)>& callback;
 
 	public:
