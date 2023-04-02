@@ -36,12 +36,12 @@ class HomeView : public BaseView {
 		Unsplash* unsplash;
 		Weather* weather;
         GtkWidget* calendar;
-        GApplication* app;
+
 
         GDateTime* alarmTime;
-    GDateTime* current_time;
-    std::vector<Alarm*> alarms_;
-    Alarm* alarm;
+        GDateTime* current_time;
+        std::vector<Alarm*> alarms_;
+        Alarm* alarm;
 
 
 
@@ -49,9 +49,7 @@ class HomeView : public BaseView {
 	public:
 
 
-        static int* mintest;
 		HomeView(GtkWindow* window);
-        void on_activate (GApplication* app, gpointer data);
 		// BaseView(App* app, GtkWindow* window);
 		~HomeView();
 
