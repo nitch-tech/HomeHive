@@ -6,16 +6,14 @@
 #include "../event/SettingsEvent.h"
 
 
-static GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
-static bool Open = false;
-static int back_time = 15;
-GtkWidget* name_field;
-// Callback function for saving changes
-GtkWidget* back_label;
+
+
 
 Settings* Settings::settingsptr = nullptr;
 Settings::Settings() {
-    // ...
+     this->settings= g_settings_new("ca.uwo.cs3307.homehive");
+     this->back_time =  g_settings_get_int(this->settings,"back");;
+     this->Open = false;
 }
 
 Settings::~Settings() {
@@ -30,34 +28,37 @@ Settings* Settings::getInstance() {
 }
 
 void Settings::on_increment_clicked(GtkButton* button, gpointer user_data) {
-    back_time +=15;
-    gchar* inc_text = g_strdup_printf("Image duration: %d (Seconds)" , back_time);
-    gtk_label_set_text(GTK_LABEL(back_label), inc_text);
+    Settings* set = Settings::getInstance();
+    set->back_time +=15;
+    gchar* inc_text = g_strdup_printf("Image duration: %d (Seconds)" , set->back_time);
+    gtk_label_set_text(GTK_LABEL(set->back_label), inc_text);
 }
 
 void Settings::on_decrement_clicked(GtkButton* button, gpointer user_data) {
-    if(back_time > 15){
-        back_time -=15;
+    Settings* set = Settings::getInstance();
+    if(set->back_time > 15){
+        set->back_time -=15;
     }
  
-    gchar* dec_text = g_strdup_printf("Image duration: %d (Seconds)", back_time);
-    gtk_label_set_text(GTK_LABEL(back_label), dec_text);
+    gchar* dec_text = g_strdup_printf("Image duration: %d (Seconds)", set->back_time);
+    gtk_label_set_text(GTK_LABEL(set->back_label), dec_text);
 }
 
 void Settings::save_button(GtkWidget* widget, gpointer data) {
-    //write name to settinga
+    Settings* set = Settings::getInstance();
+    //write name to settings
 
     // Get the text from the entry widget
-    const char* name = gtk_entry_get_text(GTK_ENTRY(name_field));
+    const char* name = gtk_entry_get_text(GTK_ENTRY(set->name_field));
     //const char* name = gtk_entry_get_text(GTK_ENTRY(name_field)); // Get text from text field
     if(strlen(name) >0){
         g_print("OVER ONE");
-        g_settings_set_string(settings,"name",name);
+        g_settings_set_string(set->settings,"name",name);
     }
  
 
     // write time to settings
-    g_settings_set_int(settings,"back",back_time);
+    g_settings_set_int(set->settings,"back",set->back_time);
     SettingsEvent* event = SettingsEvent::getInstance();
     event->update_main();
 
@@ -67,67 +68,60 @@ void Settings::save_button(GtkWidget* widget, gpointer data) {
  * 
  * */
 void Settings::closeSettings(GtkWidget* widget, gpointer data){
-    Open = false;
+    Settings* set = Settings::getInstance();
+    set->Open = false;
     gtk_main_quit();
 }
-/**
- * TODO 
- * send signal to update stuff in HOMEVIEW
- * 
- * */
-void Settings::saveSettings(GtkWidget* widget, gpointer data) {
-    // Update the label in HomeView
-    
-}
+
 /**
  * Settings up settings window and widgets
  * 
  * */
 void Settings::open_settings_window() {
-    if(!Open){
-    Open = true;
+    if(!this->Open){
+    this->Open = true;
 
 
-    back_time = g_settings_get_int(settings,"back");
+    this->back_time = g_settings_get_int(this->settings,"back");
 
     gtk_init(NULL, NULL);
     //settings window
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "Settings");
     gtk_window_set_default_size(GTK_WINDOW(window), 640, 400);
-    g_signal_connect(window, "destroy", G_CALLBACK(&Settings::closeSettings), this);
+    g_signal_connect(window, "destroy", G_CALLBACK(&Settings::closeSettings), NULL);
 
     GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
     gtk_container_add(GTK_CONTAINER(window), vbox);
 
     //create name label
-    GtkWidget *name_label = gtk_label_new("Name:");
-    gtk_box_pack_start(GTK_BOX(vbox), name_label, FALSE, FALSE, 0);
+    this->name_label = gtk_label_new("Name:");
+    gtk_box_pack_start(GTK_BOX(vbox), this->name_label, FALSE, FALSE, 0);
 
     // create name text field
-     name_field = gtk_entry_new();
+    this->name_field = gtk_entry_new();
     gtk_entry_set_placeholder_text(GTK_ENTRY(name_field), "Enter some text here...");
-    gtk_box_pack_start(GTK_BOX(vbox), name_field, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), this->name_field, FALSE, FALSE, 0);
  
     //create background label
-    gchar* back_str = g_strdup_printf("Image duration: %d (Seconds)", back_time);
-    back_label = gtk_label_new_with_mnemonic(back_str);
-    gtk_box_pack_start(GTK_BOX(vbox), back_label, FALSE, FALSE, 0);
+    gchar* back_str = g_strdup_printf("Image duration: %d (Seconds)", this->back_time);
+    this->back_label = gtk_label_new_with_mnemonic(back_str);
+    gtk_box_pack_start(GTK_BOX(vbox), this->back_label, FALSE, FALSE, 0);
 
     // create increment button
-    GtkWidget* inc_button = gtk_button_new_with_label("+ (15)");
-    g_signal_connect(inc_button, "clicked", G_CALLBACK(&Settings::on_increment_clicked), NULL);
-    gtk_box_pack_start(GTK_BOX(vbox), inc_button, FALSE, FALSE, 0);
+    this->inc_button = gtk_button_new_with_label("+ (15)");
+    g_signal_connect(this->inc_button, "clicked", G_CALLBACK(&Settings::on_increment_clicked), NULL);
+    gtk_box_pack_start(GTK_BOX(vbox), this->inc_button, FALSE, FALSE, 0);
 
     // create decrement button
-    GtkWidget* dec_button = gtk_button_new_with_label("- (15)");
-    g_signal_connect(dec_button, "clicked", G_CALLBACK(&Settings::on_decrement_clicked), NULL);
-    gtk_box_pack_start(GTK_BOX(vbox), dec_button, FALSE, FALSE, 0);
+    this-> dec_button = gtk_button_new_with_label("- (15)");
+    g_signal_connect(this->dec_button, "clicked", G_CALLBACK(&Settings::on_decrement_clicked), NULL);
+    gtk_box_pack_start(GTK_BOX(vbox), this->dec_button, FALSE, FALSE, 0);
 
        // create save button
-    GtkWidget* button = gtk_button_new_with_label("save");
-    g_signal_connect(button, "clicked", G_CALLBACK(&Settings::save_button), NULL);
-    gtk_box_pack_start(GTK_BOX(vbox), button, TRUE, FALSE, 0);
+    this-> button = gtk_button_new_with_label("save");
+    g_signal_connect(this->button, "clicked", G_CALLBACK(&Settings::save_button), NULL);
+    gtk_box_pack_start(GTK_BOX(vbox), this->button, TRUE, FALSE, 0);
 
     //start window 
     gtk_widget_show_all(window);

@@ -17,6 +17,15 @@ private:
     Settings();  // Make constructor private
     ~Settings(); // Make destructor private
     static Settings* settingsptr;
+    GtkWidget* back_label;
+    GtkWidget* name_field;
+    GtkWidget* name_label;
+    GtkWidget* inc_button;
+    GtkWidget* dec_button;
+    GtkWidget* button;
+    bool Open;
+    int back_time;
+    GSettings* settings;
 };
 
 #endif // SETTINGS_H

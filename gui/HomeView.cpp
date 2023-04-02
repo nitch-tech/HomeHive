@@ -10,7 +10,7 @@
 #include "../event/Timer.h"
 #include "settings.h"
 //#include <sigc++-2.0/sigc++/sigc++.h>
-//#define DEBUG_GRID 1
+ //#define DEBUG_GRID 1
 
 
 /**
@@ -204,15 +204,15 @@ void HomeView::drawWidgets() {
 
 	// create weather's box container
 	GtkWidget* boxSettings = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, boxSettings, 0, 3, 1, 1);
+	gtk_grid_attach(this->grid, boxSettings, 4, 3, 1, 1);
 
 	// set the button size
-	gtk_widget_set_size_request (btnSettings, 200, 200);
+	gtk_widget_set_size_request (btnSettings, 50, 50);
 	gtk_button_set_image (GTK_BUTTON (btnSettings), image);
 	g_signal_connect(G_OBJECT(btnSettings), "clicked", G_CALLBACK(&HomeView::clickedSettings), NULL);
 	gtk_widget_set_size_request (btnSettings, 50, 50);
 	//gtk_misc_set_alignment(GTK_MISC(btnSettings), 0.5, 0.5);
-	gtk_box_pack_end(GTK_BOX(boxSettings), btnSettings, false, false, 0);
+	gtk_box_pack_start(GTK_BOX(boxSettings), btnSettings, TRUE, TRUE, 0);
 	addClass(btnSettings, "settingsButton");
 
 	// create weather's box container
