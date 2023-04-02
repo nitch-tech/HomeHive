@@ -10,13 +10,9 @@
 #include "HomeView.h"
 #include "../event/Timer.h"
 #include "settings.h"
-<<<<<<< HEAD
-//#include <sigc++-2.0/sigc++/sigc++.h>
- //#define DEBUG_GRID 1
-=======
 
+//#include <sigc++-2.0/sigc++/sigc++.h>
 //#define DEBUG_GRID 1
->>>>>>> 46846d17872b41f962eb85e9163c4da74878adc0
 
 Timer* Localtimer = nullptr;
 
