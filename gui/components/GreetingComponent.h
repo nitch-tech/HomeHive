@@ -10,11 +10,12 @@
 
 class GreetingComponent: public GuiComponent {
 	private:
+		GSettings* settings;
 		GtkLabel* lblGreeting;
 		GtkWidget* btnSettings;
 
 	public:
-		GreetingComponent();
+		GreetingComponent(GSettings* settings);
 		~GreetingComponent();
 
 		void setup() override;

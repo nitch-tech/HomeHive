@@ -5,11 +5,11 @@
 #include "GreetingComponent.h"
 #include "../GuiHelpers.h"
 
-GreetingComponent::GreetingComponent() {
+GreetingComponent::GreetingComponent(GSettings* settings) {
+	this->settings = settings;
 }
 
-GreetingComponent::~GreetingComponent() {
-}
+GreetingComponent::~GreetingComponent() = default;
 
 void GreetingComponent::setup() {
 	GtkWidget* innerContainer = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
@@ -47,7 +47,7 @@ void GreetingComponent::hide() {
 
 gchar* GreetingComponent::getGreetingMessage() {
 	//get preset value from Gsettings
-//	const gchar* name = g_settings_get_string(settings, "name");
+	const gchar* name = g_settings_get_string(settings, "name");
 	gchar* greeting = g_strdup_printf("Howdy, %s!", "eee");
 	return greeting;
 }

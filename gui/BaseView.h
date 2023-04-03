@@ -10,11 +10,12 @@
 class BaseView {
 	protected:
 		// App* app;
+		GSettings* settings;
 		GtkWindow* window;
 		bool visible;
 
 	public:
-		BaseView(GtkWindow* window);
+		BaseView(GtkWindow* window, GSettings* settings);
 		// BaseView(App* app, GtkWindow* window);
 		~BaseView();
 

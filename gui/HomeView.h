@@ -18,6 +18,8 @@
 
 class HomeView : public BaseView {
 	private:
+		GSettings* settings;
+
 		std::vector<GuiComponent*> components;
 		DateTimeComponent* dateTimeComponent;
 		WeatherComponent* weatherComponent;
@@ -37,12 +39,7 @@ class HomeView : public BaseView {
 		GdkPixbuf* bgBuffScaled;
 
 	public:
-		
-		Settings* settings;
-
-
-		HomeView(GtkWindow* window);
-		// BaseView(App* app, GtkWindow* window);
+		HomeView(GtkWindow* window, GSettings* settings);
 		~HomeView();
 		void clickedSettings(GtkWidget *widget, gpointer data);
 		void update_labels();

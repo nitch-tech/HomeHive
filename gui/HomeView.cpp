@@ -32,16 +32,14 @@ static void onSizeAllocate(GtkWidget* widget, GdkRectangle* allocation, HomeView
 }
 
 
-HomeView::HomeView(GtkWindow *window) : BaseView(window) {
+HomeView::HomeView(GtkWindow *window, GSettings* settings) : BaseView(window, settings) {
 	this->components = std::vector<GuiComponent*>();
 	components.push_back(this->dateTimeComponent = new DateTimeComponent());
 	components.push_back(this->weatherComponent = new WeatherComponent());
 	components.push_back(this->newsComponent = new NewsComponent());
-	components.push_back(new GreetingComponent());
+	components.push_back(new GreetingComponent(settings));
 
 	this->unsplash = new Unsplash();
-	// get settings instance
-	this->settings = Settings::getInstance();
 }
 
 HomeView::~HomeView() {
@@ -86,8 +84,6 @@ void HomeView::setupLayout() {
 	#endif
 
 	// load & add the default background image, will be behind everything
-	std::cout << "what\n";
-//	this->imgBackground = (GtkImage*) gtk_image_new_from_file("background.jpg");
 	this->imgBackground = (GtkImage*) gtk_image_new();
 	this->bgBuff = gdk_pixbuf_new_from_file("background.jpg", NULL);
 	gtk_image_set_from_pixbuf(this->imgBackground, this->bgBuff);
