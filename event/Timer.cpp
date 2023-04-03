@@ -46,7 +46,7 @@ const gboolean Timer::onTimerTick(gpointer data) {
 	strftime(tmr->buffDate, 69, "%a, %B %d, %Y", tmr->tm);
 
 //	(tmr->callback)(tmr->buffDate, tmr->buffTime);
-	tmr->view->setDateAndTime(tmr->buffDate, tmr->buffTime);
+	tmr->view->getDateTimeComponent()->setDateAndTime(tmr->buffDate, tmr->buffTime);
 
 	// update background
 	if ((tmr->ticks % BACKGROUND_INTERVAL) == 0) {

@@ -11,20 +11,21 @@
 #include "../request/weather.h"
 #include "../request/news.h"
 #include "settings.h"
+#include "components/GuiComponent.h"
+#include "components/DateTimeComponent.h"
 
 class HomeView : public BaseView {
 	private:
+		DateTimeComponent* dateTimeComponent;
+
 		GtkLayout* layout;
 		GtkGrid* grid;
 		GtkImage* imgBackground;
 		GtkImage* imgWeather;
 
-		GtkLabel* lblTime;
-		GtkLabel* lblDate;
 		GtkLabel* lblGreeting;
 		GtkWidget* lblWeather;
 		GtkWidget* lblNews;
-		GtkWidget* dateTimeContainer;
 		GtkWidget* btnSettings;
 
 		Unsplash* unsplash;
@@ -38,13 +39,16 @@ class HomeView : public BaseView {
 	public:
 		
 		Settings* settings;
+
+
 		HomeView(GtkWindow* window);
 		// BaseView(App* app, GtkWindow* window);
 		~HomeView();
 		void clickedSettings(GtkWidget *widget, gpointer data);
-		void setDateAndTime(char* date, char* time);
 		void update_labels();
 		void setFullscreen(bool fullscreen);
+
+		DateTimeComponent* getDateTimeComponent();
 
 		void changeBackgroundImage();
 		void updateWeather();

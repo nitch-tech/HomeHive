@@ -9,6 +9,7 @@
 #include <algorithm>
 #include "HomeView.h"
 #include "../event/Timer.h"
+#include "GuiHelpers.h"
 #include "settings.h"
 
 //#include <sigc++-2.0/sigc++/sigc++.h>
@@ -29,31 +30,10 @@ static void onSizeAllocate(GtkWidget* widget, GdkRectangle* allocation, HomeView
 	data->onWindowResize(allocation);
 }
 
-/**
- * Add a custom CSS class name to some widget
- *
- * @param widget The widget to add the class to
- * @param className The CSS class name to add
- */
-static void addClass(GtkWidget* widget, std::string className) {
-	GtkStyleContext* context = gtk_widget_get_style_context(widget);
-	gtk_style_context_add_class(context, className.c_str());
-}
-
-/**
- * Remove a custom CSS class name from some widget
- *
- * @param widget The widget to remove the class from
- * @param className The CSS class name to remove
- */
-static void removeClass(GtkWidget* widget, std::string className) {
-	GtkStyleContext* context = gtk_widget_get_style_context(widget);
-	gtk_style_context_remove_class(context, className.c_str());
-}
-
-
 
 HomeView::HomeView(GtkWindow *window) : BaseView(window) {
+	this->dateTimeComponent = new DateTimeComponent();
+
 	this->unsplash = new Unsplash();
 	this->weather = new Weather();
 	// get settings instance
@@ -154,24 +134,9 @@ void HomeView::registerInteractivity() {
  * Setup the HomeView's widgets
  */
 void HomeView::drawWidgets() {
-	// create a container for the date and time
-	this->dateTimeContainer = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_grid_attach(this->grid, this->dateTimeContainer, 0, 0, 1, 1);
-
-	// create the time label
-	GtkWidget* lblTime = gtk_label_new_with_mnemonic("00:00");
-	this->lblTime = (GtkLabel*) lblTime;
-	// gtk_widget_set_size_request(lblTime, 30, 50);
-	addClass(lblTime, "lblTime");
-	gtk_misc_set_alignment(GTK_MISC(lblTime), 0, 0); // allign left, there's no CSS property for this
-	gtk_box_pack_start(GTK_BOX(this->dateTimeContainer), lblTime, FALSE, FALSE, 0);
-
-	// create the date label
-	GtkWidget* lblDate = gtk_label_new_with_mnemonic("May 69th 1969");
-	this->lblDate = (GtkLabel*) lblDate;
-	addClass(lblDate, "lblDate");
-	gtk_misc_set_alignment(GTK_MISC(lblDate), 0, 0); // align left
-	gtk_box_pack_start(GTK_BOX(this->dateTimeContainer), lblDate, FALSE, FALSE, 0);
+	this->dateTimeComponent->setup();
+	this->dateTimeComponent->setParentGrid(this->grid);
+	this->dateTimeComponent->show();
 
 	GtkWidget* topSeperator = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_grid_attach(this->grid, topSeperator, 1, 0, 1, 1);
@@ -310,11 +275,6 @@ void HomeView::updateNews(bool fetchNews){
 
 }
 
-void HomeView::setDateAndTime(char *date, char *time) {
-	gtk_label_set_text(this->lblDate, date);
-	gtk_label_set_text(this->lblTime, time);
-}
-
 void HomeView::changeBackgroundImage() {
 	// fetch a random background from unsplash API
 	auto bg = this->unsplash->getRandomBackground();
@@ -414,4 +374,8 @@ void HomeView::onWindowResize(GdkRectangle *size) {
 
 	// redraw the background to scale to the window size
 	this->DrawBackgroundScaled(size->width, size->height);
+}
+
+DateTimeComponent *HomeView::getDateTimeComponent() {
+	return this->dateTimeComponent;
 }
