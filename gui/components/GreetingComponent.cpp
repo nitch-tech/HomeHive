@@ -48,6 +48,6 @@ void GreetingComponent::hide() {
 gchar* GreetingComponent::getGreetingMessage() {
 	//get preset value from Gsettings
 	const gchar* name = g_settings_get_string(settings, "name");
-	gchar* greeting = g_strdup_printf("Howdy, %s!", "eee");
+	gchar* greeting = g_strdup_printf("Howdy, %s!", name);
 	return greeting;
 }
