@@ -55,7 +55,7 @@ const gboolean Timer::onTimerTick(gpointer data) {
 
 	// update weather
 	if ((tmr->ticks % WEATHER_INTERVAL) == 0) {
-		tmr->view->updateWeather();
+		tmr->view->getWeatherComponent()->updateWeather();
 	}
 
 	// does news need to be fetched

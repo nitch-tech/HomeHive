@@ -33,15 +33,17 @@ static void onSizeAllocate(GtkWidget* widget, GdkRectangle* allocation, HomeView
 
 HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 	this->dateTimeComponent = new DateTimeComponent();
+	this->weatherComponent = new WeatherComponent();
 
 	this->unsplash = new Unsplash();
-	this->weather = new Weather();
 	// get settings instance
 	this->settings = Settings::getInstance();
 	this->news = new News();
 }
 
 HomeView::~HomeView() {
+	delete this->weatherComponent;
+	delete this->dateTimeComponent;
 	delete this->unsplash;
 }
 
@@ -135,8 +137,11 @@ void HomeView::registerInteractivity() {
  */
 void HomeView::drawWidgets() {
 	this->dateTimeComponent->setup();
+	this->weatherComponent->setup();
+	this->weatherComponent->setParentGrid(this->grid);
 	this->dateTimeComponent->setParentGrid(this->grid);
 	this->dateTimeComponent->show();
+	this->weatherComponent->show();
 
 	this->addSeperator("topSeperator", 1, 0, 1, 1);
 	this->addSeperator("midSeperator", 0, 1, 3, 2);
@@ -177,22 +182,6 @@ void HomeView::drawWidgets() {
 	gtk_box_pack_start(GTK_BOX(boxSettings), btnSettings, true, true, 10);
 	addClass(btnSettings, "settingsButton");
 
-	// create weather's box container
-	GtkWidget* boxWeather = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, boxWeather, 2, 3, 1, 1);
-	addClass(boxWeather, "boxWeather");
-
-	// create the weather label
-	this->lblWeather = gtk_label_new_with_mnemonic("Finding the sun...");
-	gtk_misc_set_alignment(GTK_MISC(lblWeather), 0.5, 0.5);
-	addClass(lblWeather, "lblWeather");
-	gtk_box_pack_end(GTK_BOX(boxWeather), lblWeather, TRUE, TRUE, 0);
-
-	// create weather icon
-	this->imgWeather = (GtkImage*) gtk_image_new();
-	gtk_misc_set_alignment(GTK_MISC(imgWeather), 0.5, 0.5);
-	gtk_box_pack_start(GTK_BOX(boxWeather), (GtkWidget*)imgWeather, FALSE, FALSE, 0);
-
 	// create news's box container
 	GtkWidget* boxNews = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_grid_attach(this->grid, boxNews, 0, 3, 1, 1);
@@ -204,48 +193,6 @@ void HomeView::drawWidgets() {
 	addClass(lblNews, "lblNews");
 	gtk_box_pack_end(GTK_BOX(boxNews), lblNews, TRUE, TRUE, 0);
 
-}
-
-void HomeView::updateWeather() {
-	gchar *text;
-	if (this->weather->fetchWeatherData() != 0) {
-		text = g_strdup_printf("Failed to fetch weather");
-		gtk_label_set_text((GtkLabel*) this->lblWeather, text);
-		return;
-	} else {
-		text = g_strdup_printf(
-						"%s\nCurrently: %d°C | Feels Like: %i°C",
-						this->weather->getLocationName().c_str(),
-						this->weather->getTempRounded(),
-						this->weather->getTempFeelsLikeRounded()
-		);
-		gtk_label_set_text((GtkLabel*) this->lblWeather, text);
-	}
-
-	std::string imagePath;
-	int condId = this->weather->getCondId();
-	if (condId >= 200 && condId <= 232) {
-		imagePath = "resources/icons/cloud.bolt.png";
-	} else if (condId >= 300 && condId <= 321) {
-		imagePath = "resources/icons/cloud.drizzle.png";
-	} else if (condId >= 500 && condId <= 531) {
-		imagePath = "resources/icons/cloud.drizzle.png";
-	} else if (condId >= 600 && condId <= 622) {
-		imagePath = "resources/icons/cloud.snow.png";
-	} else if (condId >= 701 && condId <= 781) {
-		imagePath = "resources/icons/sun.max.png";
-	} else if (condId == 800) {
-		imagePath = "resources/icons/cloud.drizzle.png";
-	} else if (condId >= 801 && condId <= 804) {
-		imagePath = "resources/icons/cloud.png";
-	} else {
-		imagePath = "resources/icons/cloud.png";
-	}
-
-	// resize image  pixbuf
-	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(imagePath.c_str(), NULL);
-	GdkPixbuf *scaled = gdk_pixbuf_scale_simple(pixbuf, 96, 96, GDK_INTERP_BILINEAR);
-	gtk_image_set_from_pixbuf(GTK_IMAGE(imgWeather), scaled);
 }
 
 void HomeView::updateNews(bool fetchNews){
@@ -396,4 +343,14 @@ void HomeView::addSeperator(const std::string id, int left, int top, int width, 
 	gtk_widget_set_hexpand(sep, true);
 	addClass(sep, id);
 	gtk_grid_attach(this->grid, sep, left, top, width, height);
+}
+
+/**
+ * Retrieves the WeatherComponent instance, which handles retrieving and rendering
+ * information about the current weather.
+ *
+ * @return The current WeatherComponent instance
+ */
+WeatherComponent* HomeView::getWeatherComponent() {
+	return this->weatherComponent;
 }

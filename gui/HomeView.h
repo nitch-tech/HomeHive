@@ -13,24 +13,23 @@
 #include "settings.h"
 #include "components/GuiComponent.h"
 #include "components/DateTimeComponent.h"
+#include "components/WeatherComponent.h"
 
 class HomeView : public BaseView {
 	private:
 		DateTimeComponent* dateTimeComponent;
+		WeatherComponent* weatherComponent;
 
 		GtkLayout* layout;
 		GtkGrid* grid;
 		GtkImage* imgBackground;
-		GtkImage* imgWeather;
 
 		GtkLabel* lblGreeting;
-		GtkWidget* lblWeather;
 		GtkWidget* lblNews;
 		GtkWidget* btnSettings;
 
 		Unsplash* unsplash;
 		// Timer* timer;
-		Weather* weather;
 		News* news;
 
 		GdkPixbuf* bgBuff;
@@ -56,8 +55,15 @@ class HomeView : public BaseView {
 		 */
 		DateTimeComponent* getDateTimeComponent();
 
+		/**
+		 * Retrieves the WeatherComponent instance, which handles retrieving and rendering
+		 * information about the current weather.
+		 *
+		 * @return The current WeatherComponent instance
+		 */
+		WeatherComponent* getWeatherComponent();
+
 		void changeBackgroundImage();
-		void updateWeather();
 		void updateNews(bool fetchNews);
 
 		/**

@@ -19,7 +19,11 @@ include_directories(${GTK_INCLUDE_DIRS})
 link_directories(${GTK_LIBRARY_DIRS})
 
 ## BUILD LIBRARIES AND THEIR SOURCES ##
-add_library(HomeHiveGUIComponents gui/components/GuiComponent.cpp gui/components/GuiComponent.h gui/components/DateTimeComponent.cpp gui/components/DateTimeComponent.h gui/GuiHelpers.h gui/GuiHelpers.cpp)
+add_library(HomeHiveGUIComponents
+        gui/components/GuiComponent.cpp gui/components/GuiComponent.h
+        gui/components/DateTimeComponent.cpp gui/components/DateTimeComponent.h
+        gui/GuiHelpers.h gui/GuiHelpers.cpp
+        gui/components/WeatherComponent.cpp gui/components/WeatherComponent.h)
 add_library(HomeHiveRequests request/request.cpp request/request.h request/Unsplash.cpp request/Unsplash.h request/UnsplashBackground.cpp request/UnsplashBackground.h request/weather.cpp request/weather.h request/news.h request/news.cpp)
 add_library(HomeHiveEvent event/Timer.cpp event/Timer.h event/SettingsEvent.cpp event/SettingsEvent.h)
 add_library(HomeHiveGUI gui/BaseView.cpp gui/BaseView.h gui/App.cpp gui/App.h gui/HomeView.cpp gui/HomeView.h gui/settings.cpp gui/settings.h)
