@@ -48,6 +48,12 @@ class HomeView : public BaseView {
 		void update_labels();
 		void setFullscreen(bool fullscreen);
 
+		/**
+		 * Retrieves the DateTimeComponent instance, which contains and manages
+		 * the date and time widgets on screen.
+		 *
+		 * @return The current DateTimeComponent instance
+		 */
 		DateTimeComponent* getDateTimeComponent();
 
 		void changeBackgroundImage();
@@ -81,6 +87,19 @@ class HomeView : public BaseView {
 		 * can be centered to the window.
 		 */
 		void DrawBackgroundScaled(int width = 0, int height = 0);
+
+	private:
+		/**
+		 * Add an empty box widget to the grid, which is used to seperate
+		 * all the UI widgets within the entire grid to align them.
+		 *
+		 * @param id The ID of the widget
+		 * @param left The left position of the widget in the grid
+		 * @param top The top position of the widget in the grid
+		 * @param width The width of the widget in the grid
+		 * @param height The height of the widget in the grid
+		 */
+		void addSeperator(const std::string id, int left, int top, int width, int height);
 
 	protected:
 		void setupLayout() override;

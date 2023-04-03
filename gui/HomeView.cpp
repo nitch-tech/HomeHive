@@ -138,17 +138,8 @@ void HomeView::drawWidgets() {
 	this->dateTimeComponent->setParentGrid(this->grid);
 	this->dateTimeComponent->show();
 
-	GtkWidget* topSeperator = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, topSeperator, 1, 0, 1, 1);
-	gtk_widget_set_vexpand(topSeperator, true);
-	gtk_widget_set_hexpand(topSeperator, true);
-	addClass(topSeperator, "topSeperator");
-
-	GtkWidget* midSeperator = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, midSeperator, 0, 1, 3, 2);
-	gtk_widget_set_vexpand(midSeperator, true);
-	gtk_widget_set_hexpand(midSeperator, true);
-	addClass(midSeperator, "midSeperator");
+	this->addSeperator("topSeperator", 1, 0, 1, 1);
+	this->addSeperator("midSeperator", 0, 1, 3, 2);
 
 	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
 	//get preset value from Gsettings
@@ -376,6 +367,33 @@ void HomeView::onWindowResize(GdkRectangle *size) {
 	this->DrawBackgroundScaled(size->width, size->height);
 }
 
+
+/**
+ * Retrieves the DateTimeComponent instance, which contains and manages
+ * the date and time widgets on screen.
+ *
+ * @return The current DateTimeComponent instance
+ */
 DateTimeComponent *HomeView::getDateTimeComponent() {
 	return this->dateTimeComponent;
+}
+
+
+/**
+ * Add an empty box widget to the grid, which is used to seperate
+ * all the UI widgets within the entire grid to align them.
+ *
+ * @param id The ID of the widget
+ * @param left The left position of the widget in the grid
+ * @param top The top position of the widget in the grid
+ * @param width The width of the widget in the grid
+ * @param height The height of the widget in the grid
+ */
+void HomeView::addSeperator(const std::string id, int left, int top, int width, int height) {
+	GtkWidget* sep = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+//	gtk_widget_set_name(sep, id.c_str());
+	gtk_widget_set_vexpand(sep, true);
+	gtk_widget_set_hexpand(sep, true);
+	addClass(sep, id);
+	gtk_grid_attach(this->grid, sep, left, top, width, height);
 }
