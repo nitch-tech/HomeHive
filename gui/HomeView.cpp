@@ -32,9 +32,10 @@ static void onSizeAllocate(GtkWidget* widget, GdkRectangle* allocation, HomeView
 
 
 HomeView::HomeView(GtkWindow *window) : BaseView(window) {
-	this->dateTimeComponent = new DateTimeComponent();
-	this->weatherComponent = new WeatherComponent();
-	this->newsComponent = new NewsComponent();
+	this->components = std::vector<GuiComponent*>();
+	components.push_back(this->dateTimeComponent = new DateTimeComponent());
+	components.push_back(this->weatherComponent = new WeatherComponent());
+	components.push_back(this->newsComponent = new NewsComponent());
 
 	this->unsplash = new Unsplash();
 	// get settings instance
@@ -45,6 +46,7 @@ HomeView::~HomeView() {
 	delete this->weatherComponent;
 	delete this->dateTimeComponent;
 	delete this->newsComponent;
+	this->components.clear();
 	delete this->unsplash;
 }
 
@@ -137,16 +139,12 @@ void HomeView::registerInteractivity() {
  * Setup the HomeView's widgets
  */
 void HomeView::drawWidgets() {
-	this->dateTimeComponent->setup();
-	this->weatherComponent->setup();
-	this->weatherComponent->setParentGrid(this->grid);
-	this->dateTimeComponent->setParentGrid(this->grid);
-	this->dateTimeComponent->show();
-	this->weatherComponent->show();
-
-	this->newsComponent->setup();
-	this->newsComponent->setParentGrid(this->grid);
-	this->newsComponent->show();
+	// setup all the components for the GUI
+	for (auto component : this->components) {
+		component->setParentGrid(this->grid);
+		component->setup();
+		component->show();
+	}
 
 	this->addSeperator("topSeperator", 1, 0, 1, 1);
 	this->addSeperator("midSeperator", 0, 1, 3, 2);

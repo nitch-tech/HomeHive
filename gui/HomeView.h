@@ -18,6 +18,7 @@
 
 class HomeView : public BaseView {
 	private:
+		std::vector<GuiComponent*> components;
 		DateTimeComponent* dateTimeComponent;
 		WeatherComponent* weatherComponent;
 		NewsComponent* newsComponent;
