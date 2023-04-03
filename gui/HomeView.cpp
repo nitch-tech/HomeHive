@@ -11,9 +11,10 @@
 #include "../event/Timer.h"
 #include "GuiHelpers.h"
 #include "settings.h"
+#include "components/GreetingComponent.h"
 
 //#include <sigc++-2.0/sigc++/sigc++.h>
-//#define DEBUG_GRID 1
+#define DEBUG_GRID 1
 
 Timer* Localtimer = nullptr;
 
@@ -36,6 +37,7 @@ HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 	components.push_back(this->dateTimeComponent = new DateTimeComponent());
 	components.push_back(this->weatherComponent = new WeatherComponent());
 	components.push_back(this->newsComponent = new NewsComponent());
+	components.push_back(new GreetingComponent());
 
 	this->unsplash = new Unsplash();
 	// get settings instance
@@ -149,41 +151,17 @@ void HomeView::drawWidgets() {
 	this->addSeperator("topSeperator", 1, 0, 1, 1);
 	this->addSeperator("midSeperator", 0, 1, 3, 2);
 
-	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
-	//get preset value from Gsettings
-	const gchar* name = g_settings_get_string(settings,"name");
-	gchar* greeting = g_strdup_printf("Howdy, %s!", name);
+//	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
 
-	// create the greeting label
-	GtkWidget* lblGreeting = gtk_label_new_with_mnemonic(greeting);
-	g_free(greeting);
-	this->lblGreeting = (GtkLabel*) lblGreeting;
-	addClass(lblGreeting, "lblGreeting");
-	gtk_misc_set_alignment(GTK_MISC(lblGreeting), 1.0, 0.0);
-	gtk_grid_attach(this->grid, lblGreeting, 2, 0, 1, 1);
-
-
-	// create the settings button
-	GtkWidget* btnSettings = gtk_button_new();
-	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file ("resources/icons/gears-solid.png", NULL);// get gray icon for button
-	GdkPixbuf *scaled_pixbuf = gdk_pixbuf_scale_simple(pixbuf, 50, 50, GDK_INTERP_BILINEAR);// make it not huge
-	GtkWidget *image = gtk_image_new_from_pixbuf (scaled_pixbuf);
 
 	//gtk_container_add (GTK_CONTAINER (btnSettings), image);
 	
 
 	// create weather's box container
-	GtkWidget* boxSettings = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, boxSettings, 4, 3, 1, 1);
+//	GtkWidget* boxSettings = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+//	gtk_grid_attach(this->grid, boxSettings, 4, 3, 1, 1);
 
 	// set the button size
-	gtk_widget_set_size_request (btnSettings, 60, 50);
-	gtk_button_set_image (GTK_BUTTON (btnSettings), image);
-	g_signal_connect(G_OBJECT(btnSettings), "clicked", G_CALLBACK(&HomeView::clickedSettings), NULL);
-	gtk_widget_set_size_request (btnSettings, 100, 50);
-	//gtk_misc_set_alignment(GTK_MISC(btnSettings), 0.5, 0.5);
-	gtk_box_pack_start(GTK_BOX(boxSettings), btnSettings, true, true, 10);
-	addClass(btnSettings, "settingsButton");
 
 
 }

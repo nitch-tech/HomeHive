@@ -28,7 +28,6 @@ class HomeView : public BaseView {
 		GtkImage* imgBackground;
 
 		GtkLabel* lblGreeting;
-		GtkWidget* btnSettings;
 
 		Unsplash* unsplash;
 		// Timer* timer;
