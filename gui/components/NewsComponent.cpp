@@ -1,7 +1,3 @@
-//
-// Created by dave on 03/04/23.
-//
-
 #include "NewsComponent.h"
 #include "../GuiHelpers.h"
 
@@ -52,5 +48,5 @@ void NewsComponent::updateNews(bool fetchNews) {
 	gtk_label_set_text(this->lblNewsInfo, text);
 }
 
-void NewsComponent::hide() {
+void NewsComponent::settingsUpdated() {
 }

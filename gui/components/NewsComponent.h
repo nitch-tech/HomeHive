@@ -1,7 +1,3 @@
-//
-// Created by dave on 03/04/23.
-//
-
 #ifndef HOMEHIVE_NEWSCOMPONENT_H
 #define HOMEHIVE_NEWSCOMPONENT_H
 
@@ -23,7 +19,16 @@ class NewsComponent: public GuiComponent {
 
 		void setup() override;
 		void show() override;
-		void hide() override;
+
+		/**
+		 * Update the component
+		 *
+		 * When executed, and if required, this component may update or re-render
+		 * itself to reflect any changes in the application settings.
+		 *
+		 * @todo ability to change the news source
+		 */
+		void settingsUpdated() override;
 
 		void updateNews(bool fetchNews);
 };

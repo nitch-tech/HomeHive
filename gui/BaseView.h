@@ -29,6 +29,12 @@ class BaseView {
 		virtual void hide();
 
 		/**
+		 * Update the view, something (ie: a setting) was changed, so
+		 * triggger various components to update themselves.
+		 */
+		virtual void update();
+
+		/**
 		 * On Window Resize
 		 *
 		 * Whenever the window is resized, full screen, maximized, etc, this function will be called.

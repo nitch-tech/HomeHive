@@ -1,7 +1,3 @@
-//
-// Created by dave on 03/04/23.
-//
-
 #include "WeatherComponent.h"
 #include "../GuiHelpers.h"
 
@@ -34,9 +30,6 @@ void WeatherComponent::setup() {
 
 void WeatherComponent::show() {
 	gtk_grid_attach(this->parentGrid, (GtkWidget*) this->container, 2, 3, 1, 1);
-}
-
-void WeatherComponent::hide() {
 }
 
 /**
@@ -110,4 +103,7 @@ void WeatherComponent::setIcon(const std::string imagePath) {
  */
 void WeatherComponent::setInfoText(const gchar* text) {
 	gtk_label_set_text((GtkLabel*) this->lblWeatherInfo, text);
+}
+
+void WeatherComponent::settingsUpdated() {
 }

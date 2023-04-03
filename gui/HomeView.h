@@ -32,8 +32,6 @@ class HomeView : public BaseView {
 		GtkLabel* lblGreeting;
 
 		Unsplash* unsplash;
-		// Timer* timer;
-		News* news;
 
 		GdkPixbuf* bgBuff;
 		GdkPixbuf* bgBuffScaled;
@@ -41,8 +39,12 @@ class HomeView : public BaseView {
 	public:
 		HomeView(GtkWindow* window, GSettings* settings);
 		~HomeView();
-		void clickedSettings(GtkWidget *widget, gpointer data);
-		void update_labels();
+
+		/**
+		 * Update the view, something (ie: a setting) was changed, so
+		* triggger various components to update themselves.
+		*/
+		void update() override;
 		void setFullscreen(bool fullscreen);
 
 		/**

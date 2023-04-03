@@ -41,3 +41,6 @@ GtkWindow *BaseView::getWindow() {
 
 void BaseView::onWindowResize(GdkRectangle* size) {
 }
+
+void BaseView::update() {
+}

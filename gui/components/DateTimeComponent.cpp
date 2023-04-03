@@ -1,7 +1,3 @@
-//
-// Created by dave on 03/04/23.
-//
-
 #include <iostream>
 #include "DateTimeComponent.h"
 #include "../GuiHelpers.h"
@@ -43,6 +39,5 @@ void DateTimeComponent::show() {
 	gtk_grid_attach(this->parentGrid, (GtkWidget*) this->container, 0, 0, 1, 1);
 }
 
-void DateTimeComponent::hide() {
-
+void DateTimeComponent::settingsUpdated() {
 }

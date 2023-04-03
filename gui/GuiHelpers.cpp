@@ -1,7 +1,3 @@
-//
-// Created by dave on 03/04/23.
-//
-
 #include "GuiHelpers.h"
 
 /**

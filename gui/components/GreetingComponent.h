@@ -1,7 +1,3 @@
-//
-// Created by dave on 03/04/23.
-//
-
 #ifndef HOMEHIVE_GREETINGCOMPONENT_H
 #define HOMEHIVE_GREETINGCOMPONENT_H
 
@@ -18,9 +14,18 @@ class GreetingComponent: public GuiComponent {
 		GreetingComponent(GSettings* settings);
 		~GreetingComponent();
 
+		static void onSettingsClicked(GtkWidget *widget, gpointer data);
+
 		void setup() override;
 		void show() override;
-		void hide() override;
+
+		/**
+		 * Update the component
+		 *
+		 * When executed, and if required, this component may update or re-render
+		 * itself to reflect any changes in the application settings.
+		 */
+		void settingsUpdated() override;
 
 	private:
 		gchar* getGreetingMessage();

@@ -1,9 +1,6 @@
-//
-// Created by dave on 03/04/23.
-//
-
 #include "GreetingComponent.h"
 #include "../GuiHelpers.h"
+#include "../settings.h"
 
 GreetingComponent::GreetingComponent(GSettings* settings) {
 	this->settings = settings;
@@ -30,7 +27,7 @@ void GreetingComponent::setup() {
 
 	gtk_widget_set_size_request (btnSettings, 60, 50);
 	gtk_button_set_image (GTK_BUTTON (btnSettings), image);
-//	g_signal_connect(G_OBJECT(btnSettings), "clicked", G_CALLBACK(&HomeView::clickedSettings), NULL);
+	g_signal_connect(btnSettings, "clicked", G_CALLBACK(GreetingComponent::onSettingsClicked), this);
 	//gtk_misc_set_alignment(GTK_MISC(btnSettings), 0.5, 0.5);
 	gtk_box_pack_end(GTK_BOX(innerContainer), btnSettings, false, false, 10);
 	addClass(btnSettings, "settingsButton");
@@ -42,7 +39,14 @@ void GreetingComponent::show() {
 	gtk_grid_attach(this->parentGrid, (GtkWidget*) this->container, 2, 0, 2, 1);
 }
 
-void GreetingComponent::hide() {
+/**
+ * Update the component
+ *
+ * When executed, and if required, this component may update or re-render
+ * itself to reflect any changes in the application settings.
+ */
+void GreetingComponent::settingsUpdated() {
+	gtk_label_set_text(this->lblGreeting, this->getGreetingMessage());
 }
 
 gchar* GreetingComponent::getGreetingMessage() {
@@ -50,4 +54,9 @@ gchar* GreetingComponent::getGreetingMessage() {
 	const gchar* name = g_settings_get_string(settings, "name");
 	gchar* greeting = g_strdup_printf("Howdy, %s!", name);
 	return greeting;
+}
+
+void GreetingComponent::onSettingsClicked(GtkWidget *widget, gpointer data) {
+	g_print("Settings button clicked");
+	Settings::getInstance()->open_settings_window();
 }

@@ -10,7 +10,6 @@
 #include "HomeView.h"
 #include "../event/Timer.h"
 #include "GuiHelpers.h"
-#include "settings.h"
 #include "components/GreetingComponent.h"
 
 //#include <sigc++-2.0/sigc++/sigc++.h>
@@ -49,17 +48,7 @@ HomeView::~HomeView() {
 	this->components.clear();
 	delete this->unsplash;
 }
-
-/**
-* Callback function for settings button
-*/
-void HomeView::clickedSettings(GtkWidget *widget, gpointer data) {
-	Settings* set =  Settings::getInstance();
-	set->open_settings_window();
-  //this->settings->HomeView::open_settings_window();
-  g_print("Settings Opened\n");
-}
-
+/*
 void HomeView::update_labels(){
 	//g_print(g_get_application_id());
 	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
@@ -69,7 +58,8 @@ void HomeView::update_labels(){
 
 	int interval = g_settings_get_int(settings,"back");
 	Localtimer->SetBackInterval(interval);
-}
+}*/
+
 /**
  * Setup the view's layout and grid components
  */
@@ -146,20 +136,6 @@ void HomeView::drawWidgets() {
 
 	this->addSeperator("topSeperator", 1, 0, 1, 1);
 	this->addSeperator("midSeperator", 0, 1, 3, 2);
-
-//	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
-
-
-	//gtk_container_add (GTK_CONTAINER (btnSettings), image);
-	
-
-	// create weather's box container
-//	GtkWidget* boxSettings = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-//	gtk_grid_attach(this->grid, boxSettings, 4, 3, 1, 1);
-
-	// set the button size
-
-
 }
 
 void HomeView::changeBackgroundImage() {
@@ -312,4 +288,15 @@ WeatherComponent* HomeView::getWeatherComponent() {
  */
 NewsComponent* HomeView::getNewsComponent() {
 	return this->newsComponent;
+}
+
+/**
+ * Update the view, something (ie: a setting) was changed, so
+ * triggger various components to update themselves.
+ */
+void HomeView::update() {
+	BaseView::update();
+	for (auto &component : this->components) {
+		component->settingsUpdated();
+	}
 }

@@ -24,7 +24,9 @@ add_library(HomeHiveGUIComponents
         gui/components/DateTimeComponent.cpp gui/components/DateTimeComponent.h
         gui/GuiHelpers.h gui/GuiHelpers.cpp
         gui/components/WeatherComponent.cpp gui/components/WeatherComponent.h
-        gui/components/NewsComponent.cpp gui/components/NewsComponent.h gui/components/GreetingComponent.cpp gui/components/GreetingComponent.h)
+        gui/components/NewsComponent.cpp gui/components/NewsComponent.h
+        gui/components/GreetingComponent.cpp gui/components/GreetingComponent.h
+        gui/settings.cpp gui/settings.h)
 add_library(HomeHiveRequests
         request/request.cpp request/request.h
         request/Unsplash.cpp request/Unsplash.h

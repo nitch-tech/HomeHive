@@ -21,7 +21,14 @@ class GuiComponent {
 
 		virtual void setup() = 0;
 		virtual void show() = 0;
-		virtual void hide() = 0;
+
+		/**
+		 * Update the component
+		 *
+		 * When executed, and if required, this component may update or re-render
+		 * itself to reflect any changes in the application settings.
+		 */
+		virtual void settingsUpdated() = 0;
 };
 
 
