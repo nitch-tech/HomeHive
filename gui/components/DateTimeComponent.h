@@ -10,7 +10,6 @@
 
 class DateTimeComponent: public GuiComponent {
 	private:
-		GtkWidget* container;
 		GtkLabel* lblTime;
 		GtkLabel* lblDate;
 

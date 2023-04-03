@@ -21,8 +21,7 @@ void DateTimeComponent::setDateAndTime(char *date, char *time) {
 }
 
 void DateTimeComponent::setup() {
-	this->container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-
+	this->container = (GtkBox*) gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
 	// create the time label
 	GtkWidget* time = gtk_label_new_with_mnemonic("00:00");
@@ -41,7 +40,7 @@ void DateTimeComponent::setup() {
 }
 
 void DateTimeComponent::show() {
-	gtk_grid_attach(this->parentGrid, this->container, 0, 0, 1, 1);
+	gtk_grid_attach(this->parentGrid, (GtkWidget*) this->container, 0, 0, 1, 1);
 }
 
 void DateTimeComponent::hide() {

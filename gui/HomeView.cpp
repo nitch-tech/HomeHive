@@ -34,16 +34,17 @@ static void onSizeAllocate(GtkWidget* widget, GdkRectangle* allocation, HomeView
 HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 	this->dateTimeComponent = new DateTimeComponent();
 	this->weatherComponent = new WeatherComponent();
+	this->newsComponent = new NewsComponent();
 
 	this->unsplash = new Unsplash();
 	// get settings instance
 	this->settings = Settings::getInstance();
-	this->news = new News();
 }
 
 HomeView::~HomeView() {
 	delete this->weatherComponent;
 	delete this->dateTimeComponent;
+	delete this->newsComponent;
 	delete this->unsplash;
 }
 
@@ -143,6 +144,10 @@ void HomeView::drawWidgets() {
 	this->dateTimeComponent->show();
 	this->weatherComponent->show();
 
+	this->newsComponent->setup();
+	this->newsComponent->setParentGrid(this->grid);
+	this->newsComponent->show();
+
 	this->addSeperator("topSeperator", 1, 0, 1, 1);
 	this->addSeperator("midSeperator", 0, 1, 3, 2);
 
@@ -182,34 +187,6 @@ void HomeView::drawWidgets() {
 	gtk_box_pack_start(GTK_BOX(boxSettings), btnSettings, true, true, 10);
 	addClass(btnSettings, "settingsButton");
 
-	// create news's box container
-	GtkWidget* boxNews = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, boxNews, 0, 3, 1, 1);
-	addClass(boxNews, "boxNews");
-
-	// create the news label
-	this->lblNews = gtk_label_new_with_mnemonic("What's going on in the world?");
-	gtk_misc_set_alignment(GTK_MISC(lblNews), 0.5, 0.5);
-	addClass(lblNews, "lblNews");
-	gtk_box_pack_end(GTK_BOX(boxNews), lblNews, TRUE, TRUE, 0);
-
-}
-
-void HomeView::updateNews(bool fetchNews){
-	gchar *text;
-	if(fetchNews == true){
-		if (this->news->fetchNewsData() != 0) {
-			text = g_strdup_printf("Failed to fetch news");
-			gtk_label_set_text((GtkLabel*) this->lblNews, text);
-			return;
-		}
-	}
-	
-	text = g_strdup_printf(
-					"Your Top Stories Today\n%s",
-					this->news->getHeadline().c_str()
-		);
-	gtk_label_set_text((GtkLabel*) this->lblNews, text);
 
 }
 
@@ -353,4 +330,14 @@ void HomeView::addSeperator(const std::string id, int left, int top, int width, 
  */
 WeatherComponent* HomeView::getWeatherComponent() {
 	return this->weatherComponent;
+}
+
+/**
+ * Retrieves the NewsComponent instance, which handles retrieving and rendering
+ * information about the current news.
+ *
+ * @return The current NewsComponent instance
+ */
+NewsComponent* HomeView::getNewsComponent() {
+	return this->newsComponent;
 }

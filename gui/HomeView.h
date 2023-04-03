@@ -14,18 +14,19 @@
 #include "components/GuiComponent.h"
 #include "components/DateTimeComponent.h"
 #include "components/WeatherComponent.h"
+#include "components/NewsComponent.h"
 
 class HomeView : public BaseView {
 	private:
 		DateTimeComponent* dateTimeComponent;
 		WeatherComponent* weatherComponent;
+		NewsComponent* newsComponent;
 
 		GtkLayout* layout;
 		GtkGrid* grid;
 		GtkImage* imgBackground;
 
 		GtkLabel* lblGreeting;
-		GtkWidget* lblNews;
 		GtkWidget* btnSettings;
 
 		Unsplash* unsplash;
@@ -63,8 +64,15 @@ class HomeView : public BaseView {
 		 */
 		WeatherComponent* getWeatherComponent();
 
+		/**
+		 * Retrieves the NewsComponent instance, which handles retrieving and rendering
+		 * information about the current news.
+		 *
+		 * @return The current NewsComponent instance
+		 */
+		NewsComponent* getNewsComponent();
+
 		void changeBackgroundImage();
-		void updateNews(bool fetchNews);
 
 		/**
 		 * On Window Resize

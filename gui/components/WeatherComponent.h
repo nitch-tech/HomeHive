@@ -11,7 +11,6 @@
 
 class WeatherComponent: public GuiComponent {
 	private:
-		GtkBox* container;
 		GtkImage* imgWeatherIcon;
 		GtkWidget* lblWeatherInfo;
 		Weather* weather;

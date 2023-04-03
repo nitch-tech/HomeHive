@@ -58,17 +58,11 @@ const gboolean Timer::onTimerTick(gpointer data) {
 		tmr->view->getWeatherComponent()->updateWeather();
 	}
 
-	// does news need to be fetched
-	if((tmr->ticks % NEWS_FETCH_INTERVAL) == 0) {
-		tmr->fetchNews = TRUE;
-	} else {
-		tmr->fetchNews = FALSE;
+	// refresh headline and attempt to fetch latest news
+	if((tmr->ticks % NEWS_INTERVAL) == 0) {
+		tmr->view->getNewsComponent()->updateNews((tmr->ticks % NEWS_FETCH_INTERVAL) == 0);
 	}
 
-	// refresh headline
-	if((tmr->ticks % NEWS_INTERVAL) == 0) {
-		tmr->view->updateNews(tmr->fetchNews);
-	}
 	++tmr->ticks;
 	return true;
 }
