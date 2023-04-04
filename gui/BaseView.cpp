@@ -4,6 +4,13 @@
 
 #include "BaseView.h"
 
+/**
+ * BaseView constructor
+ * @brief BaseView constructor
+ * @param window GTK window instance (what to render in)
+ * @param settings GTK Settings instance (access/modify settings)
+ * @author David Tkachuk
+ */
 BaseView::BaseView(GtkWindow* window, GSettings* settings) {
 	this->window = window;
 	this->settings = settings;

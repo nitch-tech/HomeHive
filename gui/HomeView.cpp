@@ -13,22 +13,32 @@
 #include "components/GreetingComponent.h"
 
 //#include <sigc++-2.0/sigc++/sigc++.h>
-#define DEBUG_GRID 1
+//#define DEBUG_GRID 1
 
 /**
  * Size Allocator Signal Handler
  *
  * Whenever the window is resized, the grid is resized to match the window.
  *
+ * @brief Size Allocator Signal Handler
  * @param widget The widget that fired the signal
  * @param allocation The new allocation of the widget (window dimemsions)
  * @param data Signal data (grid widget)
+ * @author David Tkachuk
  */
 static void onSizeAllocate(GtkWidget* widget, GdkRectangle* allocation, HomeView* data) {
 	data->onWindowResize(allocation);
 }
 
 
+/**
+ * HomeView constructor
+ *
+ * @brief HomeView constructor
+ * @param window GTK window instance (what to render in)
+ * @param settings GTK Settings instance (access/modify settings)
+ * @author David Tkachuk
+ */
 HomeView::HomeView(GtkWindow *window, GSettings* settings) : BaseView(window, settings) {
 	this->components = std::vector<GuiComponent*>();
 	components.push_back(this->dateTimeComponent = new DateTimeComponent());
@@ -48,20 +58,12 @@ HomeView::~HomeView() {
 	this->components.clear();
 	delete this->unsplash;
 }
-/*
-void HomeView::update_labels(){
-	//g_print(g_get_application_id());
-	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
-	const gchar* name = g_settings_get_string(settings,"name");
-	gchar* greeting = g_strdup_printf("Howdy, %s!", name);
-	gtk_label_set_text(lblGreeting, greeting);
-
-	int interval = g_settings_get_int(settings,"back");
-	Localtimer->SetBackInterval(interval);
-}*/
 
 /**
- * Setup the view's layout and grid components
+ * Setup the layout of the view, this is called when the view is first created, and is used to
+ * setup the basic structure/grid and how widgets should be placed.
+ * @brief Setup the layout of the view
+ * @author David Tkachuk
  */
 void HomeView::setupLayout() {
 	// create the base layout, which is the root widget container
@@ -106,7 +108,10 @@ void HomeView::setupLayout() {
 }
 
 /**
- * Setup important HomeView functionality, such as signals and stylings
+ * Register interactivity and signals/events for all widgets in the view, and setup
+ * the CSS stylesheets.
+ * @brief Register interactivity & events
+ * @author David Tkachuk
  */
 void HomeView::registerInteractivity() {
 	// register size-allocate signal to dynamically resize grid to window
@@ -124,7 +129,9 @@ void HomeView::registerInteractivity() {
 }
 
 /**
- * Setup the HomeView's widgets
+ * Draw all widgets in the view, rendering them to the window.
+ * @brief Draw all widgets in the view
+ * @author David Tkachuk
  */
 void HomeView::drawWidgets() {
 	// setup all the components for the GUI
@@ -138,6 +145,12 @@ void HomeView::drawWidgets() {
 	this->addSeperator("midSeperator", 0, 1, 3, 2);
 }
 
+
+/**
+ * Retrieve a new background image from unsplash and then load it.
+ * @brief Load new background image
+ * @author David Tkachuk
+ */
 void HomeView::changeBackgroundImage() {
 	// fetch a random background from unsplash API
 	auto bg = this->unsplash->getRandomBackground();
@@ -156,6 +169,12 @@ void HomeView::changeBackgroundImage() {
 	this->LoadBackgroundImage(this->unsplash->getBackgroundImage());
 }
 
+/**
+ * Makes the window fullscreen
+ * @brief Makes the window fullscreen
+ * @param fullscreen True for fullscreen mode, false for windowed mode
+ * @author David Tkachuk
+ */
 void HomeView::setFullscreen(bool fullscreen) {
 	if (fullscreen) {
 		gtk_window_fullscreen(this->window);
@@ -168,6 +187,7 @@ void HomeView::setFullscreen(bool fullscreen) {
  * Loads a new background image from a given file path
  *
  * @param fname The file path to load an image from
+ * @brief Loads a new background image from a given file path
  */
 void HomeView::LoadBackgroundImage(std::string fname) {
 	this->bgBuff = gdk_pixbuf_new_from_file(fname.c_str(), NULL);
@@ -183,6 +203,8 @@ void HomeView::LoadBackgroundImage(std::string fname) {
  *
  * @param width The window width
  * @param height The window height
+ * @brief Draw background image to window
+ * @author David Tkachuk
  * @todo Look into gdk_pixbuf_scale(), to be able to use the offset, so the background
  * can be centered to the window.
  */
@@ -224,6 +246,8 @@ void HomeView::DrawBackgroundScaled(int width, int height) {
  * resize the grid to fit the window size, to make it perfectly responsive.
  *
  * @param size The new window size structure
+ * @brief Window Resize Event Handler for adaptive windows
+ * @author David Tkachuk
  */
 void HomeView::onWindowResize(GdkRectangle *size) {
 	BaseView::onWindowResize(size);
@@ -244,12 +268,13 @@ void HomeView::onWindowResize(GdkRectangle *size) {
  * Retrieves the DateTimeComponent instance, which contains and manages
  * the date and time widgets on screen.
  *
+ * @brief Retrieves the DateTimeComponent instance
+ * @author David Tkachuk
  * @return The current DateTimeComponent instance
  */
 DateTimeComponent *HomeView::getDateTimeComponent() {
 	return this->dateTimeComponent;
 }
-
 
 /**
  * Add an empty box widget to the grid, which is used to seperate
@@ -260,6 +285,8 @@ DateTimeComponent *HomeView::getDateTimeComponent() {
  * @param top The top position of the widget in the grid
  * @param width The width of the widget in the grid
  * @param height The height of the widget in the grid
+ * @brief Add an empty box widget to the grid
+ * @author David Tkachuk
  */
 void HomeView::addSeperator(const std::string id, int left, int top, int width, int height) {
 	GtkWidget* sep = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
@@ -275,6 +302,8 @@ void HomeView::addSeperator(const std::string id, int left, int top, int width, 
  * information about the current weather.
  *
  * @return The current WeatherComponent instance
+ * @author David Tkachuk
+ * @brief Retrieves the WeatherComponent instance
  */
 WeatherComponent* HomeView::getWeatherComponent() {
 	return this->weatherComponent;
@@ -285,14 +314,17 @@ WeatherComponent* HomeView::getWeatherComponent() {
  * information about the current news.
  *
  * @return The current NewsComponent instance
+ * @brief Retrieves the NewsComponent instance
+ * @author David Tkachuk
  */
 NewsComponent* HomeView::getNewsComponent() {
 	return this->newsComponent;
 }
 
 /**
- * Update the view, something (ie: a setting) was changed, so
- * triggger various components to update themselves.
+ * Update the view, something (ie: a setting) was changed, so triggger various components to update themselves.
+ * @brief Update the view after settings changed
+ * @author David Tkachuk
  */
 void HomeView::update() {
 	g_print("Updating HomeView after settings change\n");
@@ -310,6 +342,8 @@ void HomeView::update() {
  * information about the current alarms.
  *
  * @return The current AlarmComponent instance
+ * @brief Retrieves the AlarmComponent instance
+ * @author David Tkachuk
  */
 AlarmComponent *HomeView::getAlarmComponent() {
 	return this->alarmComponent;
