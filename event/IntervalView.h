@@ -13,6 +13,9 @@
 
 class IntervalView {
 public:
+    /**
+     * @brief abstract method for changing background image
+     */
     virtual void changeBackgroundImage();
     virtual void setDateAndTime(char* date, char* time);
     virtual void updateWeather();
