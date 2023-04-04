@@ -9,12 +9,11 @@
 #include <algorithm>
 #include "HomeView.h"
 #include "../event/Timer.h"
-#include "settings.h"
+#include "GuiHelpers.h"
+#include "components/GreetingComponent.h"
 
 //#include <sigc++-2.0/sigc++/sigc++.h>
-//#define DEBUG_GRID 1
-
-Timer* Localtimer = nullptr;
+#define DEBUG_GRID 1
 
 /**
  * Size Allocator Signal Handler
@@ -29,52 +28,27 @@ static void onSizeAllocate(GtkWidget* widget, GdkRectangle* allocation, HomeView
 	data->onWindowResize(allocation);
 }
 
-/**
- * Add a custom CSS class name to some widget
- *
- * @param widget The widget to add the class to
- * @param className The CSS class name to add
- */
-static void addClass(GtkWidget* widget, std::string className) {
-	GtkStyleContext* context = gtk_widget_get_style_context(widget);
-	gtk_style_context_add_class(context, className.c_str());
-}
 
-/**
- * Remove a custom CSS class name from some widget
- *
- * @param widget The widget to remove the class from
- * @param className The CSS class name to remove
- */
-static void removeClass(GtkWidget* widget, std::string className) {
-	GtkStyleContext* context = gtk_widget_get_style_context(widget);
-	gtk_style_context_remove_class(context, className.c_str());
-}
+HomeView::HomeView(GtkWindow *window, GSettings* settings) : BaseView(window, settings) {
+	this->components = std::vector<GuiComponent*>();
+	components.push_back(this->dateTimeComponent = new DateTimeComponent());
+	components.push_back(this->weatherComponent = new WeatherComponent());
+	components.push_back(this->newsComponent = new NewsComponent());
+	components.push_back(this->alarmComponent = new AlarmComponent());
+	components.push_back(new GreetingComponent(settings));
 
-
-
-HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 	this->unsplash = new Unsplash();
-	this->weather = new Weather();
-	// get settings instance
-	this->settings = Settings::getInstance();
-	this->news = new News();
 }
 
 HomeView::~HomeView() {
+	delete this->weatherComponent;
+	delete this->dateTimeComponent;
+	delete this->newsComponent;
+	delete this->alarmComponent;
+	this->components.clear();
 	delete this->unsplash;
 }
-
-/**
-* Callback function for settings button
-*/
-void HomeView::clickedSettings(GtkWidget *widget, gpointer data) {
-	Settings* set =  Settings::getInstance();
-	set->open_settings_window();
-  //this->settings->HomeView::open_settings_window();
-  g_print("Settings Opened\n");
-}
-
+/*
 void HomeView::update_labels(){
 	//g_print(g_get_application_id());
 	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
@@ -84,7 +58,8 @@ void HomeView::update_labels(){
 
 	int interval = g_settings_get_int(settings,"back");
 	Localtimer->SetBackInterval(interval);
-}
+}*/
+
 /**
  * Setup the view's layout and grid components
  */
@@ -99,8 +74,6 @@ void HomeView::setupLayout() {
 	#endif
 
 	// load & add the default background image, will be behind everything
-	std::cout << "what\n";
-//	this->imgBackground = (GtkImage*) gtk_image_new_from_file("background.jpg");
 	this->imgBackground = (GtkImage*) gtk_image_new();
 	this->bgBuff = gdk_pixbuf_new_from_file("background.jpg", NULL);
 	gtk_image_set_from_pixbuf(this->imgBackground, this->bgBuff);
@@ -140,9 +113,9 @@ void HomeView::registerInteractivity() {
 	g_signal_connect(this->window, "size-allocate", G_CALLBACK(onSizeAllocate), this);
 
 	// create our timer, which does some background work frequently
-	Timer* timer = new Timer(this);
+	Timer* timer = Timer::getInstance(this);
 	timer->Register();
-	Localtimer = timer;
+	timer->SetBackgroundInterval(Settings::getInstance()->getBackgroundInterval());
 
 	// load the CSS file, and set up styles
 	auto provider = gtk_css_provider_new();
@@ -154,165 +127,15 @@ void HomeView::registerInteractivity() {
  * Setup the HomeView's widgets
  */
 void HomeView::drawWidgets() {
-	// create a container for the date and time
-	this->dateTimeContainer = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_grid_attach(this->grid, this->dateTimeContainer, 0, 0, 1, 1);
-
-	// create the time label
-	GtkWidget* lblTime = gtk_label_new_with_mnemonic("00:00");
-	this->lblTime = (GtkLabel*) lblTime;
-	// gtk_widget_set_size_request(lblTime, 30, 50);
-	addClass(lblTime, "lblTime");
-	gtk_misc_set_alignment(GTK_MISC(lblTime), 0, 0); // allign left, there's no CSS property for this
-	gtk_box_pack_start(GTK_BOX(this->dateTimeContainer), lblTime, FALSE, FALSE, 0);
-
-	// create the date label
-	GtkWidget* lblDate = gtk_label_new_with_mnemonic("May 69th 1969");
-	this->lblDate = (GtkLabel*) lblDate;
-	addClass(lblDate, "lblDate");
-	gtk_misc_set_alignment(GTK_MISC(lblDate), 0, 0); // align left
-	gtk_box_pack_start(GTK_BOX(this->dateTimeContainer), lblDate, FALSE, FALSE, 0);
-
-	GtkWidget* topSeperator = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, topSeperator, 1, 0, 1, 1);
-	gtk_widget_set_vexpand(topSeperator, true);
-	gtk_widget_set_hexpand(topSeperator, true);
-	addClass(topSeperator, "topSeperator");
-
-	GtkWidget* midSeperator = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, midSeperator, 0, 1, 3, 2);
-	gtk_widget_set_vexpand(midSeperator, true);
-	gtk_widget_set_hexpand(midSeperator, true);
-	addClass(midSeperator, "midSeperator");
-
-	GSettings* settings = g_settings_new("ca.uwo.cs3307.homehive");
-	//get preset value from Gsettings
-	const gchar* name = g_settings_get_string(settings,"name");
-	gchar* greeting = g_strdup_printf("Howdy, %s!", name);
-
-	// create the greeting label
-	GtkWidget* lblGreeting = gtk_label_new_with_mnemonic(greeting);
-	g_free(greeting);
-	this->lblGreeting = (GtkLabel*) lblGreeting;
-	addClass(lblGreeting, "lblGreeting");
-	gtk_misc_set_alignment(GTK_MISC(lblGreeting), 1.0, 0.0);
-	gtk_grid_attach(this->grid, lblGreeting, 2, 0, 1, 1);
-
-
-	// create the settings button
-	GtkWidget* btnSettings = gtk_button_new();
-	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file ("resources/icons/gears-solid.png", NULL);// get gray icon for button
-	GdkPixbuf *scaled_pixbuf = gdk_pixbuf_scale_simple(pixbuf, 50, 50, GDK_INTERP_BILINEAR);// make it not huge
-	GtkWidget *image = gtk_image_new_from_pixbuf (scaled_pixbuf);
-
-	//gtk_container_add (GTK_CONTAINER (btnSettings), image);
-	
-
-	// create weather's box container
-	GtkWidget* boxSettings = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, boxSettings, 4, 3, 1, 1);
-
-	// set the button size
-	gtk_widget_set_size_request (btnSettings, 60, 50);
-	gtk_button_set_image (GTK_BUTTON (btnSettings), image);
-	g_signal_connect(G_OBJECT(btnSettings), "clicked", G_CALLBACK(&HomeView::clickedSettings), NULL);
-	gtk_widget_set_size_request (btnSettings, 100, 50);
-	//gtk_misc_set_alignment(GTK_MISC(btnSettings), 0.5, 0.5);
-	gtk_box_pack_start(GTK_BOX(boxSettings), btnSettings, true, true, 10);
-	addClass(btnSettings, "settingsButton");
-
-	// create weather's box container
-	GtkWidget* boxWeather = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, boxWeather, 2, 3, 1, 1);
-	addClass(boxWeather, "boxWeather");
-
-	// create the weather label
-	this->lblWeather = gtk_label_new_with_mnemonic("Finding the sun...");
-	gtk_misc_set_alignment(GTK_MISC(lblWeather), 0.5, 0.5);
-	addClass(lblWeather, "lblWeather");
-	gtk_box_pack_end(GTK_BOX(boxWeather), lblWeather, TRUE, TRUE, 0);
-
-	// create weather icon
-	this->imgWeather = (GtkImage*) gtk_image_new();
-	gtk_misc_set_alignment(GTK_MISC(imgWeather), 0.5, 0.5);
-	gtk_box_pack_start(GTK_BOX(boxWeather), (GtkWidget*)imgWeather, FALSE, FALSE, 0);
-
-	// create news's box container
-	GtkWidget* boxNews = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_grid_attach(this->grid, boxNews, 0, 3, 1, 1);
-	addClass(boxNews, "boxNews");
-
-	// create the news label
-	this->lblNews = gtk_label_new_with_mnemonic("What's going on in the world?");
-	gtk_misc_set_alignment(GTK_MISC(lblNews), 0.5, 0.5);
-	addClass(lblNews, "lblNews");
-	gtk_box_pack_end(GTK_BOX(boxNews), lblNews, TRUE, TRUE, 0);
-
-}
-
-void HomeView::updateWeather() {
-	gchar *text;
-	if (this->weather->fetchWeatherData() != 0) {
-		text = g_strdup_printf("Failed to fetch weather");
-		gtk_label_set_text((GtkLabel*) this->lblWeather, text);
-		return;
-	} else {
-		text = g_strdup_printf(
-						"%s\nCurrently: %d°C | Feels Like: %i°C",
-						this->weather->getLocationName().c_str(),
-						this->weather->getTempRounded(),
-						this->weather->getTempFeelsLikeRounded()
-		);
-		gtk_label_set_text((GtkLabel*) this->lblWeather, text);
+	// setup all the components for the GUI
+	for (auto component : this->components) {
+		component->setParentGrid(this->grid);
+		component->setup();
+		component->show();
 	}
 
-	std::string imagePath;
-	int condId = this->weather->getCondId();
-	if (condId >= 200 && condId <= 232) {
-		imagePath = "resources/icons/cloud.bolt.png";
-	} else if (condId >= 300 && condId <= 321) {
-		imagePath = "resources/icons/cloud.drizzle.png";
-	} else if (condId >= 500 && condId <= 531) {
-		imagePath = "resources/icons/cloud.drizzle.png";
-	} else if (condId >= 600 && condId <= 622) {
-		imagePath = "resources/icons/cloud.snow.png";
-	} else if (condId >= 701 && condId <= 781) {
-		imagePath = "resources/icons/sun.max.png";
-	} else if (condId == 800) {
-		imagePath = "resources/icons/cloud.drizzle.png";
-	} else if (condId >= 801 && condId <= 804) {
-		imagePath = "resources/icons/cloud.png";
-	} else {
-		imagePath = "resources/icons/cloud.png";
-	}
-
-	// resize image  pixbuf
-	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(imagePath.c_str(), NULL);
-	GdkPixbuf *scaled = gdk_pixbuf_scale_simple(pixbuf, 96, 96, GDK_INTERP_BILINEAR);
-	gtk_image_set_from_pixbuf(GTK_IMAGE(imgWeather), scaled);
-}
-
-void HomeView::updateNews(bool fetchNews){
-	gchar *text;
-	if(fetchNews == true){
-		if (this->news->fetchNewsData() != 0) {
-			text = g_strdup_printf("Failed to fetch news");
-			gtk_label_set_text((GtkLabel*) this->lblNews, text);
-			return;
-		}
-	}
-	
-	text = g_strdup_printf(
-					"Your Top Stories Today\n%s",
-					this->news->getHeadline().c_str()
-		);
-	gtk_label_set_text((GtkLabel*) this->lblNews, text);
-
-}
-
-void HomeView::setDateAndTime(char *date, char *time) {
-	gtk_label_set_text(this->lblDate, date);
-	gtk_label_set_text(this->lblTime, time);
+	this->addSeperator("topSeperator", 1, 0, 1, 1);
+	this->addSeperator("midSeperator", 0, 1, 3, 2);
 }
 
 void HomeView::changeBackgroundImage() {
@@ -414,4 +237,80 @@ void HomeView::onWindowResize(GdkRectangle *size) {
 
 	// redraw the background to scale to the window size
 	this->DrawBackgroundScaled(size->width, size->height);
+}
+
+
+/**
+ * Retrieves the DateTimeComponent instance, which contains and manages
+ * the date and time widgets on screen.
+ *
+ * @return The current DateTimeComponent instance
+ */
+DateTimeComponent *HomeView::getDateTimeComponent() {
+	return this->dateTimeComponent;
+}
+
+
+/**
+ * Add an empty box widget to the grid, which is used to seperate
+ * all the UI widgets within the entire grid to align them.
+ *
+ * @param id The ID of the widget
+ * @param left The left position of the widget in the grid
+ * @param top The top position of the widget in the grid
+ * @param width The width of the widget in the grid
+ * @param height The height of the widget in the grid
+ */
+void HomeView::addSeperator(const std::string id, int left, int top, int width, int height) {
+	GtkWidget* sep = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+//	gtk_widget_set_name(sep, id.c_str());
+	gtk_widget_set_vexpand(sep, true);
+	gtk_widget_set_hexpand(sep, true);
+	addClass(sep, id);
+	gtk_grid_attach(this->grid, sep, left, top, width, height);
+}
+
+/**
+ * Retrieves the WeatherComponent instance, which handles retrieving and rendering
+ * information about the current weather.
+ *
+ * @return The current WeatherComponent instance
+ */
+WeatherComponent* HomeView::getWeatherComponent() {
+	return this->weatherComponent;
+}
+
+/**
+ * Retrieves the NewsComponent instance, which handles retrieving and rendering
+ * information about the current news.
+ *
+ * @return The current NewsComponent instance
+ */
+NewsComponent* HomeView::getNewsComponent() {
+	return this->newsComponent;
+}
+
+/**
+ * Update the view, something (ie: a setting) was changed, so
+ * triggger various components to update themselves.
+ */
+void HomeView::update() {
+	g_print("Updating HomeView after settings change\n");
+
+	BaseView::update();
+	for (auto &component : this->components) {
+		component->settingsUpdated();
+	}
+	Timer::getInstance(this)
+		->SetBackgroundInterval(Settings::getInstance()->getBackgroundInterval());
+}
+
+/**
+ * Retrieves the AlarmComponent instance, which handles retrieving and rendering
+ * information about the current alarms.
+ *
+ * @return The current AlarmComponent instance
+ */
+AlarmComponent *HomeView::getAlarmComponent() {
+	return this->alarmComponent;
 }

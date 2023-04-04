@@ -4,8 +4,9 @@
 
 #include "BaseView.h"
 
-BaseView::BaseView(GtkWindow* window) {
+BaseView::BaseView(GtkWindow* window, GSettings* settings) {
 	this->window = window;
+	this->settings = settings;
 	this->visible = false;
 }
 
@@ -39,4 +40,7 @@ GtkWindow *BaseView::getWindow() {
 }
 
 void BaseView::onWindowResize(GdkRectangle* size) {
+}
+
+void BaseView::update() {
 }

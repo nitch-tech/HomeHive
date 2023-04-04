@@ -5,50 +5,84 @@
 #ifndef HOMEHIVE_HOMEVIEW_H
 #define HOMEHIVE_HOMEVIEW_H
 
-
 #include "BaseView.h"
 #include "../request/Unsplash.h"
 #include "../request/weather.h"
 #include "../request/news.h"
 #include "settings.h"
+#include "components/GuiComponent.h"
+#include "components/DateTimeComponent.h"
+#include "components/WeatherComponent.h"
+#include "components/NewsComponent.h"
+#include "components/AlarmComponent.h"
+//#include "../event/IntervalView.h"
 
-class HomeView : public BaseView {
+
+class HomeView : public BaseView { // };, public IntervalView {
 	private:
+		GSettings* settings;
+
+		std::vector<GuiComponent*> components;
+		DateTimeComponent* dateTimeComponent;
+		WeatherComponent* weatherComponent;
+		NewsComponent* newsComponent;
+		AlarmComponent* alarmComponent;
+
 		GtkLayout* layout;
 		GtkGrid* grid;
 		GtkImage* imgBackground;
-		GtkImage* imgWeather;
 
-		GtkLabel* lblTime;
-		GtkLabel* lblDate;
 		GtkLabel* lblGreeting;
-		GtkWidget* lblWeather;
-		GtkWidget* lblNews;
-		GtkWidget* dateTimeContainer;
-		GtkWidget* btnSettings;
 
 		Unsplash* unsplash;
-		// Timer* timer;
-		Weather* weather;
-		News* news;
 
 		GdkPixbuf* bgBuff;
 		GdkPixbuf* bgBuffScaled;
 
 	public:
-		
-		Settings* settings;
-		HomeView(GtkWindow* window);
-		// BaseView(App* app, GtkWindow* window);
+		HomeView(GtkWindow* window, GSettings* settings);
 		~HomeView();
-		void clickedSettings(GtkWidget *widget, gpointer data);
-		void setDateAndTime(char* date, char* time);
-		void update_labels();
+
+		/**
+		 * Update the view, something (ie: a setting) was changed, so
+		* triggger various components to update themselves.
+		*/
+		void update() override;
 		void setFullscreen(bool fullscreen);
 
+		/**
+		 * Retrieves the DateTimeComponent instance, which contains and manages
+		 * the date and time widgets on screen.
+		 *
+		 * @return The current DateTimeComponent instance
+		 */
+		DateTimeComponent* getDateTimeComponent();
+
+		/**
+		 * Retrieves the WeatherComponent instance, which handles retrieving and rendering
+		 * information about the current weather.
+		 *
+		 * @return The current WeatherComponent instance
+		 */
+		WeatherComponent* getWeatherComponent();
+
+		/**
+		 * Retrieves the NewsComponent instance, which handles retrieving and rendering
+		 * information about the current news.
+		 *
+		 * @return The current NewsComponent instance
+		 */
+		NewsComponent* getNewsComponent();
+
+		/**
+		 * Retrieves the AlarmComponent instance, which handles retrieving and rendering
+		 * information about the current alarms.
+		 *
+		 * @return The current AlarmComponent instance
+		 */
+		AlarmComponent* getAlarmComponent();
+
 		void changeBackgroundImage();
-		void updateWeather();
-		void updateNews(bool fetchNews);
 
 		/**
 		 * On Window Resize
@@ -77,6 +111,20 @@ class HomeView : public BaseView {
 		 * can be centered to the window.
 		 */
 		void DrawBackgroundScaled(int width = 0, int height = 0);
+
+	private:
+		/**
+		 * Add an empty box widget to the grid, which is used to seperate
+		 * all the UI widgets within the entire grid to align them.
+		 *
+		 * @param id The ID of the widget
+		 * @param left The left position of the widget in the grid
+		 * @param top The top position of the widget in the grid
+		 * @param width The width of the widget in the grid
+		 * @param height The height of the widget in the grid
+		 */
+		void addSeperator(const std::string id, int left, int top, int width, int height);
+
 
 	protected:
 		void setupLayout() override;

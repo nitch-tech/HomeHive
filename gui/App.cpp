@@ -30,6 +30,8 @@ void App::Start(int argc, char** argv) {
 	this->app = gtk_application_new(APPLICATION_ID.c_str(), G_APPLICATION_FLAGS_NONE);
 	g_signal_connect(this->app, "activate", G_CALLBACK(App::OnActivate), (gpointer) this);
 
+	this->settings = g_settings_new(APPLICATION_ID.c_str());
+
 	this->status = g_application_run(G_APPLICATION(this->app), argc, argv);
 	g_object_unref(this->app);
 }
@@ -42,7 +44,6 @@ void App::Start(int argc, char** argv) {
  */
 void App::CreateWindow() {
 	GtkWindow* window;
-	GSettings* settings = g_settings_new(APPLICATION_ID.c_str());
 	this->window = gtk_application_window_new(this->app);
 	window = GTK_WINDOW(this->window);
 
@@ -57,7 +58,7 @@ void App::CreateWindow() {
 
 	gtk_widget_show_all(this->window);
 
-	this->view = new HomeView(window);
+	this->view = new HomeView(window, this->settings);
 	this->view->setup();
 	this->view->show();
 	this->event->SettingsEvent::getInstance();
@@ -78,4 +79,8 @@ void App::CreateWindow() {
  */
 const void App::OnActivate(GtkApplication *app, App *data) {
 	data->CreateWindow();
+}
+
+GSettings* App::getSettings() {
+	return this->settings;
 }

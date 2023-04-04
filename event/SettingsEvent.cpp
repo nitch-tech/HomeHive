@@ -18,5 +18,5 @@ void SettingsEvent::subscribe(HomeView* v){
     view = v;
 }
 void SettingsEvent::update_main(){
-    view->update_labels();
+    view->update();
 }
