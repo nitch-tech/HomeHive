@@ -1,6 +1,10 @@
 //
 // Created by mariam on 2023-03-21.
 //
+/**
+ * @author Mariam
+ * @brief Header file for alarm class
+ */
 
 #ifndef HOMEHIVE_ALARM_H
 #define HOMEHIVE_ALARM_H
@@ -21,7 +25,13 @@
 class Alarm {
 
 public:
+    /**
+     * @brief constructor for alarm class
+     */
     Alarm();
+    /**
+    * @brief deconstructor for alarm class
+    */
     ~Alarm();
     int getMinute();
     int getHour();
@@ -31,9 +41,9 @@ public:
     GDateTime* getAlarm();
 
 private:
-    int hour;
-    int minute;
-    GDateTime* alarm;
+    int hour; /// hour variable of alarm object
+    int minute; ///minute of alarm object
+    GDateTime* alarm; ///GDateTime has the date of the alarm
 
 };
 

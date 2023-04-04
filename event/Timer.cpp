@@ -57,6 +57,11 @@ void Timer::Unregister() {
 	g_source_remove(this->timerId);
 }
 
+/**
+ * @brief checks alarms, news and background image on regular intervals
+ * @param data
+ * @return
+ */
 const gboolean Timer::onTimerTick(gpointer data) {
 	Timer* tmr = (Timer*) data;
 	tmr->time = std::time(nullptr);
