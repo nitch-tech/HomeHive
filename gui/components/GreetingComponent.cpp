@@ -2,10 +2,17 @@
 #include "../GuiHelpers.h"
 #include "../settings.h"
 
+/**
+ * @brief constructor that initializes a GSettings object
+ * @param settings
+ */
 GreetingComponent::GreetingComponent(GSettings* settings) {
 	this->settings = settings;
 }
 
+/**
+ * @brief deconstructor for GreetingComponent object
+ */
 GreetingComponent::~GreetingComponent() = default;
 
 void GreetingComponent::setup() {
@@ -35,6 +42,9 @@ void GreetingComponent::setup() {
 	gtk_box_pack_start(this->container, innerContainer, false, false, 0);
 }
 
+/**
+ * @brief show widgets related to the greeting message
+ */
 void GreetingComponent::show() {
 	gtk_grid_attach(this->parentGrid, (GtkWidget*) this->container, 2, 0, 2, 1);
 }
@@ -48,7 +58,10 @@ void GreetingComponent::show() {
 void GreetingComponent::settingsUpdated() {
 	gtk_label_set_text(this->lblGreeting, this->getGreetingMessage());
 }
-
+/**
+ * @brief get greeting message
+ * @return the greeting message displayed on the HomeView screen
+ */
 gchar* GreetingComponent::getGreetingMessage() {
 	//get preset value from Gsettings
 	const gchar* name = g_settings_get_string(settings, "name");
@@ -56,6 +69,11 @@ gchar* GreetingComponent::getGreetingMessage() {
 	return greeting;
 }
 
+/**
+ * @brief called when the settings button is clicked
+ * @param widget the settings button
+ * @param data
+ */
 void GreetingComponent::onSettingsClicked(GtkWidget *widget, gpointer data) {
 	g_print("Settings button clicked");
 	Settings::getInstance()->open_settings_window();
