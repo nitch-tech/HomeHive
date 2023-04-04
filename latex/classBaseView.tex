@@ -1,0 +1,279 @@
+\hypertarget{classBaseView}{}\doxysection{Base\+View Class Reference}
+\label{classBaseView}\index{BaseView@{BaseView}}
+
+
+\mbox{\hyperlink{classBaseView}{Base\+View}} class basic structure of a view.  
+
+
+
+
+{\ttfamily \#include $<$Base\+View.\+h$>$}
+
+
+
+Inheritance diagram for Base\+View\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBaseView_a39c4d256ea5e682e00a15259b8b905af}{Base\+View}} (Gtk\+Window $\ast$\mbox{\hyperlink{classBaseView_a95e23341507013e92ff2f90724febc7c}{window}}, G\+Settings $\ast$\mbox{\hyperlink{classBaseView_a4428f58fb164a38b3df6b1e08f14555c}{settings}})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classBaseView}{Base\+View}} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBaseView_a0b87986502d132344f08be851cdb15d2}{$\sim$\+Base\+View}} ()
+\item 
+void \mbox{\hyperlink{classBaseView_a2dafdfffa046955e0f0b9d18f8e212e9}{hide}} ()
+\item 
+bool \mbox{\hyperlink{classBaseView_ac4a040c5d3ac6ddf275b48214460fe88}{is\+Visible}} ()
+\begin{DoxyCompactList}\small\item\em Check if the view is visible. \end{DoxyCompactList}\item 
+Gtk\+Window $\ast$ \mbox{\hyperlink{classBaseView_a5551ae34b9aee90c400442605de3c7f8}{get\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Retrieve the G\+TK Window instance. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBaseView_a74b9e48547da305b70827b26d4d31da5}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Setup the view, prepare its widgets and stuffff. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBaseView_aece1087aa97f36fdc5e48841f24ad187}{show}} ()
+\begin{DoxyCompactList}\small\item\em Show the view. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBaseView_aa4219c84e25351aca792624f2247a738}{update}} ()
+\begin{DoxyCompactList}\small\item\em Update the view after settings changed. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBaseView_ac8520514a39d31529c3465c1d4bfb569}{on\+Window\+Resize}} (Gdk\+Rectangle $\ast$size)
+\begin{DoxyCompactList}\small\item\em Force window to adjust after window resize. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classBaseView_af6521a5ce8d7f6127f6be8400a3217ab}{draw\+Widgets}} ()=0
+\begin{DoxyCompactList}\small\item\em Draw all widgets in the view. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBaseView_a6f8402f713c39897251ab942c6ac7cf6}{register\+Interactivity}} ()=0
+\begin{DoxyCompactList}\small\item\em Register interactivity \& events. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBaseView_a36def8b5077dffd258d7842949979e8b}{setup\+Layout}} ()=0
+\begin{DoxyCompactList}\small\item\em Setup the layout of the view. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+G\+Settings $\ast$ \mbox{\hyperlink{classBaseView_a4428f58fb164a38b3df6b1e08f14555c}{settings}}
+\item 
+Gtk\+Window $\ast$ \mbox{\hyperlink{classBaseView_a95e23341507013e92ff2f90724febc7c}{window}}
+\item 
+bool \mbox{\hyperlink{classBaseView_ae9ea22496ff0ca75bd04982fdcdf7af4}{visible}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classBaseView}{Base\+View}} class basic structure of a view. 
+
+\mbox{\hyperlink{classBaseView}{Base\+View}} class defines the basic structure of a view for the Home\+Hive application. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBaseView_a39c4d256ea5e682e00a15259b8b905af}\label{classBaseView_a39c4d256ea5e682e00a15259b8b905af}} 
+\index{BaseView@{BaseView}!BaseView@{BaseView}}
+\index{BaseView@{BaseView}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{BaseView()}{BaseView()}}
+{\footnotesize\ttfamily Base\+View\+::\+Base\+View (\begin{DoxyParamCaption}\item[{Gtk\+Window $\ast$}]{window,  }\item[{G\+Settings $\ast$}]{settings }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classBaseView}{Base\+View}} constructor. 
+
+\mbox{\hyperlink{classBaseView}{Base\+View}} constructor 
+\begin{DoxyParams}{Parameters}
+{\em window} & G\+TK window instance (what to render in) \\
+\hline
+{\em settings} & G\+TK \mbox{\hyperlink{classSettings}{Settings}} instance (access/modify settings) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classBaseView_a0b87986502d132344f08be851cdb15d2}\label{classBaseView_a0b87986502d132344f08be851cdb15d2}} 
+\index{BaseView@{BaseView}!````~BaseView@{$\sim$BaseView}}
+\index{````~BaseView@{$\sim$BaseView}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{$\sim$BaseView()}{~BaseView()}}
+{\footnotesize\ttfamily Base\+View\+::$\sim$\+Base\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBaseView_af6521a5ce8d7f6127f6be8400a3217ab}\label{classBaseView_af6521a5ce8d7f6127f6be8400a3217ab}} 
+\index{BaseView@{BaseView}!drawWidgets@{drawWidgets}}
+\index{drawWidgets@{drawWidgets}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{drawWidgets()}{drawWidgets()}}
+{\footnotesize\ttfamily virtual void Base\+View\+::draw\+Widgets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Draw all widgets in the view. 
+
+Draw all widgets in the view, rendering them to the window. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+Implemented in \mbox{\hyperlink{classHomeView_a28795ea374e312e5fffc8766c58de53a}{Home\+View}}.
+
+\mbox{\Hypertarget{classBaseView_a5551ae34b9aee90c400442605de3c7f8}\label{classBaseView_a5551ae34b9aee90c400442605de3c7f8}} 
+\index{BaseView@{BaseView}!getWindow@{getWindow}}
+\index{getWindow@{getWindow}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{getWindow()}{getWindow()}}
+{\footnotesize\ttfamily Gtk\+Window $\ast$ Base\+View\+::get\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieve the G\+TK Window instance. 
+
+Retrieve the G\+TK Window instance \begin{DoxyReturn}{Returns}
+The G\+TK Window instance 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classBaseView_a2dafdfffa046955e0f0b9d18f8e212e9}\label{classBaseView_a2dafdfffa046955e0f0b9d18f8e212e9}} 
+\index{BaseView@{BaseView}!hide@{hide}}
+\index{hide@{hide}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{hide()}{hide()}}
+{\footnotesize\ttfamily void Base\+View\+::hide (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classBaseView_ac4a040c5d3ac6ddf275b48214460fe88}\label{classBaseView_ac4a040c5d3ac6ddf275b48214460fe88}} 
+\index{BaseView@{BaseView}!isVisible@{isVisible}}
+\index{isVisible@{isVisible}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{isVisible()}{isVisible()}}
+{\footnotesize\ttfamily bool Base\+View\+::is\+Visible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if the view is visible. 
+
+Check if the view is visible \begin{DoxyReturn}{Returns}
+True if visible, false otherwise 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classBaseView_ac8520514a39d31529c3465c1d4bfb569}\label{classBaseView_ac8520514a39d31529c3465c1d4bfb569}} 
+\index{BaseView@{BaseView}!onWindowResize@{onWindowResize}}
+\index{onWindowResize@{onWindowResize}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{onWindowResize()}{onWindowResize()}}
+{\footnotesize\ttfamily void Base\+View\+::on\+Window\+Resize (\begin{DoxyParamCaption}\item[{Gdk\+Rectangle $\ast$}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Force window to adjust after window resize. 
+
+On Window Resize
+
+Whenever the window is resized, full screen, maximized, etc, this function will be called. The actual implementation is to resize the background image to fit the window size, and to resize the grid to fit the window size, to make it perfectly responsive.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The new window size structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+Reimplemented in \mbox{\hyperlink{classHomeView_a3c8bfa9358860c6f9a0ce2182147a645}{Home\+View}}.
+
+\mbox{\Hypertarget{classBaseView_a6f8402f713c39897251ab942c6ac7cf6}\label{classBaseView_a6f8402f713c39897251ab942c6ac7cf6}} 
+\index{BaseView@{BaseView}!registerInteractivity@{registerInteractivity}}
+\index{registerInteractivity@{registerInteractivity}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{registerInteractivity()}{registerInteractivity()}}
+{\footnotesize\ttfamily virtual void Base\+View\+::register\+Interactivity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Register interactivity \& events. 
+
+Register interactivity and signals/events for all widgets in the view \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+Implemented in \mbox{\hyperlink{classHomeView_a0b9a816b85d0cf08ffa2067517affefc}{Home\+View}}.
+
+\mbox{\Hypertarget{classBaseView_a74b9e48547da305b70827b26d4d31da5}\label{classBaseView_a74b9e48547da305b70827b26d4d31da5}} 
+\index{BaseView@{BaseView}!setup@{setup}}
+\index{setup@{setup}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily void Base\+View\+::setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Setup the view, prepare its widgets and stuffff. 
+
+Setup the view, this is called when the view is first created, and is used to setup the layout, draw the widgets, and register the interactivity. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classBaseView_a36def8b5077dffd258d7842949979e8b}\label{classBaseView_a36def8b5077dffd258d7842949979e8b}} 
+\index{BaseView@{BaseView}!setupLayout@{setupLayout}}
+\index{setupLayout@{setupLayout}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{setupLayout()}{setupLayout()}}
+{\footnotesize\ttfamily virtual void Base\+View\+::setup\+Layout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Setup the layout of the view. 
+
+Setup the layout of the view, this is called when the view is first created, and is used to setup the basic structure/grid and how widgets should be placed. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+Implemented in \mbox{\hyperlink{classHomeView_a1a4590dc2cefb3c0eb6d1ec71742f68a}{Home\+View}}.
+
+\mbox{\Hypertarget{classBaseView_aece1087aa97f36fdc5e48841f24ad187}\label{classBaseView_aece1087aa97f36fdc5e48841f24ad187}} 
+\index{BaseView@{BaseView}!show@{show}}
+\index{show@{show}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Base\+View\+::show (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Show the view. 
+
+Show the view, this is called when the view is first created and render it all. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classBaseView_aa4219c84e25351aca792624f2247a738}\label{classBaseView_aa4219c84e25351aca792624f2247a738}} 
+\index{BaseView@{BaseView}!update@{update}}
+\index{update@{update}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Base\+View\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update the view after settings changed. 
+
+Update the view, something (ie\+: a setting) was changed, so triggger various components to update themselves. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+Reimplemented in \mbox{\hyperlink{classHomeView_aa0169b2b3ccaff69101abd76c43474a2}{Home\+View}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classBaseView_a4428f58fb164a38b3df6b1e08f14555c}\label{classBaseView_a4428f58fb164a38b3df6b1e08f14555c}} 
+\index{BaseView@{BaseView}!settings@{settings}}
+\index{settings@{settings}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{settings}{settings}}
+{\footnotesize\ttfamily G\+Settings$\ast$ Base\+View\+::settings\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classBaseView_ae9ea22496ff0ca75bd04982fdcdf7af4}\label{classBaseView_ae9ea22496ff0ca75bd04982fdcdf7af4}} 
+\index{BaseView@{BaseView}!visible@{visible}}
+\index{visible@{visible}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{visible}{visible}}
+{\footnotesize\ttfamily bool Base\+View\+::visible\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classBaseView_a95e23341507013e92ff2f90724febc7c}\label{classBaseView_a95e23341507013e92ff2f90724febc7c}} 
+\index{BaseView@{BaseView}!window@{window}}
+\index{window@{window}!BaseView@{BaseView}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily Gtk\+Window$\ast$ Base\+View\+::window\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gui/\mbox{\hyperlink{BaseView_8h}{Base\+View.\+h}}\item 
+gui/\mbox{\hyperlink{BaseView_8cpp}{Base\+View.\+cpp}}\end{DoxyCompactItemize}

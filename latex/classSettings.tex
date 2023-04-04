@@ -1,0 +1,317 @@
+\hypertarget{classSettings}{}\doxysection{Settings Class Reference}
+\label{classSettings}\index{Settings@{Settings}}
+
+
+Manages application settings.  
+
+
+
+
+{\ttfamily \#include $<$settings.\+h$>$}
+
+
+
+Collaboration diagram for Settings\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classSettings_a0b509caec92fa69ad3a9123709649559}{get\+Background\+Interval}} ()
+\begin{DoxyCompactList}\small\item\em Returns the background interval. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSettings_a5e9d41b331fe66f6253af0e36a236d09}{on\+\_\+increment\+\_\+clicked}} (Gtk\+Button $\ast$\mbox{\hyperlink{classSettings_a2219b3205a608599762305a6433ef642}{button}}, gpointer user\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Callback function for increment button click. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSettings_a35d7a134cfc930b01e740b0e872e741c}{on\+\_\+decrement\+\_\+clicked}} (Gtk\+Button $\ast$\mbox{\hyperlink{classSettings_a2219b3205a608599762305a6433ef642}{button}}, gpointer user\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Callback function for decrement button click. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSettings_ab56e6e339385dd1f0243e4f010c8c40f}{save\+\_\+button}} (Gtk\+Widget $\ast$widget, gpointer data)
+\begin{DoxyCompactList}\small\item\em Saves the settings to the configuration file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSettings_a6d39f30c412016cf06a6ff0d63606cf6}{close\+Settings}} (Gtk\+Widget $\ast$widget, gpointer data)
+\begin{DoxyCompactList}\small\item\em Closes the settings window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSettings_abdfb25e51f37235758a0a12917305b42}{save\+Settings}} (Gtk\+Widget $\ast$widget, gpointer data)
+\begin{DoxyCompactList}\small\item\em Saves the settings and closes the settings window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSettings_ab5dcd860fb73808e6ab23f613a39b149}{open\+\_\+settings\+\_\+window}} ()
+\begin{DoxyCompactList}\small\item\em Opens the settings window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classSettings}{Settings}} $\ast$ \mbox{\hyperlink{classSettings_a5134bac1c68824ef48651c8469cf8722}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the \mbox{\hyperlink{classSettings}{Settings}} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSettings_ab7169a6eefce79566dd07db3b1e5e967}{Settings}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor to prevent creation of \mbox{\hyperlink{classSettings}{Settings}} instances. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSettings_a4a65be5921dfc9fddc476e5320541d89}{$\sim$\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Private destructor to prevent destruction of \mbox{\hyperlink{classSettings}{Settings}} instances. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{classSettings_a7b8d9c20cf7c8857a1fbacbf97724679}{back\+\_\+label}}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{classSettings_a4e211cbb5c7577148b774fb47d714c3f}{name\+\_\+field}}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{classSettings_a5d8aec39bb122c43abc507b61e5725a9}{name\+\_\+label}}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{classSettings_a062486994e90c649c78d831f408b7f5c}{inc\+\_\+button}}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{classSettings_a54000838511e90bbfa1d591d509cc2fb}{dec\+\_\+button}}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{classSettings_a2219b3205a608599762305a6433ef642}{button}}
+\item 
+bool \mbox{\hyperlink{classSettings_a4efc3999be7b409b9cda1ae966147c83}{Open}}
+\item 
+int \mbox{\hyperlink{classSettings_aa872160d1648304832d6b8e2ec1f4285}{back\+\_\+time}}
+\item 
+G\+Settings $\ast$ \mbox{\hyperlink{classSettings_a524fbbe2ee6844fa5290bedd5c222d9d}{settings}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classSettings}{Settings}} $\ast$ \mbox{\hyperlink{classSettings_a6ceb039861b36ad881f466313ecf343b}{settingsptr}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages application settings. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSettings_ab7169a6eefce79566dd07db3b1e5e967}\label{classSettings_ab7169a6eefce79566dd07db3b1e5e967}} 
+\index{Settings@{Settings}!Settings@{Settings}}
+\index{Settings@{Settings}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{Settings()}{Settings()}}
+{\footnotesize\ttfamily Settings\+::\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private constructor to prevent creation of \mbox{\hyperlink{classSettings}{Settings}} instances. 
+
+Constructor for \mbox{\hyperlink{classSettings}{Settings}} class. \mbox{\Hypertarget{classSettings_a4a65be5921dfc9fddc476e5320541d89}\label{classSettings_a4a65be5921dfc9fddc476e5320541d89}} 
+\index{Settings@{Settings}!````~Settings@{$\sim$Settings}}
+\index{````~Settings@{$\sim$Settings}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{$\sim$Settings()}{~Settings()}}
+{\footnotesize\ttfamily Settings\+::$\sim$\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private destructor to prevent destruction of \mbox{\hyperlink{classSettings}{Settings}} instances. 
+
+Destructor for \mbox{\hyperlink{classSettings}{Settings}} class. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSettings_a6d39f30c412016cf06a6ff0d63606cf6}\label{classSettings_a6d39f30c412016cf06a6ff0d63606cf6}} 
+\index{Settings@{Settings}!closeSettings@{closeSettings}}
+\index{closeSettings@{closeSettings}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{closeSettings()}{closeSettings()}}
+{\footnotesize\ttfamily void Settings\+::close\+Settings (\begin{DoxyParamCaption}\item[{Gtk\+Widget $\ast$}]{widget,  }\item[{gpointer}]{data }\end{DoxyParamCaption})}
+
+
+
+Closes the settings window. 
+
+Closes the settings window Sets the Open flag to false and quits the main loop.
+
+
+\begin{DoxyParams}{Parameters}
+{\em widget} & The widget that triggered the signal. \\
+\hline
+{\em data} & User-\/defined data.\\
+\hline
+{\em widget} & The widget that was clicked \\
+\hline
+{\em data} & User data associated with the widget \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSettings_a0b509caec92fa69ad3a9123709649559}\label{classSettings_a0b509caec92fa69ad3a9123709649559}} 
+\index{Settings@{Settings}!getBackgroundInterval@{getBackgroundInterval}}
+\index{getBackgroundInterval@{getBackgroundInterval}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getBackgroundInterval()}{getBackgroundInterval()}}
+{\footnotesize\ttfamily int Settings\+::get\+Background\+Interval (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the background interval. 
+
+\begin{DoxyReturn}{Returns}
+The background interval. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a5134bac1c68824ef48651c8469cf8722}\label{classSettings_a5134bac1c68824ef48651c8469cf8722}} 
+\index{Settings@{Settings}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSettings}{Settings}} $\ast$ Settings\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns a pointer to the \mbox{\hyperlink{classSettings}{Settings}} instance. 
+
+Returns a pointer to the instance of \mbox{\hyperlink{classSettings}{Settings}} If an instance of \mbox{\hyperlink{classSettings}{Settings}} has not been created, it creates one.
+
+\begin{DoxyReturn}{Returns}
+Pointer to the \mbox{\hyperlink{classSettings}{Settings}} instance.
+
+A pointer to the instance of \mbox{\hyperlink{classSettings}{Settings}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a35d7a134cfc930b01e740b0e872e741c}\label{classSettings_a35d7a134cfc930b01e740b0e872e741c}} 
+\index{Settings@{Settings}!on\_decrement\_clicked@{on\_decrement\_clicked}}
+\index{on\_decrement\_clicked@{on\_decrement\_clicked}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{on\_decrement\_clicked()}{on\_decrement\_clicked()}}
+{\footnotesize\ttfamily void Settings\+::on\+\_\+decrement\+\_\+clicked (\begin{DoxyParamCaption}\item[{Gtk\+Button $\ast$}]{button,  }\item[{gpointer}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Callback function for decrement button click. 
+
+Handles decrement button click event Decreases the back\+\_\+time value by 15 seconds if it is greater than 15 seconds and updates the label text accordingly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The button that was clicked. \\
+\hline
+{\em user\+\_\+data} & User-\/defined data.\\
+\hline
+{\em button} & The button that was clicked \\
+\hline
+{\em user\+\_\+data} & User data associated with the button \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSettings_a5e9d41b331fe66f6253af0e36a236d09}\label{classSettings_a5e9d41b331fe66f6253af0e36a236d09}} 
+\index{Settings@{Settings}!on\_increment\_clicked@{on\_increment\_clicked}}
+\index{on\_increment\_clicked@{on\_increment\_clicked}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{on\_increment\_clicked()}{on\_increment\_clicked()}}
+{\footnotesize\ttfamily void Settings\+::on\+\_\+increment\+\_\+clicked (\begin{DoxyParamCaption}\item[{Gtk\+Button $\ast$}]{button,  }\item[{gpointer}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Callback function for increment button click. 
+
+Handles increment button click event Increases the back\+\_\+time value by 15 seconds and updates the label text accordingly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The button that was clicked. \\
+\hline
+{\em user\+\_\+data} & User-\/defined data.\\
+\hline
+{\em button} & The button that was clicked \\
+\hline
+{\em user\+\_\+data} & User data associated with the button \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSettings_ab5dcd860fb73808e6ab23f613a39b149}\label{classSettings_ab5dcd860fb73808e6ab23f613a39b149}} 
+\index{Settings@{Settings}!open\_settings\_window@{open\_settings\_window}}
+\index{open\_settings\_window@{open\_settings\_window}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{open\_settings\_window()}{open\_settings\_window()}}
+{\footnotesize\ttfamily void Settings\+::open\+\_\+settings\+\_\+window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Opens the settings window. 
+
+Opens the settings window and sets up its widgets If the settings window is already open,. \mbox{\Hypertarget{classSettings_ab56e6e339385dd1f0243e4f010c8c40f}\label{classSettings_ab56e6e339385dd1f0243e4f010c8c40f}} 
+\index{Settings@{Settings}!save\_button@{save\_button}}
+\index{save\_button@{save\_button}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{save\_button()}{save\_button()}}
+{\footnotesize\ttfamily void Settings\+::save\+\_\+button (\begin{DoxyParamCaption}\item[{Gtk\+Widget $\ast$}]{widget,  }\item[{gpointer}]{data }\end{DoxyParamCaption})}
+
+
+
+Saves the settings to the configuration file. 
+
+Handles save button click event Saves the name and back\+\_\+time values to the settings and triggers an update event.
+
+
+\begin{DoxyParams}{Parameters}
+{\em widget} & The widget that triggered the signal. \\
+\hline
+{\em data} & User-\/defined data.\\
+\hline
+{\em widget} & The widget that was clicked \\
+\hline
+{\em data} & User data associated with the widget \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSettings_abdfb25e51f37235758a0a12917305b42}\label{classSettings_abdfb25e51f37235758a0a12917305b42}} 
+\index{Settings@{Settings}!saveSettings@{saveSettings}}
+\index{saveSettings@{saveSettings}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{saveSettings()}{saveSettings()}}
+{\footnotesize\ttfamily void Settings\+::save\+Settings (\begin{DoxyParamCaption}\item[{Gtk\+Widget $\ast$}]{widget,  }\item[{gpointer}]{data }\end{DoxyParamCaption})}
+
+
+
+Saves the settings and closes the settings window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em widget} & The widget that triggered the signal. \\
+\hline
+{\em data} & User-\/defined data. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSettings_a7b8d9c20cf7c8857a1fbacbf97724679}\label{classSettings_a7b8d9c20cf7c8857a1fbacbf97724679}} 
+\index{Settings@{Settings}!back\_label@{back\_label}}
+\index{back\_label@{back\_label}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{back\_label}{back\_label}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ Settings\+::back\+\_\+label\hspace{0.3cm}{\ttfamily [private]}}
+
+Label widget for the background setting. \mbox{\Hypertarget{classSettings_aa872160d1648304832d6b8e2ec1f4285}\label{classSettings_aa872160d1648304832d6b8e2ec1f4285}} 
+\index{Settings@{Settings}!back\_time@{back\_time}}
+\index{back\_time@{back\_time}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{back\_time}{back\_time}}
+{\footnotesize\ttfamily int Settings\+::back\+\_\+time\hspace{0.3cm}{\ttfamily [private]}}
+
+The time in seconds for the background to change. \mbox{\Hypertarget{classSettings_a2219b3205a608599762305a6433ef642}\label{classSettings_a2219b3205a608599762305a6433ef642}} 
+\index{Settings@{Settings}!button@{button}}
+\index{button@{button}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{button}{button}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ Settings\+::button\hspace{0.3cm}{\ttfamily [private]}}
+
+Button widget for saving the settings. \mbox{\Hypertarget{classSettings_a54000838511e90bbfa1d591d509cc2fb}\label{classSettings_a54000838511e90bbfa1d591d509cc2fb}} 
+\index{Settings@{Settings}!dec\_button@{dec\_button}}
+\index{dec\_button@{dec\_button}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{dec\_button}{dec\_button}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ Settings\+::dec\+\_\+button\hspace{0.3cm}{\ttfamily [private]}}
+
+Button widget for decrementing the counter. \mbox{\Hypertarget{classSettings_a062486994e90c649c78d831f408b7f5c}\label{classSettings_a062486994e90c649c78d831f408b7f5c}} 
+\index{Settings@{Settings}!inc\_button@{inc\_button}}
+\index{inc\_button@{inc\_button}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{inc\_button}{inc\_button}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ Settings\+::inc\+\_\+button\hspace{0.3cm}{\ttfamily [private]}}
+
+Button widget for incrementing the counter. \mbox{\Hypertarget{classSettings_a4e211cbb5c7577148b774fb47d714c3f}\label{classSettings_a4e211cbb5c7577148b774fb47d714c3f}} 
+\index{Settings@{Settings}!name\_field@{name\_field}}
+\index{name\_field@{name\_field}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{name\_field}{name\_field}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ Settings\+::name\+\_\+field\hspace{0.3cm}{\ttfamily [private]}}
+
+Entry widget for the user name setting. \mbox{\Hypertarget{classSettings_a5d8aec39bb122c43abc507b61e5725a9}\label{classSettings_a5d8aec39bb122c43abc507b61e5725a9}} 
+\index{Settings@{Settings}!name\_label@{name\_label}}
+\index{name\_label@{name\_label}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{name\_label}{name\_label}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ Settings\+::name\+\_\+label\hspace{0.3cm}{\ttfamily [private]}}
+
+Label widget for the user name setting. \mbox{\Hypertarget{classSettings_a4efc3999be7b409b9cda1ae966147c83}\label{classSettings_a4efc3999be7b409b9cda1ae966147c83}} 
+\index{Settings@{Settings}!Open@{Open}}
+\index{Open@{Open}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{Open}{Open}}
+{\footnotesize\ttfamily bool Settings\+::\+Open\hspace{0.3cm}{\ttfamily [private]}}
+
+Flag to indicate whether the settings window is open or not. \mbox{\Hypertarget{classSettings_a524fbbe2ee6844fa5290bedd5c222d9d}\label{classSettings_a524fbbe2ee6844fa5290bedd5c222d9d}} 
+\index{Settings@{Settings}!settings@{settings}}
+\index{settings@{settings}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{settings}{settings}}
+{\footnotesize\ttfamily G\+Settings$\ast$ Settings\+::settings\hspace{0.3cm}{\ttfamily [private]}}
+
+The G\+Settings object for storing the settings. \mbox{\Hypertarget{classSettings_a6ceb039861b36ad881f466313ecf343b}\label{classSettings_a6ceb039861b36ad881f466313ecf343b}} 
+\index{Settings@{Settings}!settingsptr@{settingsptr}}
+\index{settingsptr@{settingsptr}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{settingsptr}{settingsptr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSettings}{Settings}} $\ast$ Settings\+::settingsptr = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Pointer to the \mbox{\hyperlink{classSettings}{Settings}} instance. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gui/\mbox{\hyperlink{settings_8h}{settings.\+h}}\item 
+gui/\mbox{\hyperlink{settings_8cpp}{settings.\+cpp}}\end{DoxyCompactItemize}

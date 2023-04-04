@@ -1,0 +1,269 @@
+\hypertarget{classTimer}{}\doxysection{Timer Class Reference}
+\label{classTimer}\index{Timer@{Timer}}
+
+
+\mbox{\hyperlink{classTimer}{Timer}} class.  
+
+
+
+
+{\ttfamily \#include $<$Timer.\+h$>$}
+
+
+
+Collaboration diagram for Timer\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classTimer_a0b58444fffb3d0a04d967f5caa3abdd5}{Register}} ()
+\begin{DoxyCompactList}\small\item\em Register timer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTimer_a3d6644635be02c327346d876d11611a4}{Unregister}} ()
+\begin{DoxyCompactList}\small\item\em Unregister timer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classTimer_a19ab06ee0c4b4fc4d3fb2069b2b9a40a}{Get\+Background\+Interval}} ()
+\item 
+void \mbox{\hyperlink{classTimer_a93c138af0fba0cb059a3325b87634d4a}{Set\+Background\+Interval}} (int val)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classTimer}{Timer}} $\ast$ \mbox{\hyperlink{classTimer_afc1b0f5c5bab6983fb987a9e0db965e2}{get\+Instance}} (\mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$\mbox{\hyperlink{classTimer_a66123d4067f67e35fcc012dff7b76d38}{view}})
+\begin{DoxyCompactList}\small\item\em Get timer instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTimer_aed4d2e9c058f4fc75e849de34237903f}{Timer}} (\mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$\mbox{\hyperlink{classTimer_a66123d4067f67e35fcc012dff7b76d38}{view}})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classTimer}{Timer}} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTimer_a14fa469c4c295c5fa6e66a4ad1092146}{$\sim$\+Timer}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const gboolean \mbox{\hyperlink{classTimer_ab9654b1c2018813d9e7dc4ffa471aa6a}{on\+Timer\+Tick}} (gpointer data)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classTimer}{Timer}} callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$ \mbox{\hyperlink{classTimer_a66123d4067f67e35fcc012dff7b76d38}{view}}
+\item 
+std\+::time\+\_\+t \mbox{\hyperlink{classTimer_a220a04744c6e0a9c6a2187631b8849a3}{time}}
+\item 
+std\+::tm $\ast$ \mbox{\hyperlink{classTimer_afe1df45a969c2a7b388e1495d5692084}{tm}}
+\item 
+guint \mbox{\hyperlink{classTimer_ad37849f96108c16d361dbcbf12f7983f}{timer\+Id}}
+\item 
+char $\ast$ \mbox{\hyperlink{classTimer_aad37f9850905adea6f96abcf4e7e243e}{buff\+Date}}
+\item 
+char $\ast$ \mbox{\hyperlink{classTimer_ad0ec64248daa9dda9f2fa07daffdcfca}{buff\+Time}}
+\item 
+int \mbox{\hyperlink{classTimer_a96c35b28fcdf137d76a0ee4c66b5d3a3}{ticks}} = 0
+\item 
+int \mbox{\hyperlink{classTimer_ad12633a25aed72b96f7282a097c248f0}{background\+Interval}} = 60$\ast$15
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classTimer}{Timer}} $\ast$ \mbox{\hyperlink{classTimer_a435955fe6ce01de86e183827919f030c}{instance}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classTimer}{Timer}} class. 
+
+\mbox{\hyperlink{classTimer}{Timer}} class, keeps track of the date time \begin{DoxyAuthor}{Authors}
+David, Nathan, Mariam 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTimer_aed4d2e9c058f4fc75e849de34237903f}\label{classTimer_aed4d2e9c058f4fc75e849de34237903f}} 
+\index{Timer@{Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{Timer()}{Timer()}}
+{\footnotesize\ttfamily Timer\+::\+Timer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [private]}}
+
+
+
+\mbox{\hyperlink{classTimer}{Timer}} constructor. 
+
+\mbox{\hyperlink{classTimer}{Timer}} constructor 
+\begin{DoxyParams}{Parameters}
+{\em view} & The home view instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classTimer_a14fa469c4c295c5fa6e66a4ad1092146}\label{classTimer_a14fa469c4c295c5fa6e66a4ad1092146}} 
+\index{Timer@{Timer}!````~Timer@{$\sim$Timer}}
+\index{````~Timer@{$\sim$Timer}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{$\sim$Timer()}{~Timer()}}
+{\footnotesize\ttfamily Timer\+::$\sim$\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTimer_a19ab06ee0c4b4fc4d3fb2069b2b9a40a}\label{classTimer_a19ab06ee0c4b4fc4d3fb2069b2b9a40a}} 
+\index{Timer@{Timer}!GetBackgroundInterval@{GetBackgroundInterval}}
+\index{GetBackgroundInterval@{GetBackgroundInterval}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{GetBackgroundInterval()}{GetBackgroundInterval()}}
+{\footnotesize\ttfamily int Timer\+::\+Get\+Background\+Interval (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get the interval, in seconds, for how frequent the background changes. \begin{DoxyReturn}{Returns}
+The interval, in seconds 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classTimer_afc1b0f5c5bab6983fb987a9e0db965e2}\label{classTimer_afc1b0f5c5bab6983fb987a9e0db965e2}} 
+\index{Timer@{Timer}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTimer}{Timer}} $\ast$ Timer\+::get\+Instance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get timer instance. 
+
+Singleton instance, get timer instance or make new one 
+\begin{DoxyParams}{Parameters}
+{\em view} & The home view instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classTimer_ab9654b1c2018813d9e7dc4ffa471aa6a}\label{classTimer_ab9654b1c2018813d9e7dc4ffa471aa6a}} 
+\index{Timer@{Timer}!onTimerTick@{onTimerTick}}
+\index{onTimerTick@{onTimerTick}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{onTimerTick()}{onTimerTick()}}
+{\footnotesize\ttfamily const gboolean Timer\+::on\+Timer\+Tick (\begin{DoxyParamCaption}\item[{gpointer}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+\mbox{\hyperlink{classTimer}{Timer}} callback. 
+
+checks alarms, news and background image on regular intervals
+
+\mbox{\hyperlink{classTimer}{Timer}} callback, called every second 
+\begin{DoxyParams}{Parameters}
+{\em data} & The timer instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTimer_a0b58444fffb3d0a04d967f5caa3abdd5}\label{classTimer_a0b58444fffb3d0a04d967f5caa3abdd5}} 
+\index{Timer@{Timer}!Register@{Register}}
+\index{Register@{Register}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{Register()}{Register()}}
+{\footnotesize\ttfamily void Timer\+::\+Register (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Register timer. 
+
+Register and start the timer \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classTimer_a93c138af0fba0cb059a3325b87634d4a}\label{classTimer_a93c138af0fba0cb059a3325b87634d4a}} 
+\index{Timer@{Timer}!SetBackgroundInterval@{SetBackgroundInterval}}
+\index{SetBackgroundInterval@{SetBackgroundInterval}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{SetBackgroundInterval()}{SetBackgroundInterval()}}
+{\footnotesize\ttfamily void Timer\+::\+Set\+Background\+Interval (\begin{DoxyParamCaption}\item[{int}]{val }\end{DoxyParamCaption})}
+
+Change the interval, in seconds, for how frequent the background changes. 
+\begin{DoxyParams}{Parameters}
+{\em val} & The new interval, in seconds \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Authors}
+David, Nick 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classTimer_a3d6644635be02c327346d876d11611a4}\label{classTimer_a3d6644635be02c327346d876d11611a4}} 
+\index{Timer@{Timer}!Unregister@{Unregister}}
+\index{Unregister@{Unregister}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{Unregister()}{Unregister()}}
+{\footnotesize\ttfamily void Timer\+::\+Unregister (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Unregister timer. 
+
+Unregister and stop the timer \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classTimer_ad12633a25aed72b96f7282a097c248f0}\label{classTimer_ad12633a25aed72b96f7282a097c248f0}} 
+\index{Timer@{Timer}!backgroundInterval@{backgroundInterval}}
+\index{backgroundInterval@{backgroundInterval}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{backgroundInterval}{backgroundInterval}}
+{\footnotesize\ttfamily int Timer\+::background\+Interval = 60$\ast$15\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTimer_aad37f9850905adea6f96abcf4e7e243e}\label{classTimer_aad37f9850905adea6f96abcf4e7e243e}} 
+\index{Timer@{Timer}!buffDate@{buffDate}}
+\index{buffDate@{buffDate}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{buffDate}{buffDate}}
+{\footnotesize\ttfamily char$\ast$ Timer\+::buff\+Date\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTimer_ad0ec64248daa9dda9f2fa07daffdcfca}\label{classTimer_ad0ec64248daa9dda9f2fa07daffdcfca}} 
+\index{Timer@{Timer}!buffTime@{buffTime}}
+\index{buffTime@{buffTime}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{buffTime}{buffTime}}
+{\footnotesize\ttfamily char$\ast$ Timer\+::buff\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTimer_a435955fe6ce01de86e183827919f030c}\label{classTimer_a435955fe6ce01de86e183827919f030c}} 
+\index{Timer@{Timer}!instance@{instance}}
+\index{instance@{instance}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{instance}{instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTimer}{Timer}} $\ast$ Timer\+::instance = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTimer_a96c35b28fcdf137d76a0ee4c66b5d3a3}\label{classTimer_a96c35b28fcdf137d76a0ee4c66b5d3a3}} 
+\index{Timer@{Timer}!ticks@{ticks}}
+\index{ticks@{ticks}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{ticks}{ticks}}
+{\footnotesize\ttfamily int Timer\+::ticks = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTimer_a220a04744c6e0a9c6a2187631b8849a3}\label{classTimer_a220a04744c6e0a9c6a2187631b8849a3}} 
+\index{Timer@{Timer}!time@{time}}
+\index{time@{time}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily std\+::time\+\_\+t Timer\+::time\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTimer_ad37849f96108c16d361dbcbf12f7983f}\label{classTimer_ad37849f96108c16d361dbcbf12f7983f}} 
+\index{Timer@{Timer}!timerId@{timerId}}
+\index{timerId@{timerId}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{timerId}{timerId}}
+{\footnotesize\ttfamily guint Timer\+::timer\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTimer_afe1df45a969c2a7b388e1495d5692084}\label{classTimer_afe1df45a969c2a7b388e1495d5692084}} 
+\index{Timer@{Timer}!tm@{tm}}
+\index{tm@{tm}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{tm}{tm}}
+{\footnotesize\ttfamily std\+::tm$\ast$ Timer\+::tm\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTimer_a66123d4067f67e35fcc012dff7b76d38}\label{classTimer_a66123d4067f67e35fcc012dff7b76d38}} 
+\index{Timer@{Timer}!view@{view}}
+\index{view@{view}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{view}{view}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHomeView}{Home\+View}}$\ast$ Timer\+::view\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+event/\mbox{\hyperlink{Timer_8h}{Timer.\+h}}\item 
+event/\mbox{\hyperlink{Timer_8cpp}{Timer.\+cpp}}\end{DoxyCompactItemize}

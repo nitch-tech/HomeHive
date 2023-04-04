@@ -1,0 +1,252 @@
+\hypertarget{classAlarm}{}\doxysection{Alarm Class Reference}
+\label{classAlarm}\index{Alarm@{Alarm}}
+
+
+Header file for alarm class.  
+
+
+
+
+{\ttfamily \#include $<$Alarm.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAlarm_ac2384a1b3e766a9d8f93b2fb269b636a}{Alarm}} ()
+\begin{DoxyCompactList}\small\item\em constructor for alarm class \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAlarm_adb5fc73041badc6a082b78874559c002}{$\sim$\+Alarm}} ()
+\begin{DoxyCompactList}\small\item\em deconstructor for alarm class \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classAlarm_ad4b16af0117347f5c6bd8ca45d6206b0}{get\+Minute}} ()
+\begin{DoxyCompactList}\small\item\em get the minute of the alarm object \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classAlarm_ad145d83affaa91f5e684c28d3d80f0c4}{get\+Hour}} ()
+\begin{DoxyCompactList}\small\item\em get the hour of the alarm object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAlarm_ad7c6065c3a368b36b099379acd951e16}{set\+Minute}} (int new\+Min)
+\begin{DoxyCompactList}\small\item\em set the minute of the alarm object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAlarm_a0d64d716c65bbb7bb08b0f1d46c731b1}{set\+Hour}} (int newH)
+\begin{DoxyCompactList}\small\item\em Set a new hour. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAlarm_a9000b5a3da06ac15286124dde9a62f03}{set\+New\+Alarm}} (G\+Date\+Time $\ast$\mbox{\hyperlink{classAlarm_a46b00de50bf6299258f4c3f5a5b32f65}{alarm}})
+\begin{DoxyCompactList}\small\item\em set the date of the alarm object \end{DoxyCompactList}\item 
+G\+Date\+Time $\ast$ \mbox{\hyperlink{classAlarm_a1e2d4f82ee442532676b5b15cd1508cf}{get\+Alarm}} ()
+\begin{DoxyCompactList}\small\item\em get date of alarm \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classAlarm_a7a21a221580bd0aeeb61bb90128224d5}{hour}}
+\item 
+int \mbox{\hyperlink{classAlarm_aa2aacd090b709c5dee17bcc22123c564}{minute}}
+\begin{DoxyCompactList}\small\item\em hour variable of alarm object \end{DoxyCompactList}\item 
+G\+Date\+Time $\ast$ \mbox{\hyperlink{classAlarm_a46b00de50bf6299258f4c3f5a5b32f65}{alarm}}
+\begin{DoxyCompactList}\small\item\em minute of alarm object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for alarm class. 
+
+When a user sets an alarm, information about the alarm is stored in the alarm class \begin{DoxyAuthor}{Author}
+Mariam Alabi 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAlarm_ac2384a1b3e766a9d8f93b2fb269b636a}\label{classAlarm_ac2384a1b3e766a9d8f93b2fb269b636a}} 
+\index{Alarm@{Alarm}!Alarm@{Alarm}}
+\index{Alarm@{Alarm}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{Alarm()}{Alarm()}}
+{\footnotesize\ttfamily Alarm\+::\+Alarm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+constructor for alarm class 
+
+Constructor that initializes an alarm object.
+
+\begin{DoxyAuthor}{Author}
+Mariam Alabi
+\end{DoxyAuthor}
+@breif a class representing an alarm object \mbox{\Hypertarget{classAlarm_adb5fc73041badc6a082b78874559c002}\label{classAlarm_adb5fc73041badc6a082b78874559c002}} 
+\index{Alarm@{Alarm}!````~Alarm@{$\sim$Alarm}}
+\index{````~Alarm@{$\sim$Alarm}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{$\sim$Alarm()}{~Alarm()}}
+{\footnotesize\ttfamily Alarm\+::$\sim$\+Alarm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+deconstructor for alarm class 
+
+\begin{DoxyAuthor}{Author}
+Mariam Alabi 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAlarm_a1e2d4f82ee442532676b5b15cd1508cf}\label{classAlarm_a1e2d4f82ee442532676b5b15cd1508cf}} 
+\index{Alarm@{Alarm}!getAlarm@{getAlarm}}
+\index{getAlarm@{getAlarm}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{getAlarm()}{getAlarm()}}
+{\footnotesize\ttfamily G\+Date\+Time $\ast$ Alarm\+::get\+Alarm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get date of alarm 
+
+Used to get the date (day, month and year) of an alarm \begin{DoxyReturn}{Returns}
+G\+Date\+Time$\ast$ containing a date 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Mariam Alabi
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+the date of the alarm 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAlarm_ad145d83affaa91f5e684c28d3d80f0c4}\label{classAlarm_ad145d83affaa91f5e684c28d3d80f0c4}} 
+\index{Alarm@{Alarm}!getHour@{getHour}}
+\index{getHour@{getHour}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{getHour()}{getHour()}}
+{\footnotesize\ttfamily int Alarm\+::get\+Hour (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the hour of the alarm object 
+
+Get the hour of the alarm object.
+
+\begin{DoxyReturn}{Returns}
+the hour as an integer 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Mariam Alabi
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+the hour variable 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAlarm_ad4b16af0117347f5c6bd8ca45d6206b0}\label{classAlarm_ad4b16af0117347f5c6bd8ca45d6206b0}} 
+\index{Alarm@{Alarm}!getMinute@{getMinute}}
+\index{getMinute@{getMinute}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{getMinute()}{getMinute()}}
+{\footnotesize\ttfamily int Alarm\+::get\+Minute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the minute of the alarm object 
+
+Get the minute of the alarm object.
+
+\begin{DoxyReturn}{Returns}
+minute of alarm object 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Mariam Alabi
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+the minute variable 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAlarm_a0d64d716c65bbb7bb08b0f1d46c731b1}\label{classAlarm_a0d64d716c65bbb7bb08b0f1d46c731b1}} 
+\index{Alarm@{Alarm}!setHour@{setHour}}
+\index{setHour@{setHour}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{setHour()}{setHour()}}
+{\footnotesize\ttfamily void Alarm\+::set\+Hour (\begin{DoxyParamCaption}\item[{int}]{newH }\end{DoxyParamCaption})}
+
+
+
+Set a new hour. 
+
+@brif set the hour of the alarm object
+
+If a user wants to set an alarm, this function sets the hour of the alarm 
+\begin{DoxyParams}{Parameters}
+{\em newH} & the new hour of the alarm \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Mariam Alabi
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+H.} & Set alarm to a nee hour \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAlarm_ad7c6065c3a368b36b099379acd951e16}\label{classAlarm_ad7c6065c3a368b36b099379acd951e16}} 
+\index{Alarm@{Alarm}!setMinute@{setMinute}}
+\index{setMinute@{setMinute}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{setMinute()}{setMinute()}}
+{\footnotesize\ttfamily void Alarm\+::set\+Minute (\begin{DoxyParamCaption}\item[{int}]{new\+Min }\end{DoxyParamCaption})}
+
+
+
+set the minute of the alarm object 
+
+Set a new minute.
+
+If a user wants to set an alarm, this function sets the minute of the alarm 
+\begin{DoxyParams}{Parameters}
+{\em new\+Min} & the new minute of the alarm \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Mariam Alabi
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Min.} & Set alarm to a new minute \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAlarm_a9000b5a3da06ac15286124dde9a62f03}\label{classAlarm_a9000b5a3da06ac15286124dde9a62f03}} 
+\index{Alarm@{Alarm}!setNewAlarm@{setNewAlarm}}
+\index{setNewAlarm@{setNewAlarm}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{setNewAlarm()}{setNewAlarm()}}
+{\footnotesize\ttfamily void Alarm\+::set\+New\+Alarm (\begin{DoxyParamCaption}\item[{G\+Date\+Time $\ast$}]{alarm }\end{DoxyParamCaption})}
+
+
+
+set the date of the alarm object 
+
+set the alarm date
+
+When user presses \textquotesingle{}set alarm\textquotesingle{} the date and time that was selected on the calender widget is extracted into a G\+Date\+Time$\ast$ object 
+\begin{DoxyParams}{Parameters}
+{\em alarm} & has the date of the alarm\\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Mariam Alabi
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em alarm} & contains the date of the alarm \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classAlarm_a46b00de50bf6299258f4c3f5a5b32f65}\label{classAlarm_a46b00de50bf6299258f4c3f5a5b32f65}} 
+\index{Alarm@{Alarm}!alarm@{alarm}}
+\index{alarm@{alarm}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{alarm}{alarm}}
+{\footnotesize\ttfamily G\+Date\+Time$\ast$ Alarm\+::alarm\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+minute of alarm object 
+
+\mbox{\Hypertarget{classAlarm_a7a21a221580bd0aeeb61bb90128224d5}\label{classAlarm_a7a21a221580bd0aeeb61bb90128224d5}} 
+\index{Alarm@{Alarm}!hour@{hour}}
+\index{hour@{hour}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{hour}{hour}}
+{\footnotesize\ttfamily int Alarm\+::hour\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAlarm_aa2aacd090b709c5dee17bcc22123c564}\label{classAlarm_aa2aacd090b709c5dee17bcc22123c564}} 
+\index{Alarm@{Alarm}!minute@{minute}}
+\index{minute@{minute}!Alarm@{Alarm}}
+\doxysubsubsection{\texorpdfstring{minute}{minute}}
+{\footnotesize\ttfamily int Alarm\+::minute\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+hour variable of alarm object 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gui/\mbox{\hyperlink{Alarm_8h}{Alarm.\+h}}\item 
+gui/\mbox{\hyperlink{Alarm_8cpp}{Alarm.\+cpp}}\end{DoxyCompactItemize}

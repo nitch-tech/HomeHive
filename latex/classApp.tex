@@ -1,0 +1,206 @@
+\hypertarget{classApp}{}\doxysection{App Class Reference}
+\label{classApp}\index{App@{App}}
+
+
+The main application class.  
+
+
+
+
+{\ttfamily \#include $<$App.\+h$>$}
+
+
+
+Collaboration diagram for App\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classApp_a4226c4a6f90666cc8a8c36d7e832d885}{App}} ()=default
+\item 
+\mbox{\hyperlink{classApp_a871e34a8ba713040bfdebd47db0b86cf}{$\sim$\+App}} ()=default
+\item 
+G\+Settings $\ast$ \mbox{\hyperlink{classApp_a7d6dce928d055bc87345875094e88937}{get\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Retrieve G\+Settings instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classApp_a0babc92aec4ba21cf3f0b49b64261fba}{Start}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Starts the G\+TK Application. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classApp_a781b98278b5feaf2148f60c13dd744dc}{Get\+Status}} ()
+\begin{DoxyCompactList}\small\item\em Retrieve the status of the application. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classApp_af432f207a60e008e8c9671fdd69aecc0}{Create\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Create the G\+TK Window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const void \mbox{\hyperlink{classApp_a7d30b62367d3bf01c2ec2ea43c46368a}{On\+Activate}} (Gtk\+Application $\ast$\mbox{\hyperlink{classApp_aec719c69d4592fafe0d9021a62cf8c19}{app}}, \mbox{\hyperlink{classApp}{App}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Application activation handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{classApp_af928e3bae1b1a21a54f6b6244bfde0ff}{window}}
+\item 
+Gtk\+Application $\ast$ \mbox{\hyperlink{classApp_aec719c69d4592fafe0d9021a62cf8c19}{app}}
+\item 
+int \mbox{\hyperlink{classApp_afbe51aae90da9371a0399aaccec374ef}{status}}
+\item 
+\mbox{\hyperlink{classBaseView}{Base\+View}} $\ast$ \mbox{\hyperlink{classApp_a4548b6ac7c4e8ef4d5a36e8d096a3980}{view}}
+\item 
+G\+Settings $\ast$ \mbox{\hyperlink{classApp_a99a9b48476df3b77b237aa79d5796be7}{settings}}
+\item 
+\mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} $\ast$ \mbox{\hyperlink{classApp_ab02b7cad44f0324121570c33fa88d8a6}{event}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The main application class. 
+
+The main application class, which handles the G\+TK application lifecycle and the main window. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classApp_a4226c4a6f90666cc8a8c36d7e832d885}\label{classApp_a4226c4a6f90666cc8a8c36d7e832d885}} 
+\index{App@{App}!App@{App}}
+\index{App@{App}!App@{App}}
+\doxysubsubsection{\texorpdfstring{App()}{App()}}
+{\footnotesize\ttfamily App\+::\+App (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classApp_a871e34a8ba713040bfdebd47db0b86cf}\label{classApp_a871e34a8ba713040bfdebd47db0b86cf}} 
+\index{App@{App}!````~App@{$\sim$App}}
+\index{````~App@{$\sim$App}!App@{App}}
+\doxysubsubsection{\texorpdfstring{$\sim$App()}{~App()}}
+{\footnotesize\ttfamily App\+::$\sim$\+App (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classApp_af432f207a60e008e8c9671fdd69aecc0}\label{classApp_af432f207a60e008e8c9671fdd69aecc0}} 
+\index{App@{App}!CreateWindow@{CreateWindow}}
+\index{CreateWindow@{CreateWindow}!App@{App}}
+\doxysubsubsection{\texorpdfstring{CreateWindow()}{CreateWindow()}}
+{\footnotesize\ttfamily void App\+::\+Create\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create the G\+TK Window. 
+
+Create a new window instance for the Home\+Hive app, and then renders all its components. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classApp_a7d6dce928d055bc87345875094e88937}\label{classApp_a7d6dce928d055bc87345875094e88937}} 
+\index{App@{App}!getSettings@{getSettings}}
+\index{getSettings@{getSettings}!App@{App}}
+\doxysubsubsection{\texorpdfstring{getSettings()}{getSettings()}}
+{\footnotesize\ttfamily G\+Settings $\ast$ App\+::get\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieve G\+Settings instance. 
+
+Retrieve the G\+Settings instance to be able to access G\+TK settings options \begin{DoxyReturn}{Returns}
+The G\+Settings instances 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classApp_a781b98278b5feaf2148f60c13dd744dc}\label{classApp_a781b98278b5feaf2148f60c13dd744dc}} 
+\index{App@{App}!GetStatus@{GetStatus}}
+\index{GetStatus@{GetStatus}!App@{App}}
+\doxysubsubsection{\texorpdfstring{GetStatus()}{GetStatus()}}
+{\footnotesize\ttfamily int App\+::\+Get\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieve the status of the application. 
+
+Retrieve the status of the application \begin{DoxyReturn}{Returns}
+The status of the application 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classApp_a7d30b62367d3bf01c2ec2ea43c46368a}\label{classApp_a7d30b62367d3bf01c2ec2ea43c46368a}} 
+\index{App@{App}!OnActivate@{OnActivate}}
+\index{OnActivate@{OnActivate}!App@{App}}
+\doxysubsubsection{\texorpdfstring{OnActivate()}{OnActivate()}}
+{\footnotesize\ttfamily const void App\+::\+On\+Activate (\begin{DoxyParamCaption}\item[{Gtk\+Application $\ast$}]{app,  }\item[{\mbox{\hyperlink{classApp}{App}} $\ast$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Application activation handler. 
+
+Application activation handler, which is called whenever the app is runned, and just creates a new window. 
+\begin{DoxyParams}{Parameters}
+{\em app} & The G\+TK Application instance \\
+\hline
+{\em data} & The Home\+Hive core \mbox{\hyperlink{classApp}{App}} instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classApp_a0babc92aec4ba21cf3f0b49b64261fba}\label{classApp_a0babc92aec4ba21cf3f0b49b64261fba}} 
+\index{App@{App}!Start@{Start}}
+\index{Start@{Start}!App@{App}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void App\+::\+Start (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Starts the G\+TK Application. 
+
+Starts the G\+TK Application, setups up the important windowing stuff, and then opens the window. Also initializes the G\+Settings instance. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of C\+LI arguments \\
+\hline
+{\em argv} & Array of string C\+LI arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classApp_aec719c69d4592fafe0d9021a62cf8c19}\label{classApp_aec719c69d4592fafe0d9021a62cf8c19}} 
+\index{App@{App}!app@{app}}
+\index{app@{app}!App@{App}}
+\doxysubsubsection{\texorpdfstring{app}{app}}
+{\footnotesize\ttfamily Gtk\+Application$\ast$ App\+::app\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classApp_ab02b7cad44f0324121570c33fa88d8a6}\label{classApp_ab02b7cad44f0324121570c33fa88d8a6}} 
+\index{App@{App}!event@{event}}
+\index{event@{event}!App@{App}}
+\doxysubsubsection{\texorpdfstring{event}{event}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}}$\ast$ App\+::event\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classApp_a99a9b48476df3b77b237aa79d5796be7}\label{classApp_a99a9b48476df3b77b237aa79d5796be7}} 
+\index{App@{App}!settings@{settings}}
+\index{settings@{settings}!App@{App}}
+\doxysubsubsection{\texorpdfstring{settings}{settings}}
+{\footnotesize\ttfamily G\+Settings$\ast$ App\+::settings\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classApp_afbe51aae90da9371a0399aaccec374ef}\label{classApp_afbe51aae90da9371a0399aaccec374ef}} 
+\index{App@{App}!status@{status}}
+\index{status@{status}!App@{App}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily int App\+::status\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classApp_a4548b6ac7c4e8ef4d5a36e8d096a3980}\label{classApp_a4548b6ac7c4e8ef4d5a36e8d096a3980}} 
+\index{App@{App}!view@{view}}
+\index{view@{view}!App@{App}}
+\doxysubsubsection{\texorpdfstring{view}{view}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classBaseView}{Base\+View}}$\ast$ App\+::view\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classApp_af928e3bae1b1a21a54f6b6244bfde0ff}\label{classApp_af928e3bae1b1a21a54f6b6244bfde0ff}} 
+\index{App@{App}!window@{window}}
+\index{window@{window}!App@{App}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ App\+::window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gui/\mbox{\hyperlink{App_8h}{App.\+h}}\item 
+gui/\mbox{\hyperlink{App_8cpp}{App.\+cpp}}\end{DoxyCompactItemize}

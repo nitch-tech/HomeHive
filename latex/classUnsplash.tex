@@ -1,0 +1,254 @@
+\hypertarget{classUnsplash}{}\doxysection{Unsplash Class Reference}
+\label{classUnsplash}\index{Unsplash@{Unsplash}}
+
+
+\mbox{\hyperlink{classUnsplash}{Unsplash}} background manager class.  
+
+
+
+
+{\ttfamily \#include $<$Unsplash.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUnsplash_ad2122aea3fafe4169d444259509173c3}{Unsplash}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classUnsplash}{Unsplash}} class constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classUnsplash_a945f10d78c6e6609709ba206c67291d8}{$\sim$\+Unsplash}} ()
+\item 
+\mbox{\hyperlink{classUnsplashBackground}{Unsplash\+Background}} $\ast$ \mbox{\hyperlink{classUnsplash_a0169b44f7035bb7d5b970fb0392f926c}{get\+Random\+Background}} ()
+\begin{DoxyCompactList}\small\item\em Fetch a random background from unsplash. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classUnsplash_aadde767ced9065d57f54f3968f717314}{download\+Background}} (\mbox{\hyperlink{classUnsplashBackground}{Unsplash\+Background}} $\ast$background, int width=0, int height=0)
+\begin{DoxyCompactList}\small\item\em Download some background. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classUnsplash_a0f236bf4a0e23d0eb0b623e4fdbe4f40}{get\+Background\+Image}} ()
+\begin{DoxyCompactList}\small\item\em Get the background image file name. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{classUnsplash_a7e7c3b00e8ad5955fe3539c309fbaaf9}{get\+Categories}} ()
+\begin{DoxyCompactList}\small\item\em Get all categories. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classUnsplash_a724556b5d7c256117f6d243f9c5994b0}{get\+Current\+Category\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get current category ID. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classUnsplash_a1a4417251293b402e706e7f786d303df}{get\+Current\+Category\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Current category name. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classUnsplash_aab5d650134296a1960c728be4c741baf}{get\+Category\+Name}} (std\+::string id)
+\begin{DoxyCompactList}\small\item\em Get the category name of a category id. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classUnsplash_a1a7001bff83ed0de97f944159083b1d5}{load\+Categories}} ()
+\begin{DoxyCompactList}\small\item\em loads the background categories \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+F\+I\+LE $\ast$ \mbox{\hyperlink{classUnsplash_a2d6c1b69560b8bfb724cceb831978303}{file}}
+\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{classUnsplash_aea3d237575ecbfe5b4179d8998f917a2}{categories}}
+\item 
+std\+::string \mbox{\hyperlink{classUnsplash_ac8a9485b66b98214dcfe2a97eff48714}{current\+Category\+Id}}
+\item 
+bool \mbox{\hyperlink{classUnsplash_af62aa2c301502693ea846132004671fc}{is\+Buffer\+Image}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classUnsplash}{Unsplash}} background manager class. 
+
+\mbox{\hyperlink{classUnsplash}{Unsplash}} background manager class
+
+Does some magic where it\textquotesingle{}ll request a random background of a given category and then fetch the file to a load file, and will instruct home view to laod the new image.
+
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classUnsplash_ad2122aea3fafe4169d444259509173c3}\label{classUnsplash_ad2122aea3fafe4169d444259509173c3}} 
+\index{Unsplash@{Unsplash}!Unsplash@{Unsplash}}
+\index{Unsplash@{Unsplash}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{Unsplash()}{Unsplash()}}
+{\footnotesize\ttfamily Unsplash\+::\+Unsplash (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classUnsplash}{Unsplash}} class constructor. 
+
+\mbox{\hyperlink{classUnsplash}{Unsplash}} class constructor setup the defualt cateogires and load them into the map \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classUnsplash_a945f10d78c6e6609709ba206c67291d8}\label{classUnsplash_a945f10d78c6e6609709ba206c67291d8}} 
+\index{Unsplash@{Unsplash}!````~Unsplash@{$\sim$Unsplash}}
+\index{````~Unsplash@{$\sim$Unsplash}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{$\sim$Unsplash()}{~Unsplash()}}
+{\footnotesize\ttfamily Unsplash\+::$\sim$\+Unsplash (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classUnsplash_aadde767ced9065d57f54f3968f717314}\label{classUnsplash_aadde767ced9065d57f54f3968f717314}} 
+\index{Unsplash@{Unsplash}!downloadBackground@{downloadBackground}}
+\index{downloadBackground@{downloadBackground}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{downloadBackground()}{downloadBackground()}}
+{\footnotesize\ttfamily bool Unsplash\+::download\+Background (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classUnsplashBackground}{Unsplash\+Background}} $\ast$}]{background,  }\item[{int}]{width = {\ttfamily 0},  }\item[{int}]{height = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Download some background. 
+
+Download a background image from unsplash 
+\begin{DoxyParams}{Parameters}
+{\em background} & The background to donwload \\
+\hline
+{\em width} & The width to download the image at \\
+\hline
+{\em height} & The height to download the image at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if success, false otherwise 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classUnsplash_a0f236bf4a0e23d0eb0b623e4fdbe4f40}\label{classUnsplash_a0f236bf4a0e23d0eb0b623e4fdbe4f40}} 
+\index{Unsplash@{Unsplash}!getBackgroundImage@{getBackgroundImage}}
+\index{getBackgroundImage@{getBackgroundImage}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{getBackgroundImage()}{getBackgroundImage()}}
+{\footnotesize\ttfamily std\+::string Unsplash\+::get\+Background\+Image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the background image file name. 
+
+Get the current background image file name \begin{DoxyReturn}{Returns}
+Can be the main or buffer background image 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classUnsplash_a7e7c3b00e8ad5955fe3539c309fbaaf9}\label{classUnsplash_a7e7c3b00e8ad5955fe3539c309fbaaf9}} 
+\index{Unsplash@{Unsplash}!getCategories@{getCategories}}
+\index{getCategories@{getCategories}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{getCategories()}{getCategories()}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string, std\+::string $>$ Unsplash\+::get\+Categories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get all categories. 
+
+Get all categories \begin{DoxyReturn}{Returns}
+A map of category id to category name
+\end{DoxyReturn}
+This is a map of category id to category name \begin{DoxyAuthor}{Authors}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classUnsplash_aab5d650134296a1960c728be4c741baf}\label{classUnsplash_aab5d650134296a1960c728be4c741baf}} 
+\index{Unsplash@{Unsplash}!getCategoryName@{getCategoryName}}
+\index{getCategoryName@{getCategoryName}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{getCategoryName()}{getCategoryName()}}
+{\footnotesize\ttfamily std\+::string Unsplash\+::get\+Category\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{id }\end{DoxyParamCaption})}
+
+
+
+Get the category name of a category id. 
+
+Get the category name of a category id 
+\begin{DoxyParams}{Parameters}
+{\em id} & The category id \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The category name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUnsplash_a724556b5d7c256117f6d243f9c5994b0}\label{classUnsplash_a724556b5d7c256117f6d243f9c5994b0}} 
+\index{Unsplash@{Unsplash}!getCurrentCategoryId@{getCurrentCategoryId}}
+\index{getCurrentCategoryId@{getCurrentCategoryId}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{getCurrentCategoryId()}{getCurrentCategoryId()}}
+{\footnotesize\ttfamily std\+::string Unsplash\+::get\+Current\+Category\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get current category ID. 
+
+Get current category ID \begin{DoxyReturn}{Returns}
+The cateogiry id 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUnsplash_a1a4417251293b402e706e7f786d303df}\label{classUnsplash_a1a4417251293b402e706e7f786d303df}} 
+\index{Unsplash@{Unsplash}!getCurrentCategoryName@{getCurrentCategoryName}}
+\index{getCurrentCategoryName@{getCurrentCategoryName}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{getCurrentCategoryName()}{getCurrentCategoryName()}}
+{\footnotesize\ttfamily std\+::string Unsplash\+::get\+Current\+Category\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Current category name. 
+
+Get the category name of current category \begin{DoxyReturn}{Returns}
+The current category name 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classUnsplash_a0169b44f7035bb7d5b970fb0392f926c}\label{classUnsplash_a0169b44f7035bb7d5b970fb0392f926c}} 
+\index{Unsplash@{Unsplash}!getRandomBackground@{getRandomBackground}}
+\index{getRandomBackground@{getRandomBackground}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{getRandomBackground()}{getRandomBackground()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUnsplashBackground}{Unsplash\+Background}} $\ast$ Unsplash\+::get\+Random\+Background (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fetch a random background from unsplash. 
+
+Fetch a random background from unsplash \begin{DoxyReturn}{Returns}
+The background object, or null if there was an error 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classUnsplash_a1a7001bff83ed0de97f944159083b1d5}\label{classUnsplash_a1a7001bff83ed0de97f944159083b1d5}} 
+\index{Unsplash@{Unsplash}!loadCategories@{loadCategories}}
+\index{loadCategories@{loadCategories}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{loadCategories()}{loadCategories()}}
+{\footnotesize\ttfamily void Unsplash\+::load\+Categories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+loads the background categories 
+
+Hard coded \char`\"{}loading\char`\"{} of al lcategories and thier names \begin{DoxySeeAlso}{See also}
+\href{https://unsplash.com/documentation\#list-all-topics}{\texttt{ https\+://unsplash.\+com/documentation\#list-\/all-\/topics}} 
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classUnsplash_aea3d237575ecbfe5b4179d8998f917a2}\label{classUnsplash_aea3d237575ecbfe5b4179d8998f917a2}} 
+\index{Unsplash@{Unsplash}!categories@{categories}}
+\index{categories@{categories}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{categories}{categories}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, std\+::string$>$ Unsplash\+::categories\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUnsplash_ac8a9485b66b98214dcfe2a97eff48714}\label{classUnsplash_ac8a9485b66b98214dcfe2a97eff48714}} 
+\index{Unsplash@{Unsplash}!currentCategoryId@{currentCategoryId}}
+\index{currentCategoryId@{currentCategoryId}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{currentCategoryId}{currentCategoryId}}
+{\footnotesize\ttfamily std\+::string Unsplash\+::current\+Category\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUnsplash_a2d6c1b69560b8bfb724cceb831978303}\label{classUnsplash_a2d6c1b69560b8bfb724cceb831978303}} 
+\index{Unsplash@{Unsplash}!file@{file}}
+\index{file@{file}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{file}{file}}
+{\footnotesize\ttfamily F\+I\+LE$\ast$ Unsplash\+::file\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUnsplash_af62aa2c301502693ea846132004671fc}\label{classUnsplash_af62aa2c301502693ea846132004671fc}} 
+\index{Unsplash@{Unsplash}!isBufferImage@{isBufferImage}}
+\index{isBufferImage@{isBufferImage}!Unsplash@{Unsplash}}
+\doxysubsubsection{\texorpdfstring{isBufferImage}{isBufferImage}}
+{\footnotesize\ttfamily bool Unsplash\+::is\+Buffer\+Image = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+request/\mbox{\hyperlink{Unsplash_8h}{Unsplash.\+h}}\item 
+request/\mbox{\hyperlink{Unsplash_8cpp}{Unsplash.\+cpp}}\end{DoxyCompactItemize}

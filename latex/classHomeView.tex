@@ -1,0 +1,501 @@
+\hypertarget{classHomeView}{}\doxysection{Home\+View Class Reference}
+\label{classHomeView}\index{HomeView@{HomeView}}
+
+
+The main view of the application.  
+
+
+
+
+{\ttfamily \#include $<$Home\+View.\+h$>$}
+
+
+
+Inheritance diagram for Home\+View\+:
+% FIG 0
+
+
+Collaboration diagram for Home\+View\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHomeView_a8780b08be61825bb5c3772738ccc4ef6}{Home\+View}} (Gtk\+Window $\ast$\mbox{\hyperlink{classBaseView_a95e23341507013e92ff2f90724febc7c}{window}}, G\+Settings $\ast$\mbox{\hyperlink{classHomeView_ab02a8fdd69f488261fdc304211a7cd0e}{settings}})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classHomeView}{Home\+View}} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHomeView_ae6c48cdf52876ddc36fde515fed89111}{$\sim$\+Home\+View}} ()
+\item 
+void \mbox{\hyperlink{classHomeView_aa0169b2b3ccaff69101abd76c43474a2}{update}} () override
+\begin{DoxyCompactList}\small\item\em Update the view after settings changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHomeView_a8e92379bdce2f5f2bb526717ebf32d07}{set\+Fullscreen}} (bool fullscreen)
+\begin{DoxyCompactList}\small\item\em Makes the window fullscreen. \end{DoxyCompactList}\item 
+Date\+Time\+Component $\ast$ \mbox{\hyperlink{classHomeView_a60f7c727407767d6728689aba0b7d923}{get\+Date\+Time\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the Date\+Time\+Component instance. \end{DoxyCompactList}\item 
+Weather\+Component $\ast$ \mbox{\hyperlink{classHomeView_a7118a76384b2582a0777177b1b46c515}{get\+Weather\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the Weather\+Component instance. \end{DoxyCompactList}\item 
+News\+Component $\ast$ \mbox{\hyperlink{classHomeView_ae2875a90586bf5434632f6eaf38f75c6}{get\+News\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the News\+Component instance. \end{DoxyCompactList}\item 
+Alarm\+Component $\ast$ \mbox{\hyperlink{classHomeView_a845ddabf7889ef1ed69097657a410b3f}{get\+Alarm\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the Alarm\+Component instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHomeView_af6da8cb3fdd6836009b31afe5e3d9d44}{change\+Background\+Image}} ()
+\begin{DoxyCompactList}\small\item\em Load new background image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHomeView_a3c8bfa9358860c6f9a0ce2182147a645}{on\+Window\+Resize}} (Gdk\+Rectangle $\ast$size) override
+\begin{DoxyCompactList}\small\item\em Window Resize Event Handler for adaptive windows. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHomeView_a42a2609dde81f299df851d86af02b7ac}{Load\+Background\+Image}} (std\+::string fname)
+\begin{DoxyCompactList}\small\item\em Loads a new background image from a given file path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHomeView_abf8f23ea55e466d0662fe632be476f89}{Draw\+Background\+Scaled}} (int width=0, int height=0)
+\begin{DoxyCompactList}\small\item\em Draw background image to window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classHomeView_a1a4590dc2cefb3c0eb6d1ec71742f68a}{setup\+Layout}} () override
+\begin{DoxyCompactList}\small\item\em Setup the layout of the view. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHomeView_a28795ea374e312e5fffc8766c58de53a}{draw\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em Draw all widgets in the view. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHomeView_a0b9a816b85d0cf08ffa2067517affefc}{register\+Interactivity}} () override
+\begin{DoxyCompactList}\small\item\em Register interactivity \& events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classHomeView_a3e7f08cedb5e60733e7f8826793242d8}{add\+Seperator}} (const std\+::string id, int left, int top, int width, int height)
+\begin{DoxyCompactList}\small\item\em Add an empty box widget to the grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+G\+Settings $\ast$ \mbox{\hyperlink{classHomeView_ab02a8fdd69f488261fdc304211a7cd0e}{settings}}
+\item 
+std\+::vector$<$ Gui\+Component $\ast$ $>$ \mbox{\hyperlink{classHomeView_a8d7fd2c0f3a384b91bd197181ca1976d}{components}}
+\item 
+Date\+Time\+Component $\ast$ \mbox{\hyperlink{classHomeView_a786d4ff3093d8d21d762ea924a08aba2}{date\+Time\+Component}}
+\item 
+Weather\+Component $\ast$ \mbox{\hyperlink{classHomeView_a6c4589425d857f52f093d4df52fae138}{weather\+Component}}
+\item 
+News\+Component $\ast$ \mbox{\hyperlink{classHomeView_aa03629fb375048a65e157da5862c1eeb}{news\+Component}}
+\item 
+Alarm\+Component $\ast$ \mbox{\hyperlink{classHomeView_ad173d69a4c6a36a80f0afdb26a0fc2e4}{alarm\+Component}}
+\item 
+Gtk\+Layout $\ast$ \mbox{\hyperlink{classHomeView_a3ac386e837a5a9bdf3343f7e807b053f}{layout}}
+\item 
+Gtk\+Grid $\ast$ \mbox{\hyperlink{classHomeView_ac77019e22ddf467bd3fe36559e817ae6}{grid}}
+\item 
+Gtk\+Image $\ast$ \mbox{\hyperlink{classHomeView_a6cb487de9cc6cb9781e17a7bde8cfe89}{img\+Background}}
+\item 
+Gtk\+Label $\ast$ \mbox{\hyperlink{classHomeView_ae0ee5cf90731b29961f2f22936e45700}{lbl\+Greeting}}
+\item 
+\mbox{\hyperlink{classUnsplash}{Unsplash}} $\ast$ \mbox{\hyperlink{classHomeView_a0676dbce6045d608f5e5c6252881a056}{unsplash}}
+\item 
+Gdk\+Pixbuf $\ast$ \mbox{\hyperlink{classHomeView_a9858da76a055cfe83f045ad2173ae7ec}{bg\+Buff}}
+\item 
+Gdk\+Pixbuf $\ast$ \mbox{\hyperlink{classHomeView_a3679f1e06b167a87662885c84bcfced2}{bg\+Buff\+Scaled}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+The main view of the application. 
+
+The \mbox{\hyperlink{classHomeView}{Home\+View}} class is the main view of the application, and is responsible for rendering the main screen of the application. \begin{DoxyAuthor}{Author}
+Nick, Nathan, David, Marian 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHomeView_a8780b08be61825bb5c3772738ccc4ef6}\label{classHomeView_a8780b08be61825bb5c3772738ccc4ef6}} 
+\index{HomeView@{HomeView}!HomeView@{HomeView}}
+\index{HomeView@{HomeView}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{HomeView()}{HomeView()}}
+{\footnotesize\ttfamily Home\+View\+::\+Home\+View (\begin{DoxyParamCaption}\item[{Gtk\+Window $\ast$}]{window,  }\item[{G\+Settings $\ast$}]{settings }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classHomeView}{Home\+View}} constructor. 
+
+\mbox{\hyperlink{classHomeView}{Home\+View}} constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & G\+TK window instance (what to render in) \\
+\hline
+{\em settings} & G\+TK \mbox{\hyperlink{classSettings}{Settings}} instance (access/modify settings) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classHomeView_ae6c48cdf52876ddc36fde515fed89111}\label{classHomeView_ae6c48cdf52876ddc36fde515fed89111}} 
+\index{HomeView@{HomeView}!````~HomeView@{$\sim$HomeView}}
+\index{````~HomeView@{$\sim$HomeView}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{$\sim$HomeView()}{~HomeView()}}
+{\footnotesize\ttfamily Home\+View\+::$\sim$\+Home\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHomeView_a3e7f08cedb5e60733e7f8826793242d8}\label{classHomeView_a3e7f08cedb5e60733e7f8826793242d8}} 
+\index{HomeView@{HomeView}!addSeperator@{addSeperator}}
+\index{addSeperator@{addSeperator}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{addSeperator()}{addSeperator()}}
+{\footnotesize\ttfamily void Home\+View\+::add\+Seperator (\begin{DoxyParamCaption}\item[{const std\+::string}]{id,  }\item[{int}]{left,  }\item[{int}]{top,  }\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Add an empty box widget to the grid. 
+
+Add an empty box widget to the grid, which is used to seperate all the UI widgets within the entire grid to align them.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the widget \\
+\hline
+{\em left} & The left position of the widget in the grid \\
+\hline
+{\em top} & The top position of the widget in the grid \\
+\hline
+{\em width} & The width of the widget in the grid \\
+\hline
+{\em height} & The height of the widget in the grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classHomeView_af6da8cb3fdd6836009b31afe5e3d9d44}\label{classHomeView_af6da8cb3fdd6836009b31afe5e3d9d44}} 
+\index{HomeView@{HomeView}!changeBackgroundImage@{changeBackgroundImage}}
+\index{changeBackgroundImage@{changeBackgroundImage}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{changeBackgroundImage()}{changeBackgroundImage()}}
+{\footnotesize\ttfamily void Home\+View\+::change\+Background\+Image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Load new background image. 
+
+Retrieve a new background image from unsplash and then load it. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classHomeView_abf8f23ea55e466d0662fe632be476f89}\label{classHomeView_abf8f23ea55e466d0662fe632be476f89}} 
+\index{HomeView@{HomeView}!DrawBackgroundScaled@{DrawBackgroundScaled}}
+\index{DrawBackgroundScaled@{DrawBackgroundScaled}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{DrawBackgroundScaled()}{DrawBackgroundScaled()}}
+{\footnotesize\ttfamily void Home\+View\+::\+Draw\+Background\+Scaled (\begin{DoxyParamCaption}\item[{int}]{width = {\ttfamily 0},  }\item[{int}]{height = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Draw background image to window. 
+
+Draws the background image, scaled to the window size
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The window width \\
+\hline
+{\em height} & The window height \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]Look into gdk\+\_\+pixbuf\+\_\+scale(), to be able to use the offset, so the background can be centered to the window. \end{DoxyRefDesc}
+
+
+Draws the background image, scaled to the window size
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The window width \\
+\hline
+{\em height} & The window height \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]Look into gdk\+\_\+pixbuf\+\_\+scale(), to be able to use the offset, so the background can be centered to the window. \end{DoxyRefDesc}
+\mbox{\Hypertarget{classHomeView_a28795ea374e312e5fffc8766c58de53a}\label{classHomeView_a28795ea374e312e5fffc8766c58de53a}} 
+\index{HomeView@{HomeView}!drawWidgets@{drawWidgets}}
+\index{drawWidgets@{drawWidgets}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{drawWidgets()}{drawWidgets()}}
+{\footnotesize\ttfamily void Home\+View\+::draw\+Widgets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Draw all widgets in the view. 
+
+Draw all widgets in the view, rendering them to the window. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+Implements \mbox{\hyperlink{classBaseView_af6521a5ce8d7f6127f6be8400a3217ab}{Base\+View}}.
+
+\mbox{\Hypertarget{classHomeView_a845ddabf7889ef1ed69097657a410b3f}\label{classHomeView_a845ddabf7889ef1ed69097657a410b3f}} 
+\index{HomeView@{HomeView}!getAlarmComponent@{getAlarmComponent}}
+\index{getAlarmComponent@{getAlarmComponent}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{getAlarmComponent()}{getAlarmComponent()}}
+{\footnotesize\ttfamily Alarm\+Component $\ast$ Home\+View\+::get\+Alarm\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the Alarm\+Component instance. 
+
+Retrieves the Alarm\+Component instance, which handles retrieving and rendering information about the current alarms.
+
+\begin{DoxyReturn}{Returns}
+The current Alarm\+Component instance 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classHomeView_a60f7c727407767d6728689aba0b7d923}\label{classHomeView_a60f7c727407767d6728689aba0b7d923}} 
+\index{HomeView@{HomeView}!getDateTimeComponent@{getDateTimeComponent}}
+\index{getDateTimeComponent@{getDateTimeComponent}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{getDateTimeComponent()}{getDateTimeComponent()}}
+{\footnotesize\ttfamily Date\+Time\+Component $\ast$ Home\+View\+::get\+Date\+Time\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the Date\+Time\+Component instance. 
+
+Retrieves the Date\+Time\+Component instance, which contains and manages the date and time widgets on screen.
+
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The current Date\+Time\+Component instance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHomeView_ae2875a90586bf5434632f6eaf38f75c6}\label{classHomeView_ae2875a90586bf5434632f6eaf38f75c6}} 
+\index{HomeView@{HomeView}!getNewsComponent@{getNewsComponent}}
+\index{getNewsComponent@{getNewsComponent}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{getNewsComponent()}{getNewsComponent()}}
+{\footnotesize\ttfamily News\+Component $\ast$ Home\+View\+::get\+News\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the News\+Component instance. 
+
+Retrieves the News\+Component instance, which handles retrieving and rendering information about the current news.
+
+\begin{DoxyReturn}{Returns}
+The current News\+Component instance 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classHomeView_a7118a76384b2582a0777177b1b46c515}\label{classHomeView_a7118a76384b2582a0777177b1b46c515}} 
+\index{HomeView@{HomeView}!getWeatherComponent@{getWeatherComponent}}
+\index{getWeatherComponent@{getWeatherComponent}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{getWeatherComponent()}{getWeatherComponent()}}
+{\footnotesize\ttfamily Weather\+Component $\ast$ Home\+View\+::get\+Weather\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the Weather\+Component instance. 
+
+Retrieves the Weather\+Component instance, which handles retrieving and rendering information about the current weather.
+
+\begin{DoxyReturn}{Returns}
+The current Weather\+Component instance 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classHomeView_a42a2609dde81f299df851d86af02b7ac}\label{classHomeView_a42a2609dde81f299df851d86af02b7ac}} 
+\index{HomeView@{HomeView}!LoadBackgroundImage@{LoadBackgroundImage}}
+\index{LoadBackgroundImage@{LoadBackgroundImage}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{LoadBackgroundImage()}{LoadBackgroundImage()}}
+{\footnotesize\ttfamily void Home\+View\+::\+Load\+Background\+Image (\begin{DoxyParamCaption}\item[{std\+::string}]{fname }\end{DoxyParamCaption})}
+
+
+
+Loads a new background image from a given file path. 
+
+Loads a new background image from a given file path
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & The file path to load an image from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHomeView_a3c8bfa9358860c6f9a0ce2182147a645}\label{classHomeView_a3c8bfa9358860c6f9a0ce2182147a645}} 
+\index{HomeView@{HomeView}!onWindowResize@{onWindowResize}}
+\index{onWindowResize@{onWindowResize}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{onWindowResize()}{onWindowResize()}}
+{\footnotesize\ttfamily void Home\+View\+::on\+Window\+Resize (\begin{DoxyParamCaption}\item[{Gdk\+Rectangle $\ast$}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Window Resize Event Handler for adaptive windows. 
+
+On Window Resize
+
+Whenever the window is resized, full screen, maximized, etc, this function will be called. The actual implementation is to resize the background image to fit the window size, and to resize the grid to fit the window size, to make it perfectly responsive.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The new window size structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+Reimplemented from \mbox{\hyperlink{classBaseView_ac8520514a39d31529c3465c1d4bfb569}{Base\+View}}.
+
+\mbox{\Hypertarget{classHomeView_a0b9a816b85d0cf08ffa2067517affefc}\label{classHomeView_a0b9a816b85d0cf08ffa2067517affefc}} 
+\index{HomeView@{HomeView}!registerInteractivity@{registerInteractivity}}
+\index{registerInteractivity@{registerInteractivity}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{registerInteractivity()}{registerInteractivity()}}
+{\footnotesize\ttfamily void Home\+View\+::register\+Interactivity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Register interactivity \& events. 
+
+Register interactivity and signals/events for all widgets in the view, and setup the C\+SS stylesheets. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+Implements \mbox{\hyperlink{classBaseView_a6f8402f713c39897251ab942c6ac7cf6}{Base\+View}}.
+
+\mbox{\Hypertarget{classHomeView_a8e92379bdce2f5f2bb526717ebf32d07}\label{classHomeView_a8e92379bdce2f5f2bb526717ebf32d07}} 
+\index{HomeView@{HomeView}!setFullscreen@{setFullscreen}}
+\index{setFullscreen@{setFullscreen}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{setFullscreen()}{setFullscreen()}}
+{\footnotesize\ttfamily void Home\+View\+::set\+Fullscreen (\begin{DoxyParamCaption}\item[{bool}]{fullscreen }\end{DoxyParamCaption})}
+
+
+
+Makes the window fullscreen. 
+
+Makes the window fullscreen 
+\begin{DoxyParams}{Parameters}
+{\em fullscreen} & True for fullscreen mode, false for windowed mode \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classHomeView_a1a4590dc2cefb3c0eb6d1ec71742f68a}\label{classHomeView_a1a4590dc2cefb3c0eb6d1ec71742f68a}} 
+\index{HomeView@{HomeView}!setupLayout@{setupLayout}}
+\index{setupLayout@{setupLayout}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{setupLayout()}{setupLayout()}}
+{\footnotesize\ttfamily void Home\+View\+::setup\+Layout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Setup the layout of the view. 
+
+Setup the layout of the view, this is called when the view is first created, and is used to setup the basic structure/grid and how widgets should be placed. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+Implements \mbox{\hyperlink{classBaseView_a36def8b5077dffd258d7842949979e8b}{Base\+View}}.
+
+\mbox{\Hypertarget{classHomeView_aa0169b2b3ccaff69101abd76c43474a2}\label{classHomeView_aa0169b2b3ccaff69101abd76c43474a2}} 
+\index{HomeView@{HomeView}!update@{update}}
+\index{update@{update}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Home\+View\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update the view after settings changed. 
+
+Update the view, something (ie\+: a setting) was changed, so triggger various components to update themselves. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+Reimplemented from \mbox{\hyperlink{classBaseView_aa4219c84e25351aca792624f2247a738}{Base\+View}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classHomeView_ad173d69a4c6a36a80f0afdb26a0fc2e4}\label{classHomeView_ad173d69a4c6a36a80f0afdb26a0fc2e4}} 
+\index{HomeView@{HomeView}!alarmComponent@{alarmComponent}}
+\index{alarmComponent@{alarmComponent}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{alarmComponent}{alarmComponent}}
+{\footnotesize\ttfamily Alarm\+Component$\ast$ Home\+View\+::alarm\+Component\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_a9858da76a055cfe83f045ad2173ae7ec}\label{classHomeView_a9858da76a055cfe83f045ad2173ae7ec}} 
+\index{HomeView@{HomeView}!bgBuff@{bgBuff}}
+\index{bgBuff@{bgBuff}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{bgBuff}{bgBuff}}
+{\footnotesize\ttfamily Gdk\+Pixbuf$\ast$ Home\+View\+::bg\+Buff\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_a3679f1e06b167a87662885c84bcfced2}\label{classHomeView_a3679f1e06b167a87662885c84bcfced2}} 
+\index{HomeView@{HomeView}!bgBuffScaled@{bgBuffScaled}}
+\index{bgBuffScaled@{bgBuffScaled}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{bgBuffScaled}{bgBuffScaled}}
+{\footnotesize\ttfamily Gdk\+Pixbuf$\ast$ Home\+View\+::bg\+Buff\+Scaled\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_a8d7fd2c0f3a384b91bd197181ca1976d}\label{classHomeView_a8d7fd2c0f3a384b91bd197181ca1976d}} 
+\index{HomeView@{HomeView}!components@{components}}
+\index{components@{components}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{components}{components}}
+{\footnotesize\ttfamily std\+::vector$<$Gui\+Component$\ast$$>$ Home\+View\+::components\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_a786d4ff3093d8d21d762ea924a08aba2}\label{classHomeView_a786d4ff3093d8d21d762ea924a08aba2}} 
+\index{HomeView@{HomeView}!dateTimeComponent@{dateTimeComponent}}
+\index{dateTimeComponent@{dateTimeComponent}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{dateTimeComponent}{dateTimeComponent}}
+{\footnotesize\ttfamily Date\+Time\+Component$\ast$ Home\+View\+::date\+Time\+Component\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_ac77019e22ddf467bd3fe36559e817ae6}\label{classHomeView_ac77019e22ddf467bd3fe36559e817ae6}} 
+\index{HomeView@{HomeView}!grid@{grid}}
+\index{grid@{grid}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily Gtk\+Grid$\ast$ Home\+View\+::grid\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_a6cb487de9cc6cb9781e17a7bde8cfe89}\label{classHomeView_a6cb487de9cc6cb9781e17a7bde8cfe89}} 
+\index{HomeView@{HomeView}!imgBackground@{imgBackground}}
+\index{imgBackground@{imgBackground}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{imgBackground}{imgBackground}}
+{\footnotesize\ttfamily Gtk\+Image$\ast$ Home\+View\+::img\+Background\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_a3ac386e837a5a9bdf3343f7e807b053f}\label{classHomeView_a3ac386e837a5a9bdf3343f7e807b053f}} 
+\index{HomeView@{HomeView}!layout@{layout}}
+\index{layout@{layout}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{layout}{layout}}
+{\footnotesize\ttfamily Gtk\+Layout$\ast$ Home\+View\+::layout\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_ae0ee5cf90731b29961f2f22936e45700}\label{classHomeView_ae0ee5cf90731b29961f2f22936e45700}} 
+\index{HomeView@{HomeView}!lblGreeting@{lblGreeting}}
+\index{lblGreeting@{lblGreeting}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{lblGreeting}{lblGreeting}}
+{\footnotesize\ttfamily Gtk\+Label$\ast$ Home\+View\+::lbl\+Greeting\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_aa03629fb375048a65e157da5862c1eeb}\label{classHomeView_aa03629fb375048a65e157da5862c1eeb}} 
+\index{HomeView@{HomeView}!newsComponent@{newsComponent}}
+\index{newsComponent@{newsComponent}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{newsComponent}{newsComponent}}
+{\footnotesize\ttfamily News\+Component$\ast$ Home\+View\+::news\+Component\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_ab02a8fdd69f488261fdc304211a7cd0e}\label{classHomeView_ab02a8fdd69f488261fdc304211a7cd0e}} 
+\index{HomeView@{HomeView}!settings@{settings}}
+\index{settings@{settings}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{settings}{settings}}
+{\footnotesize\ttfamily G\+Settings$\ast$ Home\+View\+::settings\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_a0676dbce6045d608f5e5c6252881a056}\label{classHomeView_a0676dbce6045d608f5e5c6252881a056}} 
+\index{HomeView@{HomeView}!unsplash@{unsplash}}
+\index{unsplash@{unsplash}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{unsplash}{unsplash}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUnsplash}{Unsplash}}$\ast$ Home\+View\+::unsplash\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHomeView_a6c4589425d857f52f093d4df52fae138}\label{classHomeView_a6c4589425d857f52f093d4df52fae138}} 
+\index{HomeView@{HomeView}!weatherComponent@{weatherComponent}}
+\index{weatherComponent@{weatherComponent}!HomeView@{HomeView}}
+\doxysubsubsection{\texorpdfstring{weatherComponent}{weatherComponent}}
+{\footnotesize\ttfamily Weather\+Component$\ast$ Home\+View\+::weather\+Component\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gui/\mbox{\hyperlink{HomeView_8h}{Home\+View.\+h}}\item 
+gui/\mbox{\hyperlink{HomeView_8cpp}{Home\+View.\+cpp}}\end{DoxyCompactItemize}

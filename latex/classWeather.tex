@@ -1,0 +1,210 @@
+\hypertarget{classWeather}{}\doxysection{Weather Class Reference}
+\label{classWeather}\index{Weather@{Weather}}
+
+
+{\ttfamily \#include $<$weather.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWeather_aa404c94fec05b825454a7309827767c6}{Weather}} ()
+\begin{DoxyCompactList}\small\item\em constructor for a weather object \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classWeather_a6cc4f6ce440531f5c882547dcf40eb22}{$\sim$\+Weather}} ()
+\begin{DoxyCompactList}\small\item\em deconstructor for a weather object \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classWeather_a51f9ff6b73c1d2834032712ae1e08ec6}{fetch\+Weather\+Data}} ()
+\begin{DoxyCompactList}\small\item\em get the current weather Call a request to openweathermap A\+PI to get the current weather data \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classWeather_a934dfe0464e547461e4ecb754367a6a0}{get\+Temp}} ()
+\begin{DoxyCompactList}\small\item\em gets the temperature (as a double) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classWeather_ab388c929a0e6172eb1b23fa9fd5e4a82}{get\+Temp\+Rounded}} ()
+\begin{DoxyCompactList}\small\item\em get the temperature as an integer \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classWeather_ac5226cd9b19ff23fb649587c72dad918}{get\+Location\+Name}} ()
+\begin{DoxyCompactList}\small\item\em get the location of weather get the location of the weather. In our app, it should always be London, Ontario \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classWeather_abdef86ed1d3e676d8d1839e3115021e2}{get\+Temp\+Feels\+Like}} ()
+\begin{DoxyCompactList}\small\item\em gets the temperature (as a double) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classWeather_aa57de12f45e44d567239574554687ee2}{get\+Temp\+Feels\+Like\+Rounded}} ()
+\begin{DoxyCompactList}\small\item\em get what temperature feels like \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classWeather_abc33354d4e06488dc4f03f1bc7a4eaf3}{get\+Cond\+Id}} ()
+\begin{DoxyCompactList}\small\item\em get condition id for the weather The condition id describes the current weather (see \href{https://openweathermap.org/weather-conditions}{\texttt{ https\+://openweathermap.\+org/weather-\/conditions}} for weather codes) The lets the app display an accurate icon that describes the current weather \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classWeather_ac03cff14970254e354b20e9e36801238}{location\+Name}}
+\item 
+double \mbox{\hyperlink{classWeather_a5e818a6522203f0d1d2c9239e33e5da6}{temperature\+String}}
+\item 
+float \mbox{\hyperlink{classWeather_ac125abc62fd3f65a042f9744ad944ef2}{temp\+Feels\+Like}}
+\item 
+int \mbox{\hyperlink{classWeather_ad50ca6fb8a20e4ad20cdacdf03f5fe6e}{condition\+Id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+@breif header class for weather Information about the current weather is stored in a \mbox{\hyperlink{classWeather}{Weather}} object \begin{DoxyAuthor}{Author}
+Mariam Alabi 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classWeather_aa404c94fec05b825454a7309827767c6}\label{classWeather_aa404c94fec05b825454a7309827767c6}} 
+\index{Weather@{Weather}!Weather@{Weather}}
+\index{Weather@{Weather}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{Weather()}{Weather()}}
+{\footnotesize\ttfamily Weather\+::\+Weather (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+constructor for a weather object 
+
+Open\+Weather\+Map gets data using an ID and K\+EY.
+
+constructor initilizing variables The constructor initilizes temperature, condition id, location name, and what the temperature feels like \mbox{\Hypertarget{classWeather_a6cc4f6ce440531f5c882547dcf40eb22}\label{classWeather_a6cc4f6ce440531f5c882547dcf40eb22}} 
+\index{Weather@{Weather}!````~Weather@{$\sim$Weather}}
+\index{````~Weather@{$\sim$Weather}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{$\sim$Weather()}{~Weather()}}
+{\footnotesize\ttfamily Weather\+::$\sim$\+Weather (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+deconstructor for a weather object 
+
+weather deconstructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWeather_a51f9ff6b73c1d2834032712ae1e08ec6}\label{classWeather_a51f9ff6b73c1d2834032712ae1e08ec6}} 
+\index{Weather@{Weather}!fetchWeatherData@{fetchWeatherData}}
+\index{fetchWeatherData@{fetchWeatherData}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{fetchWeatherData()}{fetchWeatherData()}}
+{\footnotesize\ttfamily int Weather\+::fetch\+Weather\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the current weather Call a request to openweathermap A\+PI to get the current weather data 
+
+get weather data Makes a call to Open\+Weather\+Map, which has the current weather in a json format The method parses the json object to get relevant data
+
+\begin{DoxyReturn}{Returns}
+0 if reqest succeeded, -\/1 if fail 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWeather_abc33354d4e06488dc4f03f1bc7a4eaf3}\label{classWeather_abc33354d4e06488dc4f03f1bc7a4eaf3}} 
+\index{Weather@{Weather}!getCondId@{getCondId}}
+\index{getCondId@{getCondId}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{getCondId()}{getCondId()}}
+{\footnotesize\ttfamily int Weather\+::get\+Cond\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get condition id for the weather The condition id describes the current weather (see \href{https://openweathermap.org/weather-conditions}{\texttt{ https\+://openweathermap.\+org/weather-\/conditions}} for weather codes) The lets the app display an accurate icon that describes the current weather 
+
+Get the condition\+ID of the current weather Openweather\+Map uses condition\+ID to describe the current weather. This allows to display an icon that accurately describes the current weather.
+
+\begin{DoxyReturn}{Returns}
+an integer that describes the current weather as an id as described by openweathermap
+
+condition id 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWeather_ac5226cd9b19ff23fb649587c72dad918}\label{classWeather_ac5226cd9b19ff23fb649587c72dad918}} 
+\index{Weather@{Weather}!getLocationName@{getLocationName}}
+\index{getLocationName@{getLocationName}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{getLocationName()}{getLocationName()}}
+{\footnotesize\ttfamily std\+::string Weather\+::get\+Location\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the location of weather get the location of the weather. In our app, it should always be London, Ontario 
+
+\begin{DoxyReturn}{Returns}
+location of weather as a string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWeather_a934dfe0464e547461e4ecb754367a6a0}\label{classWeather_a934dfe0464e547461e4ecb754367a6a0}} 
+\index{Weather@{Weather}!getTemp@{getTemp}}
+\index{getTemp@{getTemp}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{getTemp()}{getTemp()}}
+{\footnotesize\ttfamily double Weather\+::get\+Temp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the temperature (as a double) 
+
+get the current temperature get the current temperature in the form of a string
+
+\begin{DoxyReturn}{Returns}
+the current temperature as a double
+
+temperature 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWeather_abdef86ed1d3e676d8d1839e3115021e2}\label{classWeather_abdef86ed1d3e676d8d1839e3115021e2}} 
+\index{Weather@{Weather}!getTempFeelsLike@{getTempFeelsLike}}
+\index{getTempFeelsLike@{getTempFeelsLike}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{getTempFeelsLike()}{getTempFeelsLike()}}
+{\footnotesize\ttfamily float Weather\+::get\+Temp\+Feels\+Like (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the temperature (as a double) 
+
+\begin{DoxyReturn}{Returns}
+the current temperature as a double 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWeather_aa57de12f45e44d567239574554687ee2}\label{classWeather_aa57de12f45e44d567239574554687ee2}} 
+\index{Weather@{Weather}!getTempFeelsLikeRounded@{getTempFeelsLikeRounded}}
+\index{getTempFeelsLikeRounded@{getTempFeelsLikeRounded}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{getTempFeelsLikeRounded()}{getTempFeelsLikeRounded()}}
+{\footnotesize\ttfamily int Weather\+::get\+Temp\+Feels\+Like\+Rounded (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get what temperature feels like 
+
+get the temperature as an integer
+
+\begin{DoxyReturn}{Returns}
+what the temperature feels like as an integer
+
+integer that is the current temperature 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWeather_ab388c929a0e6172eb1b23fa9fd5e4a82}\label{classWeather_ab388c929a0e6172eb1b23fa9fd5e4a82}} 
+\index{Weather@{Weather}!getTempRounded@{getTempRounded}}
+\index{getTempRounded@{getTempRounded}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{getTempRounded()}{getTempRounded()}}
+{\footnotesize\ttfamily int Weather\+::get\+Temp\+Rounded (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the temperature as an integer 
+
+\begin{DoxyReturn}{Returns}
+integer that is the current temperature 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classWeather_ad50ca6fb8a20e4ad20cdacdf03f5fe6e}\label{classWeather_ad50ca6fb8a20e4ad20cdacdf03f5fe6e}} 
+\index{Weather@{Weather}!conditionId@{conditionId}}
+\index{conditionId@{conditionId}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{conditionId}{conditionId}}
+{\footnotesize\ttfamily int Weather\+::condition\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classWeather_ac03cff14970254e354b20e9e36801238}\label{classWeather_ac03cff14970254e354b20e9e36801238}} 
+\index{Weather@{Weather}!locationName@{locationName}}
+\index{locationName@{locationName}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{locationName}{locationName}}
+{\footnotesize\ttfamily std\+::string Weather\+::location\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classWeather_a5e818a6522203f0d1d2c9239e33e5da6}\label{classWeather_a5e818a6522203f0d1d2c9239e33e5da6}} 
+\index{Weather@{Weather}!temperatureString@{temperatureString}}
+\index{temperatureString@{temperatureString}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{temperatureString}{temperatureString}}
+{\footnotesize\ttfamily double Weather\+::temperature\+String\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classWeather_ac125abc62fd3f65a042f9744ad944ef2}\label{classWeather_ac125abc62fd3f65a042f9744ad944ef2}} 
+\index{Weather@{Weather}!tempFeelsLike@{tempFeelsLike}}
+\index{tempFeelsLike@{tempFeelsLike}!Weather@{Weather}}
+\doxysubsubsection{\texorpdfstring{tempFeelsLike}{tempFeelsLike}}
+{\footnotesize\ttfamily float Weather\+::temp\+Feels\+Like\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+request/\mbox{\hyperlink{weather_8h}{weather.\+h}}\item 
+request/\mbox{\hyperlink{weather_8cpp}{weather.\+cpp}}\end{DoxyCompactItemize}

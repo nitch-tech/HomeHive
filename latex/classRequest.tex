@@ -1,0 +1,294 @@
+\hypertarget{classRequest}{}\doxysection{Request Class Reference}
+\label{classRequest}\index{Request@{Request}}
+
+
+\mbox{\hyperlink{classRequest}{Request}} Class.  
+
+
+
+
+{\ttfamily \#include $<$request.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRequest_af937ab646a59f20a1765b43e67434a98}{Request}} (std\+::string \mbox{\hyperlink{classRequest_a30857fa1b1c7f72eae0bf8715afca24e}{url}})
+\begin{DoxyCompactList}\small\item\em Class constructor to setup request. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRequest_a4d57c725686701f773eb3630630a7ea2}{$\sim$\+Request}} ()
+\begin{DoxyCompactList}\small\item\em Class destructor to clean things up. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRequest_afdd4c7bdc380667a26e8176c0817c38e}{execute}} ()
+\begin{DoxyCompactList}\small\item\em Execute the request. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRequest_ad1e7adca242d77178bf076888a800869}{write\+To\+File}} (std\+::string path)
+\begin{DoxyCompactList}\small\item\em Write the response to a file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRequest_a4fb132d8ff7fe994a1053249daba16d6}{write\+To\+File}} (F\+I\+LE $\ast$file)
+\begin{DoxyCompactList}\small\item\em Write the response to an existing file pointer. \end{DoxyCompactList}\item 
+F\+I\+LE $\ast$ \mbox{\hyperlink{classRequest_a436be4a8819613d14a46960a6486606c}{get\+Output\+File}} ()
+\begin{DoxyCompactList}\small\item\em Write the response to an existing file pointer. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRequest_a99662876caf3ede45df1784ba8cfc14e}{get\+Response}} ()
+\begin{DoxyCompactList}\small\item\em Returns the raw response body from the H\+T\+TP request. \end{DoxyCompactList}\item 
+C\+U\+R\+Lcode \mbox{\hyperlink{classRequest_ad735f8581f7a67f89bac48daeda28d5c}{get\+Error\+Code}} ()
+\begin{DoxyCompactList}\small\item\em Get the curl error code. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRequest_ad17fcd2e399c1a52dbabc22b47365932}{get\+Error}} ()
+\begin{DoxyCompactList}\small\item\em Get the curl error detials. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classRequest_a30857fa1b1c7f72eae0bf8715afca24e}{url}}
+\item 
+std\+::string \mbox{\hyperlink{classRequest_a5b17baa5e19a5d32290efb13857b9b53}{data\+Buffer}}
+\item 
+std\+::string \mbox{\hyperlink{classRequest_a9464a3ce78a0032a59585e89f2d99ceb}{error\+Buffer}}
+\item 
+C\+U\+RL $\ast$ \mbox{\hyperlink{classRequest_a2444393720670c8aa8b8d0c3e0a330f4}{curl}}
+\item 
+C\+U\+R\+Lcode \mbox{\hyperlink{classRequest_aa9608c95e5c45c32c335c477683de325}{res}}
+\item 
+F\+I\+LE $\ast$ \mbox{\hyperlink{classRequest_ab13f8ce26d05e7f117ff22476bcf3727}{file\+Pointer}}
+\item 
+bool \mbox{\hyperlink{classRequest_af2a10c30a9c5d6bbe5ece6303ee97336}{is\+Binary\+Download}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classRequest}{Request}} Class. 
+
+H\+T\+TP \mbox{\hyperlink{classRequest}{Request}} Definition
+
+C\+S3307 Individual Assignment David Tkachuk \href{mailto:dtkachu2@uwo.ca}{\texttt{ dtkachu2@uwo.\+ca}} February 7th 2023 \mbox{\hyperlink{classRequest}{Request}} Class
+
+Allows us to send some H\+T\+TP request and easily extract the error or response. \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRequest_af937ab646a59f20a1765b43e67434a98}\label{classRequest_af937ab646a59f20a1765b43e67434a98}} 
+\index{Request@{Request}!Request@{Request}}
+\index{Request@{Request}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{Request()}{Request()}}
+{\footnotesize\ttfamily Request\+::\+Request (\begin{DoxyParamCaption}\item[{std\+::string}]{url }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Class constructor to setup request. 
+
+Class constructor to setup request 
+\begin{DoxyParams}{Parameters}
+{\em url} & The H\+T\+TP U\+RL to send a request to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRequest_a4d57c725686701f773eb3630630a7ea2}\label{classRequest_a4d57c725686701f773eb3630630a7ea2}} 
+\index{Request@{Request}!````~Request@{$\sim$Request}}
+\index{````~Request@{$\sim$Request}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{$\sim$Request()}{~Request()}}
+{\footnotesize\ttfamily Request\+::$\sim$\+Request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Class destructor to clean things up. 
+
+Class destructor to clean things up \begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRequest_afdd4c7bdc380667a26e8176c0817c38e}\label{classRequest_afdd4c7bdc380667a26e8176c0817c38e}} 
+\index{Request@{Request}!execute@{execute}}
+\index{execute@{execute}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily bool Request\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Execute the request. 
+
+Execute the request \begin{DoxyReturn}{Returns}
+True if request successful, false otherwise 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRequest_ad17fcd2e399c1a52dbabc22b47365932}\label{classRequest_ad17fcd2e399c1a52dbabc22b47365932}} 
+\index{Request@{Request}!getError@{getError}}
+\index{getError@{getError}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{getError()}{getError()}}
+{\footnotesize\ttfamily std\+::string Request\+::get\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the curl error detials. 
+
+Get the curl error details if applicable as string \begin{DoxyReturn}{Returns}
+The request error details 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRequest_ad735f8581f7a67f89bac48daeda28d5c}\label{classRequest_ad735f8581f7a67f89bac48daeda28d5c}} 
+\index{Request@{Request}!getErrorCode@{getErrorCode}}
+\index{getErrorCode@{getErrorCode}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{getErrorCode()}{getErrorCode()}}
+{\footnotesize\ttfamily C\+U\+R\+Lcode Request\+::get\+Error\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the curl error code. 
+
+Get the curl error code if applicable \begin{DoxyReturn}{Returns}
+The request error code 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRequest_a436be4a8819613d14a46960a6486606c}\label{classRequest_a436be4a8819613d14a46960a6486606c}} 
+\index{Request@{Request}!getOutputFile@{getOutputFile}}
+\index{getOutputFile@{getOutputFile}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{getOutputFile()}{getOutputFile()}}
+{\footnotesize\ttfamily F\+I\+LE $\ast$ Request\+::get\+Output\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Write the response to an existing file pointer. 
+
+Returns the file pointer to the file we\textquotesingle{}re writing to, if applicable.
+
+Write the response to an existing file pointer 
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the file was written successfully, false otherwise 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk
+\end{DoxyAuthor}
+Returns the file pointer to the file we\textquotesingle{}re writing to, if applicable \begin{DoxyReturn}{Returns}
+The file pointer, null if not set or not a binary download 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRequest_a99662876caf3ede45df1784ba8cfc14e}\label{classRequest_a99662876caf3ede45df1784ba8cfc14e}} 
+\index{Request@{Request}!getResponse@{getResponse}}
+\index{getResponse@{getResponse}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{getResponse()}{getResponse()}}
+{\footnotesize\ttfamily std\+::string Request\+::get\+Response (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the raw response body from the H\+T\+TP request. 
+
+Returns the raw response body from the H\+T\+TP request \begin{DoxyReturn}{Returns}
+String response data 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRequest_a4fb132d8ff7fe994a1053249daba16d6}\label{classRequest_a4fb132d8ff7fe994a1053249daba16d6}} 
+\index{Request@{Request}!writeToFile@{writeToFile}}
+\index{writeToFile@{writeToFile}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{writeToFile()}{writeToFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Request\+::write\+To\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+Write the response to an existing file pointer. 
+
+Write the response to an existing file pointer 
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write the response to an existing file pointer 
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the file was written successfully, false otherwise 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRequest_ad1e7adca242d77178bf076888a800869}\label{classRequest_ad1e7adca242d77178bf076888a800869}} 
+\index{Request@{Request}!writeToFile@{writeToFile}}
+\index{writeToFile@{writeToFile}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{writeToFile()}{writeToFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Request\+::write\+To\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{path }\end{DoxyParamCaption})}
+
+
+
+Write the response to a file. 
+
+Write the response to a file 
+\begin{DoxyParams}{Parameters}
+{\em path} & The file\textquotesingle{}s path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the file was written successfully, false otherwise 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRequest_a2444393720670c8aa8b8d0c3e0a330f4}\label{classRequest_a2444393720670c8aa8b8d0c3e0a330f4}} 
+\index{Request@{Request}!curl@{curl}}
+\index{curl@{curl}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{curl}{curl}}
+{\footnotesize\ttfamily C\+U\+RL$\ast$ Request\+::curl\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRequest_a5b17baa5e19a5d32290efb13857b9b53}\label{classRequest_a5b17baa5e19a5d32290efb13857b9b53}} 
+\index{Request@{Request}!dataBuffer@{dataBuffer}}
+\index{dataBuffer@{dataBuffer}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{dataBuffer}{dataBuffer}}
+{\footnotesize\ttfamily std\+::string Request\+::data\+Buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRequest_a9464a3ce78a0032a59585e89f2d99ceb}\label{classRequest_a9464a3ce78a0032a59585e89f2d99ceb}} 
+\index{Request@{Request}!errorBuffer@{errorBuffer}}
+\index{errorBuffer@{errorBuffer}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{errorBuffer}{errorBuffer}}
+{\footnotesize\ttfamily std\+::string Request\+::error\+Buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRequest_ab13f8ce26d05e7f117ff22476bcf3727}\label{classRequest_ab13f8ce26d05e7f117ff22476bcf3727}} 
+\index{Request@{Request}!filePointer@{filePointer}}
+\index{filePointer@{filePointer}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{filePointer}{filePointer}}
+{\footnotesize\ttfamily F\+I\+LE$\ast$ Request\+::file\+Pointer\hspace{0.3cm}{\ttfamily [private]}}
+
+Filer pointer to wwrite to, if its a binary download \mbox{\Hypertarget{classRequest_af2a10c30a9c5d6bbe5ece6303ee97336}\label{classRequest_af2a10c30a9c5d6bbe5ece6303ee97336}} 
+\index{Request@{Request}!isBinaryDownload@{isBinaryDownload}}
+\index{isBinaryDownload@{isBinaryDownload}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{isBinaryDownload}{isBinaryDownload}}
+{\footnotesize\ttfamily bool Request\+::is\+Binary\+Download\hspace{0.3cm}{\ttfamily [private]}}
+
+Whether te reqeust is a binary
+
+If true, we\textquotesingle{}re dealing with binary data and will write data to a file pointer. \mbox{\Hypertarget{classRequest_aa9608c95e5c45c32c335c477683de325}\label{classRequest_aa9608c95e5c45c32c335c477683de325}} 
+\index{Request@{Request}!res@{res}}
+\index{res@{res}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{res}{res}}
+{\footnotesize\ttfamily C\+U\+R\+Lcode Request\+::res\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRequest_a30857fa1b1c7f72eae0bf8715afca24e}\label{classRequest_a30857fa1b1c7f72eae0bf8715afca24e}} 
+\index{Request@{Request}!url@{url}}
+\index{url@{url}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{url}{url}}
+{\footnotesize\ttfamily std\+::string Request\+::url\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+request/\mbox{\hyperlink{request_8h}{request.\+h}}\item 
+request/\mbox{\hyperlink{request_8cpp}{request.\+cpp}}\end{DoxyCompactItemize}

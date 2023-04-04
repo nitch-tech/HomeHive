@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['save_5fbutton_315',['save_button',['../classSettings.html#ab56e6e339385dd1f0243e4f010c8c40f',1,'Settings']]],
+  ['savesettings_316',['saveSettings',['../classSettings.html#abdfb25e51f37235758a0a12917305b42',1,'Settings']]],
+  ['setbackgroundinterval_317',['SetBackgroundInterval',['../classTimer.html#a93c138af0fba0cb059a3325b87634d4a',1,'Timer']]],
+  ['setdateandtime_318',['setDateAndTime',['../classIntervalView.html#ab7ff31432c388ae49a82aa464328d8f8',1,'IntervalView']]],
+  ['setdescription_319',['setDescription',['../classUnsplashBackground.html#aa9dee43e8f814aaa8f9d5ef9b70b3955',1,'UnsplashBackground']]],
+  ['setfullscreen_320',['setFullscreen',['../classHomeView.html#a8e92379bdce2f5f2bb526717ebf32d07',1,'HomeView']]],
+  ['setheight_321',['setHeight',['../classUnsplashBackground.html#a28bbf695fcee0996d3b02429d32f43d5',1,'UnsplashBackground']]],
+  ['sethour_322',['setHour',['../classAlarm.html#a0d64d716c65bbb7bb08b0f1d46c731b1',1,'Alarm']]],
+  ['setminute_323',['setMinute',['../classAlarm.html#ad7c6065c3a368b36b099379acd951e16',1,'Alarm']]],
+  ['setnewalarm_324',['setNewAlarm',['../classAlarm.html#a9000b5a3da06ac15286124dde9a62f03',1,'Alarm']]],
+  ['settings_325',['Settings',['../classSettings.html#ab7169a6eefce79566dd07db3b1e5e967',1,'Settings']]],
+  ['settingsevent_326',['SettingsEvent',['../classSettingsEvent.html#a9abdffd8c57a2010000227dbf32e39bc',1,'SettingsEvent']]],
+  ['setup_327',['setup',['../classBaseView.html#a74b9e48547da305b70827b26d4d31da5',1,'BaseView']]],
+  ['setuplayout_328',['setupLayout',['../classBaseView.html#a36def8b5077dffd258d7842949979e8b',1,'BaseView::setupLayout()'],['../classHomeView.html#a1a4590dc2cefb3c0eb6d1ec71742f68a',1,'HomeView::setupLayout()']]],
+  ['seturl_329',['setURL',['../classUnsplashBackground.html#a1abf43e62242c0bfd9e00c286835a001',1,'UnsplashBackground']]],
+  ['setwidth_330',['setWidth',['../classUnsplashBackground.html#a31f8795004811dde015af982eb71005d',1,'UnsplashBackground']]],
+  ['show_331',['show',['../classBaseView.html#aece1087aa97f36fdc5e48841f24ad187',1,'BaseView']]],
+  ['start_332',['Start',['../classApp.html#a0babc92aec4ba21cf3f0b49b64261fba',1,'App']]],
+  ['subscribe_333',['subscribe',['../classSettingsEvent.html#ad7dfd1263faa1437ea305383578be375',1,'SettingsEvent']]]
+];

@@ -1,0 +1,65 @@
+\hypertarget{request_8cpp}{}\doxysection{request/request.cpp File Reference}
+\label{request_8cpp}\index{request/request.cpp@{request/request.cpp}}
+{\ttfamily \#include \char`\"{}request.\+h\char`\"{}}\newline
+Include dependency graph for request.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static size\+\_\+t \mbox{\hyperlink{request_8cpp_ab58dd2bc061c63ffd2f73e4d7b01f50b}{write\+String\+Callback}} (void $\ast$contents, size\+\_\+t size, size\+\_\+t nmemb, void $\ast$userp)
+\begin{DoxyCompactList}\small\item\em Curl write string callback. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{request_8cpp_abad064b87b69d2059a03784efe5448af}{write\+Binary\+Callback}} (void $\ast$ptr, size\+\_\+t size, size\+\_\+t nmemb, F\+I\+LE $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Curl write binary callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{request_8cpp_abad064b87b69d2059a03784efe5448af}\label{request_8cpp_abad064b87b69d2059a03784efe5448af}} 
+\index{request.cpp@{request.cpp}!writeBinaryCallback@{writeBinaryCallback}}
+\index{writeBinaryCallback@{writeBinaryCallback}!request.cpp@{request.cpp}}
+\doxysubsubsection{\texorpdfstring{writeBinaryCallback()}{writeBinaryCallback()}}
+{\footnotesize\ttfamily size\+\_\+t write\+Binary\+Callback (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr,  }\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t}]{nmemb,  }\item[{F\+I\+LE $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Curl write binary callback. 
+
+Curl write binary callback 
+\begin{DoxyParams}{Parameters}
+{\em ptr} & the data pointer to write \\
+\hline
+{\em size} & the size of the data \\
+\hline
+{\em nmemb} & number of mem \\
+\hline
+{\em stream} & the file stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of written data? 
+\end{DoxyReturn}
+\mbox{\Hypertarget{request_8cpp_ab58dd2bc061c63ffd2f73e4d7b01f50b}\label{request_8cpp_ab58dd2bc061c63ffd2f73e4d7b01f50b}} 
+\index{request.cpp@{request.cpp}!writeStringCallback@{writeStringCallback}}
+\index{writeStringCallback@{writeStringCallback}!request.cpp@{request.cpp}}
+\doxysubsubsection{\texorpdfstring{writeStringCallback()}{writeStringCallback()}}
+{\footnotesize\ttfamily static size\+\_\+t write\+String\+Callback (\begin{DoxyParamCaption}\item[{void $\ast$}]{contents,  }\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t}]{nmemb,  }\item[{void $\ast$}]{userp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Curl write string callback. 
+
+H\+T\+TP \mbox{\hyperlink{classRequest}{Request}} Class Implementation
+
+C\+S3307 Individual Assignment David Tkachuk \href{mailto:dtkachu2@uwo.ca}{\texttt{ dtkachu2@uwo.\+ca}} February 7th 2023 Curl write string callback 
+\begin{DoxyParams}{Parameters}
+{\em contents} & the data to write \\
+\hline
+{\em size} & the size of the data \\
+\hline
+{\em nmemb} & size of data \\
+\hline
+{\em userp} & data to write to? \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The size of the data 
+\end{DoxyReturn}

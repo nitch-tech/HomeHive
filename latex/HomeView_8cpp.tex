@@ -1,0 +1,47 @@
+\hypertarget{HomeView_8cpp}{}\doxysection{gui/\+Home\+View.cpp File Reference}
+\label{HomeView_8cpp}\index{gui/HomeView.cpp@{gui/HomeView.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$gtk/gtk.\+h$>$}\newline
+{\ttfamily \#include $<$glib.\+h$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include \char`\"{}Home\+View.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../event/\+Timer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Gui\+Helpers.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}components/\+Greeting\+Component.\+h\char`\"{}}\newline
+Include dependency graph for Home\+View.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{HomeView_8cpp_a4bea11097f48185121563385397ab0da}{on\+Size\+Allocate}} (Gtk\+Widget $\ast$widget, Gdk\+Rectangle $\ast$allocation, \mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Size Allocator Signal Handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{HomeView_8cpp_a4bea11097f48185121563385397ab0da}\label{HomeView_8cpp_a4bea11097f48185121563385397ab0da}} 
+\index{HomeView.cpp@{HomeView.cpp}!onSizeAllocate@{onSizeAllocate}}
+\index{onSizeAllocate@{onSizeAllocate}!HomeView.cpp@{HomeView.cpp}}
+\doxysubsubsection{\texorpdfstring{onSizeAllocate()}{onSizeAllocate()}}
+{\footnotesize\ttfamily static void on\+Size\+Allocate (\begin{DoxyParamCaption}\item[{Gtk\+Widget $\ast$}]{widget,  }\item[{Gdk\+Rectangle $\ast$}]{allocation,  }\item[{\mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Size Allocator Signal Handler. 
+
+Size Allocator Signal Handler
+
+Whenever the window is resized, the grid is resized to match the window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em widget} & The widget that fired the signal \\
+\hline
+{\em allocation} & The new allocation of the widget (window dimemsions) \\
+\hline
+{\em data} & Signal data (grid widget) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+David Tkachuk 
+\end{DoxyAuthor}

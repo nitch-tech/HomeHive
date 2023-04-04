@@ -1,0 +1,145 @@
+\hypertarget{classSettingsEvent}{}\doxysection{Settings\+Event Class Reference}
+\label{classSettingsEvent}\index{SettingsEvent@{SettingsEvent}}
+
+
+A class for handling events related to the settings. The \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class is responsible for updating the \mbox{\hyperlink{classHomeView}{Home\+View}} and subscribing to its events. It contains a static instance of itself and a static pointer to a \mbox{\hyperlink{classHomeView}{Home\+View}} object that it subscribes to.  
+
+
+
+
+{\ttfamily \#include $<$Settings\+Event.\+h$>$}
+
+
+
+Collaboration diagram for Settings\+Event\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSettingsEvent_af4b362031d9808bfdf810c8ca450c36a}{update\+\_\+main}} ()
+\begin{DoxyCompactList}\small\item\em Update the main label in the \mbox{\hyperlink{classHomeView}{Home\+View}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSettingsEvent_ad7dfd1263faa1437ea305383578be375}{subscribe}} (\mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$\mbox{\hyperlink{classSettingsEvent_a70004142f95d6d9b4badfe436ac717cd}{view}})
+\begin{DoxyCompactList}\small\item\em Subscribe to a \mbox{\hyperlink{classHomeView}{Home\+View}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} $\ast$ \mbox{\hyperlink{classSettingsEvent_af25c7aaa4eec18f9d041be0b7f826d29}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the singleton instance of the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSettingsEvent_a9abdffd8c57a2010000227dbf32e39bc}{Settings\+Event}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor for the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSettingsEvent_ad2c1929cc126776f14878e8ee8a1f67e}{$\sim$\+Settings\+Event}} ()
+\begin{DoxyCompactList}\small\item\em Private destructor for the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} $\ast$ \mbox{\hyperlink{classSettingsEvent_a31cf5e9521ea24e9fd3e5a396947aae6}{eventptr}} = nullptr
+\item 
+static \mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$ \mbox{\hyperlink{classSettingsEvent_a70004142f95d6d9b4badfe436ac717cd}{view}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class for handling events related to the settings. The \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class is responsible for updating the \mbox{\hyperlink{classHomeView}{Home\+View}} and subscribing to its events. It contains a static instance of itself and a static pointer to a \mbox{\hyperlink{classHomeView}{Home\+View}} object that it subscribes to. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSettingsEvent_a9abdffd8c57a2010000227dbf32e39bc}\label{classSettingsEvent_a9abdffd8c57a2010000227dbf32e39bc}} 
+\index{SettingsEvent@{SettingsEvent}!SettingsEvent@{SettingsEvent}}
+\index{SettingsEvent@{SettingsEvent}!SettingsEvent@{SettingsEvent}}
+\doxysubsubsection{\texorpdfstring{SettingsEvent()}{SettingsEvent()}}
+{\footnotesize\ttfamily Settings\+Event\+::\+Settings\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private constructor for the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class. 
+
+Default constructor of the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class.
+
+The constructor is made private to ensure that only one instance of the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class can be created. \mbox{\Hypertarget{classSettingsEvent_ad2c1929cc126776f14878e8ee8a1f67e}\label{classSettingsEvent_ad2c1929cc126776f14878e8ee8a1f67e}} 
+\index{SettingsEvent@{SettingsEvent}!````~SettingsEvent@{$\sim$SettingsEvent}}
+\index{````~SettingsEvent@{$\sim$SettingsEvent}!SettingsEvent@{SettingsEvent}}
+\doxysubsubsection{\texorpdfstring{$\sim$SettingsEvent()}{~SettingsEvent()}}
+{\footnotesize\ttfamily Settings\+Event\+::$\sim$\+Settings\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private destructor for the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class. 
+
+Destructor of the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class.
+
+The destructor is made private to ensure that the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} object can only be destroyed through the \mbox{\hyperlink{classSettingsEvent_af25c7aaa4eec18f9d041be0b7f826d29}{get\+Instance()}} function. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSettingsEvent_af25c7aaa4eec18f9d041be0b7f826d29}\label{classSettingsEvent_af25c7aaa4eec18f9d041be0b7f826d29}} 
+\index{SettingsEvent@{SettingsEvent}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!SettingsEvent@{SettingsEvent}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} $\ast$ Settings\+Event\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the singleton instance of the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class. 
+
+Get the instance of the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} singleton class.
+
+\begin{DoxyReturn}{Returns}
+A pointer to the singleton instance of the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class.
+
+Settings\+Event$\ast$ -\/ pointer to the instance of the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettingsEvent_ad7dfd1263faa1437ea305383578be375}\label{classSettingsEvent_ad7dfd1263faa1437ea305383578be375}} 
+\index{SettingsEvent@{SettingsEvent}!subscribe@{subscribe}}
+\index{subscribe@{subscribe}!SettingsEvent@{SettingsEvent}}
+\doxysubsubsection{\texorpdfstring{subscribe()}{subscribe()}}
+{\footnotesize\ttfamily void Settings\+Event\+::subscribe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$}]{v }\end{DoxyParamCaption})}
+
+
+
+Subscribe to a \mbox{\hyperlink{classHomeView}{Home\+View}} object. 
+
+Subscribe a \mbox{\hyperlink{classHomeView}{Home\+View}} object to the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}}.
+
+This function sets the static pointer to the \mbox{\hyperlink{classHomeView}{Home\+View}} object that the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class subscribes to.
+
+
+\begin{DoxyParams}{Parameters}
+{\em view} & A pointer to the \mbox{\hyperlink{classHomeView}{Home\+View}} object to subscribe to.\\
+\hline
+{\em v} & -\/ pointer to the \mbox{\hyperlink{classHomeView}{Home\+View}} object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSettingsEvent_af4b362031d9808bfdf810c8ca450c36a}\label{classSettingsEvent_af4b362031d9808bfdf810c8ca450c36a}} 
+\index{SettingsEvent@{SettingsEvent}!update\_main@{update\_main}}
+\index{update\_main@{update\_main}!SettingsEvent@{SettingsEvent}}
+\doxysubsubsection{\texorpdfstring{update\_main()}{update\_main()}}
+{\footnotesize\ttfamily void Settings\+Event\+::update\+\_\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update the main label in the \mbox{\hyperlink{classHomeView}{Home\+View}}. 
+
+Update the \mbox{\hyperlink{classHomeView}{Home\+View}} object associated with the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}}.
+
+This function calls the update\+Label() function in the \mbox{\hyperlink{classHomeView}{Home\+View}} class to update the main label with the latest settings. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSettingsEvent_a31cf5e9521ea24e9fd3e5a396947aae6}\label{classSettingsEvent_a31cf5e9521ea24e9fd3e5a396947aae6}} 
+\index{SettingsEvent@{SettingsEvent}!eventptr@{eventptr}}
+\index{eventptr@{eventptr}!SettingsEvent@{SettingsEvent}}
+\doxysubsubsection{\texorpdfstring{eventptr}{eventptr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} $\ast$ Settings\+Event\+::eventptr = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Pointer to the singleton instance of the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class. \mbox{\Hypertarget{classSettingsEvent_a70004142f95d6d9b4badfe436ac717cd}\label{classSettingsEvent_a70004142f95d6d9b4badfe436ac717cd}} 
+\index{SettingsEvent@{SettingsEvent}!view@{view}}
+\index{view@{view}!SettingsEvent@{SettingsEvent}}
+\doxysubsubsection{\texorpdfstring{view}{view}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHomeView}{Home\+View}} $\ast$ Settings\+Event\+::view = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Pointer to the \mbox{\hyperlink{classHomeView}{Home\+View}} object that the \mbox{\hyperlink{classSettingsEvent}{Settings\+Event}} class subscribes to. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+event/\mbox{\hyperlink{SettingsEvent_8h}{Settings\+Event.\+h}}\item 
+event/\mbox{\hyperlink{SettingsEvent_8cpp}{Settings\+Event.\+cpp}}\end{DoxyCompactItemize}

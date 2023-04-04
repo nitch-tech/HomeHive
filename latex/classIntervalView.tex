@@ -1,0 +1,80 @@
+\hypertarget{classIntervalView}{}\doxysection{Interval\+View Class Reference}
+\label{classIntervalView}\index{IntervalView@{IntervalView}}
+
+
+header file for Internal\+View Abstarction expected by \mbox{\hyperlink{classTimer}{Timer}} class Having abstraction helps separate \mbox{\hyperlink{classTimer}{Timer}} from the G\+UI. The removes cyclic dependancy  
+
+
+
+
+{\ttfamily \#include $<$Interval\+View.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classIntervalView_a4d225d85a9958d9c6ef782318bbfbf79}{change\+Background\+Image}} ()
+\begin{DoxyCompactList}\small\item\em abstract method for changing background image \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classIntervalView_ab7ff31432c388ae49a82aa464328d8f8}{set\+Date\+And\+Time}} (char $\ast$date, char $\ast$time)
+\item 
+virtual void \mbox{\hyperlink{classIntervalView_afe452f5bfe884192baae13395c28b522}{update\+Weather}} ()
+\item 
+virtual int \mbox{\hyperlink{classIntervalView_a489c81c9743f14b6ccae6e6bffe43dfd}{check\+Alarm}} ()
+\item 
+virtual void \mbox{\hyperlink{classIntervalView_af2eb9027536b7c696cb763f5e3cf40b0}{is\+Clicked}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+header file for Internal\+View Abstarction expected by \mbox{\hyperlink{classTimer}{Timer}} class Having abstraction helps separate \mbox{\hyperlink{classTimer}{Timer}} from the G\+UI. The removes cyclic dependancy 
+
+\begin{DoxyAuthor}{Author}
+Mariam Alabi 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classIntervalView_a4d225d85a9958d9c6ef782318bbfbf79}\label{classIntervalView_a4d225d85a9958d9c6ef782318bbfbf79}} 
+\index{IntervalView@{IntervalView}!changeBackgroundImage@{changeBackgroundImage}}
+\index{changeBackgroundImage@{changeBackgroundImage}!IntervalView@{IntervalView}}
+\doxysubsubsection{\texorpdfstring{changeBackgroundImage()}{changeBackgroundImage()}}
+{\footnotesize\ttfamily void Interval\+View\+::change\+Background\+Image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+abstract method for changing background image 
+
+Internal\+View class Expects that a class that inherits internal view implements all the required functions, but does not care how.
+
+\begin{DoxyAuthor}{Author}
+Mariam Alabi 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classIntervalView_a489c81c9743f14b6ccae6e6bffe43dfd}\label{classIntervalView_a489c81c9743f14b6ccae6e6bffe43dfd}} 
+\index{IntervalView@{IntervalView}!checkAlarm@{checkAlarm}}
+\index{checkAlarm@{checkAlarm}!IntervalView@{IntervalView}}
+\doxysubsubsection{\texorpdfstring{checkAlarm()}{checkAlarm()}}
+{\footnotesize\ttfamily int Interval\+View\+::check\+Alarm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classIntervalView_af2eb9027536b7c696cb763f5e3cf40b0}\label{classIntervalView_af2eb9027536b7c696cb763f5e3cf40b0}} 
+\index{IntervalView@{IntervalView}!isClicked@{isClicked}}
+\index{isClicked@{isClicked}!IntervalView@{IntervalView}}
+\doxysubsubsection{\texorpdfstring{isClicked()}{isClicked()}}
+{\footnotesize\ttfamily void Interval\+View\+::is\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classIntervalView_ab7ff31432c388ae49a82aa464328d8f8}\label{classIntervalView_ab7ff31432c388ae49a82aa464328d8f8}} 
+\index{IntervalView@{IntervalView}!setDateAndTime@{setDateAndTime}}
+\index{setDateAndTime@{setDateAndTime}!IntervalView@{IntervalView}}
+\doxysubsubsection{\texorpdfstring{setDateAndTime()}{setDateAndTime()}}
+{\footnotesize\ttfamily void Interval\+View\+::set\+Date\+And\+Time (\begin{DoxyParamCaption}\item[{char $\ast$}]{date,  }\item[{char $\ast$}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classIntervalView_afe452f5bfe884192baae13395c28b522}\label{classIntervalView_afe452f5bfe884192baae13395c28b522}} 
+\index{IntervalView@{IntervalView}!updateWeather@{updateWeather}}
+\index{updateWeather@{updateWeather}!IntervalView@{IntervalView}}
+\doxysubsubsection{\texorpdfstring{updateWeather()}{updateWeather()}}
+{\footnotesize\ttfamily void Interval\+View\+::update\+Weather (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+event/\mbox{\hyperlink{IntervalView_8h}{Interval\+View.\+h}}\item 
+event/\mbox{\hyperlink{IntervalView_8cpp}{Interval\+View.\+cpp}}\end{DoxyCompactItemize}
