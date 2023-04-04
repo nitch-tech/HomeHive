@@ -77,19 +77,32 @@ double Weather::getTemp() {
 int Weather::getCondId() {
 	return conditionId;
 }
-
+/**
+* @brief get the temperature as an integer
+* @return integer that is the current temperature
+*/
 int Weather::getTempRounded() {
 	return (int) std::round(this->temperatureString);
 }
-
+/**
+ * @brief gets the temperature (as a double)
+ * @return the current temperature as a double
+ */
 float Weather::getTempFeelsLike() {
 	return this->tempFeelsLike;
 }
-
+/**
+* @brief get the temperature as an integer
+* @return integer that is the current temperature
+*/
 int Weather::getTempFeelsLikeRounded() {
 	return (int) std::round(this->tempFeelsLike);
 }
-
+/**
+ * @brief get the location of weather
+ * get the location of the weather. In our app, it should always be London, Ontario
+ * @return location of weather as a string
+ */
 std::string Weather::getLocationName() {
 	return this->locationName;
 }
