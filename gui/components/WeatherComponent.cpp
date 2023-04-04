@@ -9,6 +9,12 @@ WeatherComponent::~WeatherComponent() {
 	delete this->weather;
 }
 
+
+/**
+ * Setup the weather component, initialize and setup all its widgets and stuff
+ * @brief Setup the weather component
+ * @author Mariam
+ */
 void WeatherComponent::setup() {
 	// create weather's box container
 	GtkWidget* boxWeather = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
@@ -25,9 +31,13 @@ void WeatherComponent::setup() {
 	this->imgWeatherIcon = (GtkImage*) gtk_image_new();
 	gtk_misc_set_alignment(GTK_MISC(imgWeatherIcon), 0.5, 0.5);
 	gtk_box_pack_start(this->container, GTK_WIDGET(imgWeatherIcon), FALSE, FALSE, 0);
-
 }
 
+/**
+ * Show the weather component
+ * @brief Show the weather component
+ * @author David Tkachuk
+ */
 void WeatherComponent::show() {
 	gtk_grid_attach(this->parentGrid, (GtkWidget*) this->container, 2, 3, 1, 1);
 }
@@ -37,6 +47,8 @@ void WeatherComponent::show() {
  *
  * Fetches the latest weather information from the Weather API,
  * and then will attempt to render information (temperature) and an icon.
+ * @brief Updates the weather information
+ * @author Mariam
  */
 void WeatherComponent::updateWeather() {
 	if (this->weather->fetchWeatherData() != 0) {
@@ -59,6 +71,8 @@ void WeatherComponent::updateWeather() {
  * Retrieves the filename of the icon to use for the weather
  *
  * @return A string containing the filename relative path of the icon
+ * @brief Get icon file name
+ * @author Mariam
  */
 std::string WeatherComponent::getIconFilename() {
 	std::string imagePath;
@@ -89,6 +103,8 @@ std::string WeatherComponent::getIconFilename() {
  * Loads an icon from a file path, and will load and render it
  *
  * @param imagePath The file path of the icon image to load and display
+ * @brief Load icon from file path
+ * @author Mariam
  */
 void WeatherComponent::setIcon(const std::string imagePath) {
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(imagePath.c_str(), NULL);
@@ -100,10 +116,22 @@ void WeatherComponent::setIcon(const std::string imagePath) {
  * Sets the text of the weather information label
  *
  * @param text The text to set the label to
+ * @brief Set weather information text
+ * @author Mariam
  */
 void WeatherComponent::setInfoText(const gchar* text) {
 	gtk_label_set_text((GtkLabel*) this->lblWeatherInfo, text);
 }
 
+/**
+ * Update the component
+ *
+ * When executed, and if required, this component may update or re-render
+ * itself to reflect any changes in the application settings.
+ *
+ * @todo Ability to change the weather location
+ * @brief Update the component
+ * @author David Tkachuk
+ */
 void WeatherComponent::settingsUpdated() {
 }

@@ -11,6 +11,12 @@ const std::string API_KEY = "Eimmb-Q4YT2OgHDNhqgdynudnrDiWx4_heqO0IHQoaw";
 const std::string BG_IMG_MAIN = "background.jpg";
 const std::string BG_IMG_BUFF = "background2.jpg";
 
+/**
+ * Unsplash class constructor
+ * setup the defualt cateogires and load them into the map
+ * @brief Unsplash class constructor
+ * @author David Tkachuk
+ */
 Unsplash::Unsplash() {
 	this->isBufferImage = false;
 	this->categories = std::map<std::string, std::string>();
@@ -22,6 +28,12 @@ Unsplash::~Unsplash() {
 	if (this->file) fclose(this->file);
 }
 
+/**
+ * Fetch a random background from unsplash
+ * @return The background object, or null if there was an error
+ * @brief Fetch a random background from unsplash
+ * @author David Tkachuk
+ */
 UnsplashBackground *Unsplash::getRandomBackground() {
 	Request* req = new Request(
 					"https://api.unsplash.com/photos/random?topics=" +
@@ -47,6 +59,15 @@ UnsplashBackground *Unsplash::getRandomBackground() {
 	return bg;
 }
 
+/**
+ * Download a background image from unsplash
+ * @param background The background to donwload
+ * @param width The width to download the image at
+ * @param height The height to download the image at
+ * @return True if success, false otherwise
+ * @brief Download some background
+ * @author David Tkachuk
+ */
 bool Unsplash::downloadBackground(
 				UnsplashBackground *background,
 				int width,
@@ -86,26 +107,62 @@ bool Unsplash::downloadBackground(
 	return true;
 }
 
+/**
+ * Get the current background image file name
+ * @return Can be the main or buffer background image
+ * @brief Get the  background image file name
+ * @author David Tkachuk
+ */
 std::string Unsplash::getBackgroundImage() {
 	return this->isBufferImage ? BG_IMG_BUFF : BG_IMG_MAIN;
 }
 
+/**
+ * Get current category ID
+ * @return The cateogiry id
+ * @brief Get current category ID
+ */
 std::string Unsplash::getCurrentCategoryId() {
 	return this->currentCategoryId;
 }
 
+/**
+ * Get the category name of current category
+ * @return The current category name
+ * @brief Current category name
+ * @author David Tkachuk
+ */
 std::string Unsplash::getCurrentCategoryName() {
 	return this->getCategoryName(this->currentCategoryId);
 }
 
+/**
+ * Get the category name of a category id
+ * @param id The category id
+ * @return The category name
+ * @brief Get the category name of a category id
+ */
 std::string Unsplash::getCategoryName(std::string id) {
 	return this->categories[id];
 }
 
+/**
+ * Get all categories
+ * @return A map of category id to category name
+ * @brief Get all categories
+ * @details This is a map of category id to category name
+ * @authors David Tkachuk
+ */
 std::map<std::string, std::string> Unsplash::getCategories() {
 	return this->categories;
 }
 
+/**
+ * Hard coded "loading" of al lcategories and thier names
+ * @brief loads the background categories
+ * @see https://unsplash.com/documentation#list-all-topics
+ * @author David Tkachuk
+ */
 void Unsplash::loadCategories() {
 	this->categories["Fzo3zuOHN6w"] = "Travel";
 	this->categories["6sMVjTLSkeQ"] = "Nature";
