@@ -14,6 +14,7 @@ void AlarmComponent::show() {
 }
 /**
  * @brief generate the necessary widgets for the alarm object
+ * Sets upp all teh widgets
  *
  */
 void AlarmComponent::setup() {
