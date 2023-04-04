@@ -1,7 +1,9 @@
 //
 // Created by mariam on 2023-03-21.
 //
-
+/**
+ * @breif a class representing an alarm object
+ */
 
 #include "Alarm.h"
 
@@ -52,9 +54,12 @@ void Alarm::setNewAlarm(GDateTime* alarm) {
     this->alarm = alarm;
 
 }
+/**
+ *
+ * @return the date of the alarm
+ */
 GDateTime* Alarm::getAlarm() {
     return alarm;
-
 }
 
 

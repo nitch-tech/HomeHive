@@ -12,7 +12,10 @@ AlarmComponent::AlarmComponent() {
 void AlarmComponent::show() {
 
 }
-
+/**
+ * @brief generate the necessary widgets for the alarm object
+ *
+ */
 void AlarmComponent::setup() {
 	// create alarm's box container
 	GtkWidget* boxAlarm = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
@@ -61,7 +64,11 @@ void AlarmComponent::setup() {
 	g_signal_connect(setAlarmButton, "clicked", G_CALLBACK(button_clicked_callback), this);
 }
 
-
+/**
+ * @brief calls the 'on_button_clicked' method
+ * @param widget
+ * @param user_data
+ */
 void AlarmComponent::button_clicked_callback(GtkWidget *widget, gpointer user_data) {
 	AlarmComponent *obj = static_cast<AlarmComponent *>(user_data);
 	//When the alarm button gets clicked, call this function
@@ -69,6 +76,11 @@ void AlarmComponent::button_clicked_callback(GtkWidget *widget, gpointer user_da
 
 
 }
+/**
+ * @brief calls the 'on_ok_button_clicked' method
+ * @param widget
+ * @param user_data
+ */
 void AlarmComponent::ok_clicked_callback(GtkWidget *widget, gpointer user_data) {
 	AlarmComponent *obj = static_cast<AlarmComponent *>(user_data);
 	//When the alarm button gets clicked, call this function
@@ -76,6 +88,12 @@ void AlarmComponent::ok_clicked_callback(GtkWidget *widget, gpointer user_data) 
 
 
 }
+/**
+ * @brief The 'OK' button refers to the ok button that appears in the popup window when the alarm goes off.
+ * The method close the window
+ * @param widget
+ * @param user_data
+ */
 void AlarmComponent::on_ok_button_clicked(GtkWidget *widget, gpointer user_data) {
 
 	//g_signal_handlers_disconnect_by_data(widget, user_data);
@@ -86,7 +104,11 @@ void AlarmComponent::on_ok_button_clicked(GtkWidget *widget, gpointer user_data)
 	gtk_widget_hide(GTK_WIDGET(window));
 
 }
-
+/**
+ * @brief when set alarm button is clicked, it is set for the date and time the user chose. Also checks that if the alarm they set is the current time
+ * @param widget
+ * @param user_data
+ */
 void AlarmComponent::on_button_clicked(GtkWidget *widget, gpointer user_data) {
 
 	g_signal_handlers_disconnect_by_data(widget, user_data);
@@ -138,6 +160,10 @@ void AlarmComponent::on_button_clicked(GtkWidget *widget, gpointer user_data) {
 
 }
 
+/**
+ * @breif loops through all the set alarms to see if one of them needs to go off
+ * @return 1 if alarm went off
+ */
 int AlarmComponent::checkAlarm() {
 	//loop through all alarms
 	for (const auto& alarm : alarms_) {
@@ -207,8 +233,8 @@ int AlarmComponent::checkAlarm() {
 
 }
 
-void AlarmComponent::isClicked() {
-}
-
+/**
+ *
+ */
 void AlarmComponent::settingsUpdated() {
 }
