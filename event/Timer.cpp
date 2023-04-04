@@ -12,6 +12,12 @@ const int ALARM_INTERVAL = 60;// every minute
 
 Timer* Timer::instance = nullptr;
 
+/**
+ * Singleton instance, get timer instance or make new one
+ * @brief Get timer instance
+ * @param view The home view instance
+ * @author David Tkachuk
+ */
 Timer *Timer::getInstance(HomeView *view) {
 	if (Timer::instance == nullptr) {
 		Timer::instance = new Timer(view);
@@ -19,6 +25,12 @@ Timer *Timer::getInstance(HomeView *view) {
 	return Timer::instance;
 }
 
+/**
+ * Timer constructor
+ * @brief Timer constructor
+ * @param view The home view instance
+ * @author David Tkachuk
+ */
 Timer::Timer(HomeView* v) {
 	this->view = v;
 	this->buffDate = (char*)malloc(sizeof(char)*69);
@@ -34,6 +46,7 @@ Timer::~Timer() {
 /**
  * Change the interval, in seconds, for how frequent the background changes.
  * @param val The new interval, in seconds
+ * @authors David, Nick
  */
 void Timer::SetBackgroundInterval(int val) {
 	this->backgroundInterval = val;
@@ -42,17 +55,28 @@ void Timer::SetBackgroundInterval(int val) {
 /**
  * Get the interval, in seconds, for how frequent the background changes.
  * @return The interval, in seconds
+ * @author David Tkachuk
  */
 int Timer::GetBackgroundInterval() {
 	return this->backgroundInterval;
 }
 
+/**
+ * Register and start the timer
+ * @brief Register timer
+ * @author David Tkachuk
+ */
 void Timer::Register() {
 	// nifty lil hack, run the timer callback FIRST to populate the time before scheduling the timer
 	Timer::onTimerTick(this);
 	this->timerId = g_timeout_add(1000, (GSourceFunc) Timer::onTimerTick, (gpointer) this);
 }
 
+/**
+ * Unregister and stop the timer
+ * @brief Unregister timer
+ * @author David Tkachuk
+ */
 void Timer::Unregister() {
 	g_source_remove(this->timerId);
 }
