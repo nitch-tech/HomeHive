@@ -177,7 +177,7 @@ int AlarmComponent::checkAlarm() {
 			Uint8* wavBuffer;
 			Uint32 wavLength;
 
-			if (SDL_LoadWAV("../resources/s4-hilo.wav", &wavSpec, &wavBuffer, &wavLength) == NULL) {
+			if (SDL_LoadWAV("../resources/laserShoot.wav", &wavSpec, &wavBuffer, &wavLength) == NULL) {
 				std::cerr << "SDL_LoadWAV() error: " << SDL_GetError() << std::endl;
 				return 1;
 			}
