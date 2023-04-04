@@ -82,8 +82,8 @@ set(SCHEMA_INSTALL_DIR ${CMAKE_INSTALL_DATADIR}/glib-2.0/schemas)
 
 ## LINK LIBRARIES TO EXECUTABLES ##
 target_link_libraries(HomeHiveRequests PRIVATE nlohmann_json::nlohmann_json ${CURL_LIBRARIES})
-target_link_libraries(HomeHiveGUIComponents ${GTK_LIBRARIES} HomeHiveRequests HomeHiveEvent)
-target_link_libraries(HomeHiveGUI ${GTK_LIBRARIES} HomeHiveRequests HomeHiveEvent HomeHiveGUIComponents)
+target_link_libraries(HomeHiveGUIComponents ${GTK_LIBRARIES} ${SDL2_LIBRARIES} HomeHiveRequests HomeHiveEvent)
+target_link_libraries(HomeHiveGUI ${GTK_LIBRARIES} ${SDL2_LIBRARIES} HomeHiveRequests HomeHiveEvent HomeHiveGUIComponents)
 target_link_libraries(HomeHive ${GTK_LIBRARIES} ${SDL2_LIBRARIES} HomeHiveRequests HomeHiveEvent HomeHiveGUI)
 target_link_libraries(test PRIVATE nlohmann_json::nlohmann_json HomeHiveRequests)
 
