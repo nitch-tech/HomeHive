@@ -1,6 +1,11 @@
 //
 // Created by mariam on 2023-03-14.
 //
+/**
+ * @breif header class for weather
+ * Information about the current weather is stored in a Weather object
+ * @author Mariam Alabi
+ */
 
 
 #ifndef HOMEHIVE_WEATHER_H
@@ -20,13 +25,41 @@ class Weather {
 		int conditionId;
 
 	public:
+        /**
+         * @brief constructor for a weather object
+         */
 		Weather();
+        /**
+         * @brief deconstructor for a weather object
+         */
 		~Weather();
+        /**
+         * @brief get the current weather
+         * Call a request to openweathermap API to get the current weather data
+         */
 		int fetchWeatherData();
+        /**
+         * @brief gets the temperature (as a double)
+         * @return the current temperature as a double
+         */
 		double getTemp();
+        /**
+        * @brief get the temperature as an integer
+        * @return integer that is the current temperature
+        */
 		int getTempRounded();
+        /**
+         * @brief get the location of weather
+         * get the location of the weather. In our app, it should always be London, Ontario
+         * @return location of weather as a string
+         */
 		std::string getLocationName();
+
 		float getTempFeelsLike();
+        /**
+         *
+         * @return what the temperature feels like as an integer
+         */
 		int getTempFeelsLikeRounded();
 		int getCondId();
 };
