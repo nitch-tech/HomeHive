@@ -2,7 +2,8 @@
 // Created by mariam on 2023-03-21.
 //
 /**
- * @author Mariam
+ * When a user sets an alarm, information about the alarm is stored in the alarm class
+ * @author Mariam Alabi
  * @brief Header file for alarm class
  */
 
@@ -27,37 +28,49 @@ class Alarm {
 public:
     /**
      * @brief constructor for alarm class
+     * @author Mariam Alabi
      */
     Alarm();
     /**
     * @brief deconstructor for alarm class
+     * @author Mariam Alabi
     */
     ~Alarm();
     /**
      * @brief get the minute of the alarm object
      * @return minute of alarm object
+     * @author Mariam Alabi
      */
     int getMinute();
     /**
      * @brief get the hour of the alarm object
-     * @return
+     * @return the hour as an integer
+     * @author Mariam Alabi
      */
     int getHour();
     /**
      * @brief set the minute of the alarm object
-     * @param newMin
+     *
+     * If a user wants to set an alarm, this function sets the minute of the alarm
+     * @param newMin the new minute of the alarm
+     * @author Mariam Alabi
      */
     void setMinute(int newMin);
     /**
      * @brif set the hour of the alarm object
-     * @param newH
+     *
+     * If a user wants to set an alarm, this function sets the hour of the alarm
+     * @param newH the new hour of the alarm
+     * @author Mariam Alabi
      */
     void setHour(int newH);
     /**
      * @brief set the date of the alarm object
      *
      * When user presses 'set alarm' the date and time that was selected on the calender widget is extracted into a GDateTime* object
-     * @param alarm
+     * @param alarm has the date of the alarm
+     *
+     * @author Mariam Alabi
      */
     void setNewAlarm(GDateTime* alarm);
     /**
@@ -65,6 +78,7 @@ public:
      *
      * Used to get the date (day, month and year) of an alarm
      * @return GDateTime* containing a date
+     * @author Mariam Alabi
      */
     GDateTime* getAlarm();
 
