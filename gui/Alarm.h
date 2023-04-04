@@ -33,11 +33,39 @@ public:
     * @brief deconstructor for alarm class
     */
     ~Alarm();
+    /**
+     * @brief get the minute of the alarm object
+     * @return minute of alarm object
+     */
     int getMinute();
+    /**
+     * @brief get the hour of the alarm object
+     * @return
+     */
     int getHour();
+    /**
+     * @brief set the minute of the alarm object
+     * @param newMin
+     */
     void setMinute(int newMin);
+    /**
+     * @brif set the hour of the alarm object
+     * @param newH
+     */
     void setHour(int newH);
+    /**
+     * @brief set the date of the alarm object
+     *
+     * When user presses 'set alarm' the date and time that was selected on the calender widget is extracted into a GDateTime* object
+     * @param alarm
+     */
     void setNewAlarm(GDateTime* alarm);
+    /**
+     * @brief get date of alarm
+     *
+     * Used to get the date (day, month and year) of an alarm
+     * @return GDateTime* containing a date
+     */
     GDateTime* getAlarm();
 
 private:
