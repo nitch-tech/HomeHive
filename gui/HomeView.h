@@ -5,7 +5,6 @@
 #ifndef HOMEHIVE_HOMEVIEW_H
 #define HOMEHIVE_HOMEVIEW_H
 
-
 #include "BaseView.h"
 #include "../request/Unsplash.h"
 #include "../request/weather.h"
@@ -15,8 +14,11 @@
 #include "components/DateTimeComponent.h"
 #include "components/WeatherComponent.h"
 #include "components/NewsComponent.h"
+#include "components/AlarmComponent.h"
+//#include "../event/IntervalView.h"
 
-class HomeView : public BaseView {
+
+class HomeView : public BaseView { // };, public IntervalView {
 	private:
 		GSettings* settings;
 
@@ -24,6 +26,7 @@ class HomeView : public BaseView {
 		DateTimeComponent* dateTimeComponent;
 		WeatherComponent* weatherComponent;
 		NewsComponent* newsComponent;
+		AlarmComponent* alarmComponent;
 
 		GtkLayout* layout;
 		GtkGrid* grid;
@@ -71,6 +74,14 @@ class HomeView : public BaseView {
 		 */
 		NewsComponent* getNewsComponent();
 
+		/**
+		 * Retrieves the AlarmComponent instance, which handles retrieving and rendering
+		 * information about the current alarms.
+		 *
+		 * @return The current AlarmComponent instance
+		 */
+		AlarmComponent* getAlarmComponent();
+
 		void changeBackgroundImage();
 
 		/**
@@ -113,6 +124,7 @@ class HomeView : public BaseView {
 		 * @param height The height of the widget in the grid
 		 */
 		void addSeperator(const std::string id, int left, int top, int width, int height);
+
 
 	protected:
 		void setupLayout() override;

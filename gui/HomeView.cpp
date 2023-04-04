@@ -34,6 +34,7 @@ HomeView::HomeView(GtkWindow *window, GSettings* settings) : BaseView(window, se
 	components.push_back(this->dateTimeComponent = new DateTimeComponent());
 	components.push_back(this->weatherComponent = new WeatherComponent());
 	components.push_back(this->newsComponent = new NewsComponent());
+	components.push_back(this->alarmComponent = new AlarmComponent());
 	components.push_back(new GreetingComponent(settings));
 
 	this->unsplash = new Unsplash();
@@ -43,6 +44,7 @@ HomeView::~HomeView() {
 	delete this->weatherComponent;
 	delete this->dateTimeComponent;
 	delete this->newsComponent;
+	delete this->alarmComponent;
 	this->components.clear();
 	delete this->unsplash;
 }
@@ -301,4 +303,14 @@ void HomeView::update() {
 	}
 	Timer::getInstance(this)
 		->SetBackgroundInterval(Settings::getInstance()->getBackgroundInterval());
+}
+
+/**
+ * Retrieves the AlarmComponent instance, which handles retrieving and rendering
+ * information about the current alarms.
+ *
+ * @return The current AlarmComponent instance
+ */
+AlarmComponent *HomeView::getAlarmComponent() {
+	return this->alarmComponent;
 }

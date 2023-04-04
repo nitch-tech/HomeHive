@@ -30,6 +30,7 @@ class Timer {
 
 	public:
 		static Timer* getInstance(HomeView* view);
+
 		void Register();
 		void Unregister();
 

@@ -9,11 +9,13 @@ include(FetchContent)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.2/json.tar.xz)
 FetchContent_MakeAvailable(json)
 
+find_package(SDL2 REQUIRED)
 find_package(CURL REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED gtk+-3.0)
 
 ## INCLUDE AND LINKING DEPENDENCIES DIRECTORIES ##
+include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${CURL_INCLUDE_DIR})
 include_directories(${GTK_INCLUDE_DIRS})
 link_directories(${GTK_LIBRARY_DIRS})
@@ -26,7 +28,9 @@ add_library(HomeHiveGUIComponents
         gui/components/WeatherComponent.cpp gui/components/WeatherComponent.h
         gui/components/NewsComponent.cpp gui/components/NewsComponent.h
         gui/components/GreetingComponent.cpp gui/components/GreetingComponent.h
-        gui/settings.cpp gui/settings.h)
+        gui/components/AlarmComponent.cpp gui/components/AlarmComponent.h
+        gui/settings.cpp gui/settings.h
+        gui/Alarm.cpp gui/Alarm.h)
 add_library(HomeHiveRequests
         request/request.cpp request/request.h
         request/Unsplash.cpp request/Unsplash.h
@@ -41,6 +45,7 @@ add_library(HomeHiveGUI
         gui/App.cpp gui/App.h
         gui/HomeView.cpp gui/HomeView.h
         gui/settings.cpp gui/settings.h)
+#add_library(HomeHiveEvent event/Timer.cpp event/Timer.h event/IntervalView.h event/IntervalView.cpp)
 
 ## DEFINE EXECUTABLES ##
 add_executable(HomeHive main.cpp)
@@ -60,6 +65,8 @@ add_custom_command(
   COMMENT "Compiling GSettings schema"
 )
 
+
+
 ## COPY RESOURCES ##
 add_custom_target(resources
         COMMAND ${CMAKE_COMMAND}
@@ -77,7 +84,7 @@ set(SCHEMA_INSTALL_DIR ${CMAKE_INSTALL_DATADIR}/glib-2.0/schemas)
 target_link_libraries(HomeHiveRequests PRIVATE nlohmann_json::nlohmann_json ${CURL_LIBRARIES})
 target_link_libraries(HomeHiveGUIComponents ${GTK_LIBRARIES} HomeHiveRequests HomeHiveEvent)
 target_link_libraries(HomeHiveGUI ${GTK_LIBRARIES} HomeHiveRequests HomeHiveEvent HomeHiveGUIComponents)
-target_link_libraries(HomeHive ${GTK_LIBRARIES} HomeHiveRequests HomeHiveEvent HomeHiveGUI)
+target_link_libraries(HomeHive ${GTK_LIBRARIES} ${SDL2_LIBRARIES} HomeHiveRequests HomeHiveEvent HomeHiveGUI)
 target_link_libraries(test PRIVATE nlohmann_json::nlohmann_json HomeHiveRequests)
 
 ## INSTALL THE COMPILED SCHEMA FILE ##

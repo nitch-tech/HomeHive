@@ -7,7 +7,8 @@
 
 const int WEATHER_INTERVAL = 5 * 60; // every 5 minutes
 const int NEWS_INTERVAL = 30; // every 30 seconds
-const int NEWS_FETCH_INTERVAL = 30 * 60; // every 1 minute 
+const int NEWS_FETCH_INTERVAL = 30 * 60; // every 1 minute
+const int ALARM_INTERVAL = 60;// every minute
 
 Timer* Timer::instance = nullptr;
 
@@ -18,8 +19,6 @@ Timer *Timer::getInstance(HomeView *view) {
 	return Timer::instance;
 }
 
-//Timer::Timer(const std::function<void(char *, char *)> &cb)
-//				: callback(cb) {
 Timer::Timer(HomeView* v) {
 	this->view = v;
 	this->buffDate = (char*)malloc(sizeof(char)*69);
@@ -84,6 +83,14 @@ const gboolean Timer::onTimerTick(gpointer data) {
 	if((tmr->ticks % NEWS_INTERVAL) == 0) {
 		tmr->view->getNewsComponent()->updateNews((tmr->ticks % NEWS_FETCH_INTERVAL) == 0);
 	}
+
+	// check alarm
+	if ((tmr->ticks % ALARM_INTERVAL) == 0) {
+			tmr->view->getAlarmComponent()->checkAlarm();
+	}
+/*	if ((tmr->ticks % 1) == 0) {
+		tmr->view->isClicked();
+	}*/
 
 	++tmr->ticks;
 	return true;
