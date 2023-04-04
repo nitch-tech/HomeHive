@@ -38,10 +38,6 @@ void BaseView::show() {
 	this->visible = true;
 }
 
-void BaseView::hide() {
-	this->visible = false;
-}
-
 GtkWindow *BaseView::getWindow() {
 	return this->window;
 }

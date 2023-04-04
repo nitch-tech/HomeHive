@@ -158,3 +158,7 @@ void Settings::open_settings_window() {
     gtk_main();
     }
 }
+
+int Settings::getBackgroundInterval() {
+	return this->back_time;
+}
