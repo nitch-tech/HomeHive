@@ -5,6 +5,7 @@
 /**
  * @brief constructor that initializes a GSettings object
  * @param settings
+ * @author David
  */
 GreetingComponent::GreetingComponent(GSettings* settings) {
 	this->settings = settings;
