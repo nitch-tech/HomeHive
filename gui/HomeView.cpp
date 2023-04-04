@@ -13,7 +13,7 @@
 #include "components/GreetingComponent.h"
 
 //#include <sigc++-2.0/sigc++/sigc++.h>
-#define DEBUG_GRID 1
+//#define DEBUG_GRID 1
 
 /**
  * Size Allocator Signal Handler
