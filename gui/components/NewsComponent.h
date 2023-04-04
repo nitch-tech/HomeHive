@@ -19,7 +19,7 @@ class NewsComponent: public GuiComponent {
 	private:
 		//GtkLabel* lblNewsTitle;
 
-		//GtkLabel* lblNewsInfo;	
+		GtkLabel* lblNewsInfo;
 
 		News* news; 						// news object to get headlines from
 
