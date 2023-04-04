@@ -5,17 +5,27 @@
 
 #include "Alarm.h"
 
-    Alarm::Alarm() {
+
+/**
+ * @brief Constructor that initializes an alarm object
+ */
+Alarm::Alarm() {
         minute = 0;
         hour = 0;
-
-
     }
 Alarm::~Alarm() = default;
 
+/**
+ * @brief Get the minute of the alarm object
+ * @return the minute variable
+ */
 int Alarm::getMinute() {
     return minute;
 }
+/**
+ * @brief Get the minute of the alarm object
+ * @return the minute variable
+ */
 int Alarm::getHour() {
     return hour;
 }
