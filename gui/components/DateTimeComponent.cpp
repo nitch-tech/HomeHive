@@ -10,12 +10,20 @@ DateTimeComponent::~DateTimeComponent() {
 
 }
 
+/**
+ * @brief change the date and time labels
+ * @param date the current date
+ * @param time the current time
+ */
 void DateTimeComponent::setDateAndTime(char *date, char *time) {
 	std::cout << "setDateAndTime, date="<<date<<", time="<<time<<std::endl;
 	gtk_label_set_text(this->lblTime, time);
 	gtk_label_set_text(this->lblDate, date);
 }
 
+/**
+ * @brief Setup widgets for the date and time
+ */
 void DateTimeComponent::setup() {
 	this->container = (GtkBox*) gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
@@ -35,6 +43,9 @@ void DateTimeComponent::setup() {
 	gtk_box_pack_start(GTK_BOX(this->container), date, FALSE, FALSE, 0);
 }
 
+/**
+ * @brief show the date and time widgets
+ */
 void DateTimeComponent::show() {
 	gtk_grid_attach(this->parentGrid, (GtkWidget*) this->container, 0, 0, 1, 1);
 }
