@@ -6,25 +6,30 @@
 #include "string"
 #include "HomeView.h"
 
+/**
+ * @brief Application ID for GTK
+ * @details This is the application ID for GTK, used to identify the app
+ * @author David Tkachuk
+ */
 const std::string APPLICATION_ID = "ca.uwo.cs3307.homehive";
 
-App::App() {
-}
-
-App::~App() {
-}
-
+/**
+ * Retrieve the status of the application
+ * @brief Retrieve the status of the application
+ * @return The status of the application
+ * @author David Tkachuk
+ */
 int App::GetStatus() {
 	return this->status;
 }
 
 /**
- * Starts the GTK app
- *
- * Setup some GTK windowing stuff, and then open the window.
- *
- * @param argc
- * @param argv
+ * Starts the GTK Application, setups up the important windowing stuff, and then opens
+ * the window. Also initializes the GSettings instance.
+ * @brief Starts the GTK Application
+ * @param argc The number of CLI arguments
+ * @param argv Array of string CLI arguments
+ * @author David Tkachuk
  */
 void App::Start(int argc, char** argv) {
 	this->app = gtk_application_new(APPLICATION_ID.c_str(), G_APPLICATION_FLAGS_NONE);
@@ -37,10 +42,9 @@ void App::Start(int argc, char** argv) {
 }
 
 /**
- * Create GTK Window
- *
- * This will create the base window for the entire HomeHive app, setting
- * up some basic windowing stuff.
+ * Create a new window instance for the HomeHive app, and then renders all its components.
+ * @brief Create the GTK Window
+ * @author David Tkachuk
  */
 void App::CreateWindow() {
 	GtkWindow* window;
@@ -68,19 +72,27 @@ void App::CreateWindow() {
 	gtk_widget_show_all(this->window);
 
 	// auto fullscreen -
-//	((HomeView*) this->view)->setFullscreen(true);
+	((HomeView*) this->view)->setFullscreen(true);
 }
 
 /**
- * Application activation handler
- *
- * @param app
- * @param data
+ * Application activation handler, which is called whenever the app is runned, and
+ * just creates a new window.
+ * @brief Application activation handler
+ * @param app The GTK Application instance
+ * @param data The HomeHive core App instance
+ * @author David Tkachuk
  */
 const void App::OnActivate(GtkApplication *app, App *data) {
 	data->CreateWindow();
 }
 
+/**
+ * Retrieve the GSettings instance to be able to access GTK settings options
+ * @brief Retrieve GSettings instance
+ * @return The GSettings instances
+ * @author David Tkachuk
+ */
 GSettings* App::getSettings() {
 	return this->settings;
 }
