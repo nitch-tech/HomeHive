@@ -6,6 +6,9 @@
 class Settings {
 public:
     static Settings* getInstance();
+
+		int getBackgroundInterval();
+
     void on_increment_clicked(GtkButton* button, gpointer user_data);
     void on_decrement_clicked(GtkButton* button, gpointer user_data);
     void save_button(GtkWidget* widget, gpointer data);

@@ -5,10 +5,18 @@
 #include <string>
 #include "Timer.h"
 
-int BACKGROUND_INTERVAL = 15 * 60; // every 15 minutes
 const int WEATHER_INTERVAL = 5 * 60; // every 5 minutes
 const int NEWS_INTERVAL = 30; // every 30 seconds
 const int NEWS_FETCH_INTERVAL = 30 * 60; // every 1 minute 
+
+Timer* Timer::instance = nullptr;
+
+Timer *Timer::getInstance(HomeView *view) {
+	if (Timer::instance == nullptr) {
+		Timer::instance = new Timer(view);
+	}
+	return Timer::instance;
+}
 
 //Timer::Timer(const std::function<void(char *, char *)> &cb)
 //				: callback(cb) {
@@ -23,9 +31,23 @@ Timer::~Timer() {
 	delete this->buffDate;
 	delete this->buffTime;
 }
-void Timer::SetBackInterval(int set){
-	BACKGROUND_INTERVAL = set;
+
+/**
+ * Change the interval, in seconds, for how frequent the background changes.
+ * @param val The new interval, in seconds
+ */
+void Timer::SetBackgroundInterval(int val) {
+	this->backgroundInterval = val;
 }
+
+/**
+ * Get the interval, in seconds, for how frequent the background changes.
+ * @return The interval, in seconds
+ */
+int Timer::GetBackgroundInterval() {
+	return this->backgroundInterval;
+}
+
 void Timer::Register() {
 	// nifty lil hack, run the timer callback FIRST to populate the time before scheduling the timer
 	Timer::onTimerTick(this);
@@ -49,7 +71,7 @@ const gboolean Timer::onTimerTick(gpointer data) {
 	tmr->view->getDateTimeComponent()->setDateAndTime(tmr->buffDate, tmr->buffTime);
 
 	// update background
-	if ((tmr->ticks % BACKGROUND_INTERVAL) == 0) {
+	if ((tmr->ticks % tmr->GetBackgroundInterval()) == 0) {
 		tmr->view->changeBackgroundImage();
 	}
 

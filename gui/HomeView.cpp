@@ -15,8 +15,6 @@
 //#include <sigc++-2.0/sigc++/sigc++.h>
 #define DEBUG_GRID 1
 
-Timer* Localtimer = nullptr;
-
 /**
  * Size Allocator Signal Handler
  *
@@ -113,9 +111,9 @@ void HomeView::registerInteractivity() {
 	g_signal_connect(this->window, "size-allocate", G_CALLBACK(onSizeAllocate), this);
 
 	// create our timer, which does some background work frequently
-	Timer* timer = new Timer(this);
+	Timer* timer = Timer::getInstance(this);
 	timer->Register();
-	Localtimer = timer;
+	timer->SetBackgroundInterval(Settings::getInstance()->getBackgroundInterval());
 
 	// load the CSS file, and set up styles
 	auto provider = gtk_css_provider_new();
@@ -295,8 +293,12 @@ NewsComponent* HomeView::getNewsComponent() {
  * triggger various components to update themselves.
  */
 void HomeView::update() {
+	g_print("Updating HomeView after settings change\n");
+
 	BaseView::update();
 	for (auto &component : this->components) {
 		component->settingsUpdated();
 	}
+	Timer::getInstance(this)
+		->SetBackgroundInterval(Settings::getInstance()->getBackgroundInterval());
 }

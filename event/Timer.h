@@ -14,6 +14,8 @@
 
 class Timer {
 	private:
+		static Timer* instance;
+
 		HomeView* view;
 		std::time_t time;
 		std::tm* tm;
@@ -21,16 +23,28 @@ class Timer {
 		char* buffDate;
 		char* buffTime;
 		int ticks = 0;
-		bool fetchNews = TRUE;
-//		const std::function<void(char*,char*)>& callback;
+		int backgroundInterval = 60*15;
+
+		explicit Timer(HomeView* view);
+		~Timer();
 
 	public:
-//		Timer(const std::function<void(char *, char *)> &callback);
-		Timer(HomeView* view);
-		~Timer();
+		static Timer* getInstance(HomeView* view);
 		void Register();
 		void Unregister();
-		void SetBackInterval(int set);
+
+		/**
+		 * Get the interval, in seconds, for how frequent the background changes.
+		 * @return The interval, in seconds
+		 */
+		int GetBackgroundInterval();
+
+		/**
+		 * Change the interval, in seconds, for how frequent the background changes.
+		 * @param val The new interval, in seconds
+		 */
+		void SetBackgroundInterval(int val);
+
 	private:
 		static const gboolean onTimerTick(gpointer data);
 };
