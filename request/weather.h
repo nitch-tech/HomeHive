@@ -57,10 +57,17 @@ class Weather {
 
 		float getTempFeelsLike();
         /**
+         * @brief get what temperature feels like
          *
          * @return what the temperature feels like as an integer
          */
 		int getTempFeelsLikeRounded();
+        /**
+         * @brief get condition id for the weather
+         * The condition id describes the current weather (see https://openweathermap.org/weather-conditions for weather codes)
+         * The lets the app display an accurate icon that describes the current weather
+         * @return an integer that describes the current weather as an id as described by openweathermap
+         */
 		int getCondId();
 };
 
