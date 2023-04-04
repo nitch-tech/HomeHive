@@ -13,7 +13,7 @@ News::News() {
 News::~News() = default;
 
 int News::fetchNewsData() {
-    Request initial("https://www.reddit.com/r/news.rss");
+    Request initial("https://www.reddit.com/r/UpliftingNews/.rss");
 
     if (initial.execute()) {
 		std::string res = initial.getResponse();
@@ -38,7 +38,7 @@ int News::fetchNewsData() {
                 headline.append("...");
             }
             
-            if(headline != "News") {
+            if(headline != "Uplifting News") {
                 this->newsList.push_back(headline);
             }
         }
