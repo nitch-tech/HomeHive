@@ -1,24 +1,41 @@
 //
 // Created by mariam on 2023-03-14.
 //
+/**
+ * @brief the class for getting the current weather
+ * Weather data is obtained from making a call to OpenWeatherMap API
+ * @author Mariam Alabi
+ */
 #include <string>
 #include <nlohmann/json.hpp>
 #include "weather.h"
 
 using json = nlohmann::json;
 
-const std::string WEATHER_API_ID = "6058560";
-const std::string WEATHER_API_KEY = "7caf3dcfe4918513df6c3ddf1b564435";
+const std::string WEATHER_API_ID = "6058560"; ///OpenWeatherMap gets data using an ID and KEY
+const std::string WEATHER_API_KEY = "7caf3dcfe4918513df6c3ddf1b564435"; ///OpenWeatherMap gets data using an ID and KEY
 
+/**
+ * @brief constructor initilizing variables
+ * The constructor initilizes temperature, condition id, location name, and what the temperature feels like
+ */
 Weather::Weather() {
 	temperatureString = 0;
 	conditionId = 0;
 	this->locationName = "Unknown";
 	this->tempFeelsLike = 0;
 }
-
+/**
+ * @brief weather deconstructor
+ */
 Weather::~Weather() = default;
 
+/**
+ * @brief get weather data
+ * Makes a call to OpenWeatherMap, which has the current weather in a json format
+ * The method parses the json object to get relevant data
+ * @return 0 if reqest succeeded, -1 if fail
+ */
 int Weather::fetchWeatherData() {
 	Request initial("https://api.openweathermap.org/data/2.5/weather?id=" +
 		WEATHER_API_ID + "&appid=" + WEATHER_API_KEY + "&units=metric");
@@ -43,11 +60,20 @@ int Weather::fetchWeatherData() {
 	}
 
 }
-
+/**
+ * @brief get the current temperature
+ * get the current temperature in the form of a string
+ * @return temperature
+ */
 double Weather::getTemp() {
 	return temperatureString;
 }
 
+/**
+ * @brief Get the conditionID of the current weather
+ * OpenweatherMap uses conditionID to describe the current weather. This allows to display an icon that accurately describes the current weather
+ * @return condition id
+ */
 int Weather::getCondId() {
 	return conditionId;
 }
