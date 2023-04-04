@@ -1,6 +1,7 @@
-//
-// Created by Nathan on 2023-03-30.
-//
+/*
+ * @brief header file for news class
+ * @author Nathan Chan
+*/
 
 #ifndef HOMEHIVE_NEWS_H
 #define HOMEHIVE_NEWS_H
@@ -12,16 +13,17 @@
 #include <iostream>
 #include "request.h"
 
+
 class News {
 	private:
-        std::vector<std::string> newsList;
-		int story;
+        std::vector<std::string> newsList; 	// vector containing headlines represented by a string
+		int story;							// int tracking the number of stories
 
 	public:
-		News();
-		~News();
-		int fetchNewsData();
-		std::string getHeadline();
+		News();								// constructor
+		~News();							// destructor
+		int fetchNewsData();				// fetches the news headlines from reddit
+		std::string getHeadline();			// returns a headline string
 };
 
 

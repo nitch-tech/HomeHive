@@ -1,3 +1,9 @@
+/*
+ * @file NewsComponent.h
+ * @brief headerfile for NewsComponent class
+ * @author Nathan Chan
+*/
+
 #ifndef HOMEHIVE_NEWSCOMPONENT_H
 #define HOMEHIVE_NEWSCOMPONENT_H
 
@@ -5,31 +11,47 @@
 #include "GuiComponent.h"
 #include "../../request/news.h"
 
+/*
+ * @class NewsComponent
+ * @brief manages the gui for the news headlines 
+*/
 class NewsComponent: public GuiComponent {
 	private:
 		//GtkLabel* lblNewsTitle;
-		GtkLabel* lblNewsInfo;
-		News* news;
+
+		//GtkLabel* lblNewsInfo;	
+
+		News* news; 						// news object to get headlines from
 
 	public:
 		NewsComponent();
 		~NewsComponent();
 
-		News* getNews();
+		/*
+		 * @brief returns the news object
+		 * @return the news object
+		*/
+		News* getNews();	
 
+		/*
+		 * @brief sets up the box and label
+		 * create new GTK widgets box and label.
+		*/
 		void setup() override;
+
+		/*
+		 * @brief attaches the GTK components to the grid
+		*/
 		void show() override;
 
-		/**
-		 * Update the component
-		 *
-		 * When executed, and if required, this component may update or re-render
-		 * itself to reflect any changes in the application settings.
-		 *
-		 * @todo ability to change the news source
-		 */
 		void settingsUpdated() override;
 
+		/*
+		 * @brief updates the news displaying in the gui
+		 * @param fetchNews a boolean that is true when it is time to request more headlines and false when the next headline
+		 * is being grabbed from the list
+		 * 
+		*/
 		void updateNews(bool fetchNews);
 };
 
