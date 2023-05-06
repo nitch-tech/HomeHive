@@ -30,7 +30,7 @@ class BaseView {
 		BaseView(GtkWindow* window, GSettings* settings);
 		// BaseView(App* app, GtkWindow* window);
 		~BaseView();
-
+		void hide();
 		// App* getApp();
 
 		/**
