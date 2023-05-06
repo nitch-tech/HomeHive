@@ -1,5 +1,5 @@
 ![HomeHive Logo](./resources/logo.png)
-
+HomeHive is a group project created for the course 3307. Most the work was done during this time though features are planned to be addered after
 # HomeHive
 The HomeHive is a revolutionary smart-home assistant device and is designed to improve
 your productivity. It could be mounted on the wall, built into another appliance, and could
